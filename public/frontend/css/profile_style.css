@@ -1,0 +1,285 @@
+
+
+/* ---------------------HEADER----------------------- */
+
+.header{
+  background-color: #FFD686;
+  height: 100vh;
+}
+
+.main{
+  height: 100vh;
+}
+
+
+.page-title{
+  font-family: "Amarante", serif;
+  padding: 100px;
+}
+.page-title h1{
+  color: #FFB11B;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.page-title .sub-title{
+  font-size: 18px;
+  font-weight: 300;
+}
+
+/* --------------common design--------------------- */
+.card-bg{
+  background-color: #FFF7E8;
+  border: 1px solid #F86F03;
+  border-radius: 10px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.profile{
+  font-family: "Barlow", sans-serif;
+}
+
+/* ---------------- Profile Menu---------------- */
+
+.profile-menu .card-bg {
+  width: 100%;
+  height: 100%;
+}
+
+.profile-menu-top .user-icon {
+  border: 1px solid #000;
+  border-radius: 100%;
+  width: 110px;
+  height: 110px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.profile-menu-top .user-icon i {
+  color: #000;
+  margin-top: 20px;
+  font-size: 60px;
+}
+
+.profile-menu-top .user-name {
+  color: #000;
+  font-size: 20px;
+  margin-top: 18px;
+  text-align: center;
+  font-weight:600;
+}
+
+.profile-menu-item-left {
+  background-color: #F86F03;
+  height: 50px;
+  width: 50px;
+  padding: 15px;
+}
+
+.profile-menu-item-left i {
+  color: #fff;
+  font-size: 18px;
+}
+
+.profile-menu-item-right {
+  color: #000;
+  font-weight:500;
+  font-size: 16px;
+  margin-left: 12px;
+}
+
+/* メニューのボタンのスタイル */
+
+.profile-menu-bottom .nav-link {
+  display: flex;
+  align-items: center;
+  background-color: transparent !important;
+  border-bottom: 1px solid #8E8E8E ;
+  border-radius: 0% !important;
+  color: #000;
+  transition: background-color 0.3s ease; /* 背景色の遷移をスムーズに */
+  position: relative; /* indicator用の位置調整 */
+}
+
+.profile-menu-bottom .nav-link.active {
+  background-color: rgba(0, 0, 0, 0.04) !important; 
+}
+
+.profile-menu-bottom .nav-link:hover {
+  background-color: rgba(0, 0, 0, 0.04) !important; 
+}
+
+
+.profile-menu-bottom .nav-link.active::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 5px;
+  height: 100%;
+  background-color: #F86F03; /* アクティブなインジケーターの色 */
+  transition: all 0.3s;
+}
+
+/* ==================- common style ============================== */
+
+.menu-section-title{
+  font-size: 20px;
+  font-weight: bold;
+  font-weight: 600;
+}
+
+.menu-section-content{
+  font-size: 16px;
+  font-weight: 800;
+}
+
+
+
+/* ========================Profile Info Content===================== */
+.profile-content-link .row{
+  margin: 0 auto;
+}
+
+.profile-content-link a{
+  text-decoration: none;
+}
+.profile-content-link .link-icon{
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  margin: 0 auto;
+}
+.profile-content-link .wallet .link-icon{
+background-color:#FFBC3A;
+}
+.profile-content-link .wallet h4{
+color:#FFBC3A;
+}
+.profile-content-link .proceed .link-icon{
+background-color: #4CAF50;
+}
+.profile-content-link .proceed h4{
+color: #4CAF50;
+}
+.profile-content-link .cart .link-icon{
+  background-color: #F86F03;
+}
+.profile-content-link .cart h4{
+ color: #F86F03;
+}
+
+.profile-content-link .link-icon i{
+  color: #fff;
+  font-size: 24px;
+  margin-top: 13px;
+}
+
+.profile-content-link h4{
+  font-size: 18px;
+  font-weight: bold;
+  font-weight: 600;
+  text-align: center;
+}
+
+
+
+.personal-info .btn{
+  font-size: 14px;
+  padding: 8px;
+  border: none;
+  background-color: #F86F03;
+}
+
+.personal-info .info-cancel-btn{
+  display: none;
+}
+
+.personal-info .edit-form{
+  display: none;
+}
+.personal-info .edit-form-save{
+  background-color: #886653;
+  width: 50%;
+}
+
+
+
+/* =======================- Order ================= */
+.order.table td{
+  vertical-align: middle;
+}
+
+/* テーブルヘッダーのスタイル */
+.t_header th{
+  background-color: #F86F03 !important; /* あなたのデザインに合う色に変更してください */
+  color: white !important;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.t_body td{
+  background-color: #FFF7E8 !important;
+}
+
+/* 完了、アクティブ、キャンセルのラベルスタイル */
+.complete {
+  color: #4CAF50;
+}
+.cancel {
+  color: red;
+}
+
+/* 詳細ボタンのスタイル */
+.view_invoice {
+  text-decoration: none;
+}
+
+/* 詳細表示のスタイル */
+.invoice {
+  display: none; /* 初期状態では非表示 */
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #FFF7E8;
+  border: 1px solid #F86F03;
+  border-radius: 10px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* 戻るボタンのスタイル */
+.go_back {
+  font-size: 14px;
+  padding: 10px;
+  border: none !important;
+  background-color: #F86F03 !important;
+}
+
+.go_back:hover {
+  background-color: #000 !important;
+}
+
+/* インボイスヘッダーのスタイル */
+.invoice_header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+/* テーブルのボディとフッターのスタイル */
+.invoice_body .table tbody tr td {
+  vertical-align: middle;
+}
+
+.invoice_body .table tfoot {
+  font-weight: bold;
+}
+
+/* =======================- Change Password ================= */
+
+.change-password .password-save{
+  background-color: #886653;
+  width: 50%;
+  font-size: 14px;
+  display: inline-block;
+  border:none;
+}
