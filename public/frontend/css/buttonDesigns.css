@@ -1,0 +1,92 @@
+.btn-brown {
+    background-color: #886653;
+    color: white;
+    border: none;
+    padding: 6px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-brown:hover {
+    background-color: #633B25;
+}
+
+.btn-brown-outline {
+    background-color: white;
+    color: #886653;
+    border: solid 1px #886653;
+    padding: 6px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-brown-outline:hover {
+    background-color: #886653;
+    color: white;
+}
+
+.btn-pink {
+    background-color: #F3725F;
+    color: white;
+    border: none;
+    padding: 6px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-pink:hover {
+    background-color: #EA472F;
+}
+
+.btn-pink-outline {
+    background-color: white;
+    color: #F3725F;
+    border: solid 2px #F3725F;
+    padding: 6px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-pink-outline:hover {
+    background-color: #F3725F;
+    color: white;
+}
+
+.btn-yellow {
+    background-color: #FFDD9D;
+    color: white;
+    border: none;
+    padding: 6px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-yellow:hover {
+    background-color: #FFB11B;
+}
+
+.btn-yellow-outline {
+    background-color: white;
+    color: #FFB11B;
+    border: solid 2px #FFB11B;
+    padding: 6px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-yellow-outline:hover {
+    background-color: #FFB11B;
+    color: white;
+}

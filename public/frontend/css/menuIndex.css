@@ -1,0 +1,100 @@
+.card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    transition: color 0.5s ease;
+}
+
+.price-tag {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ff5722;
+}
+
+.discount-price {
+    text-decoration: line-through;
+    color: #999;
+}
+
+.badge-category {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #ff5722;
+    color: white;
+    font-size: 0.9rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 0.25rem;
+}
+
+.rating-stars {
+    color: #ffa500;
+}
+
+.card-icon-group {
+    margin-top: 10px;
+}
+
+.card-icon-group i {
+    margin-right: 10px;
+    color: white;
+    cursor: pointer;
+}
+
+.card-img-top {
+    height: 250px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.card {
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card:hover .card-title {
+    color: #ff5722;
+}
+
+.btn-yellow-index {
+    background-color: #ffb11b;
+    color: white;
+    border: none;
+    padding: 6px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOut {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+}
+
+.menu-item {
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+}
