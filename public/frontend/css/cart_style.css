@@ -1,0 +1,26 @@
+/* ---------------------HEADER----------------------- */
+
+.header{
+  background-color: #FFD686;
+  height: 100vh;
+}
+
+.main{
+  height: 100vh;
+}
+
+
+.page-title{
+  font-family: "Amarante", serif;
+  padding: 100px;
+}
+.page-title h1{
+  color: #FFB11B;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.page-title .sub-title{
+  font-size: 18px;
+  font-weight: 300;
+}
