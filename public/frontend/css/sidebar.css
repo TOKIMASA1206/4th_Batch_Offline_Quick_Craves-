@@ -14,12 +14,7 @@
 }
 
 .content-inner {
-    transform: scale(1); /* 初期状態のスケール */
     transition: transform 0.25s ease-in-out;
-}
-
-#sidebar.expand + #content .content-inner {
-    transform: scale(0.9); /* サイドバーが拡大されたときの縮小スケール */
 }
 
 .toggle-btn {
