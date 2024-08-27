@@ -2,6 +2,18 @@
 
 @section('title', 'Profile')
 
+@section('style')
+    <link rel="stylesheet" href="{{ asset('frontend/css/profile_style.css') }}">
+@endsection
+
+@section('page-title')
+    <div class="row justify-content-center align-items-center" style="height: 100%">
+        <div class="text-center">
+            <h1 class="display-4 ar" style="color: #FFB11B;">User Dashboard</h1>
+        </div>
+    </div>
+@endsection
+
 @section('content')
 
     <div class="row">
@@ -19,11 +31,6 @@
         <div class="col profile">
             <div class="container">
                 <div class="main">
-                    <div class="page-title">
-                        <h1 class="text-center display-5 mb-4">User Dashboard</h1>
-                        <p class="sub-title text-center">Welcome To Your Profile</p>
-                    </div>
-
                     <div class="card">
                         <div class="row">
                             <div class="col-3 profile-menu">
@@ -73,7 +80,7 @@
                             </div>
 
 
-                            <div class="col profile-content p-3 pe-5">
+                            <div class="col profile-content p-3 pe-4 pb-4">
                                 <h2 class="mb-4">Welcome To Your Profile </h2>
                                 <div class=" profile-content-link mb-5">
 
@@ -159,7 +166,8 @@
                                     </div>
 
                                     <!-- Order Content -->
-                                    <div class="tab-pane fade" id="v-pills-order" role="tabpanel" aria-labelledby="v-pills-order-tab">
+                                    <div class="tab-pane fade" id="v-pills-order" role="tabpanel"
+                                        aria-labelledby="v-pills-order-tab">
                                         <div class="body">
                                             <h3 class="menu-section-title mb-3 mt-2">
                                                 Order List
@@ -190,7 +198,8 @@
                                                                 <td>
                                                                     <h5>$560</h5>
                                                                 </td>
-                                                                <td><a class="view_invoice btn btn-outline-dark p-1">View Details</a></td>
+                                                                <td><a class="view_invoice btn btn-outline-dark p-1">View
+                                                                        Details</a></td>
                                                             </tr>
                                                             <tr class="t_body">
                                                                 <td>
@@ -205,7 +214,8 @@
                                                                 <td>
                                                                     <h5>$654</h5>
                                                                 </td>
-                                                                <td><a class="view_invoice btn btn-outline-dark p-1">View Details</a></td>
+                                                                <td><a class="view_invoice btn btn-outline-dark p-1">View
+                                                                        Details</a></td>
                                                             </tr>
                                                             <tr class="t_body">
                                                                 <td>
@@ -220,7 +230,8 @@
                                                                 <td>
                                                                     <h5>$440</h5>
                                                                 </td>
-                                                                <td><a class="view_invoice btn btn-outline-dark p-1">View Details</a></td>
+                                                                <td><a class="view_invoice btn btn-outline-dark p-1">View
+                                                                        Details</a></td>
                                                             </tr>
                                                             <tr class="t_body">
                                                                 <td>
@@ -235,7 +246,8 @@
                                                                 <td>
                                                                     <h5>$225</h5>
                                                                 </td>
-                                                                <td><a class="view_invoice btn btn-outline-dark p-1">View Details</a></td>
+                                                                <td><a class="view_invoice btn btn-outline-dark p-1">View
+                                                                        Details</a></td>
                                                             </tr>
                                                             <tr class="t_body">
                                                                 <td>
@@ -250,7 +262,8 @@
                                                                 <td>
                                                                     <h5>$335</h5>
                                                                 </td>
-                                                                <td><a class="view_invoice btn btn-outline-dark p-1">View Details</a></td>
+                                                                <td><a class="view_invoice btn btn-outline-dark p-1">View
+                                                                        Details</a></td>
                                                             </tr>
                                                             <tr class="t_body">
                                                                 <td>
@@ -265,7 +278,8 @@
                                                                 <td>
                                                                     <h5>$550</h5>
                                                                 </td>
-                                                                <td><a class="view_invoice btn btn-outline-dark p-1">View Details</a></td>
+                                                                <td><a class="view_invoice btn btn-outline-dark p-1">View
+                                                                        Details</a></td>
                                                             </tr>
                                                             <tr class="t_body">
                                                                 <td>
@@ -280,7 +294,8 @@
                                                                 <td>
                                                                     <h5>$545</h5>
                                                                 </td>
-                                                                <td><a class="view_invoice btn btn-outline-dark p-1">View Details</a></td>
+                                                                <td><a class="view_invoice btn btn-outline-dark p-1">View
+                                                                        Details</a></td>
                                                             </tr>
                                                             <tr class="t_body">
                                                                 <td>
@@ -295,7 +310,8 @@
                                                                 <td>
                                                                     <h5>$600</h5>
                                                                 </td>
-                                                                <td><a class="view_invoice btn btn-outline-dark p-1">View Details</a></td>
+                                                                <td><a class="view_invoice btn btn-outline-dark p-1">View
+                                                                        Details</a></td>
                                                             </tr>
                                                             <tr class="t_body">
                                                                 <td>
@@ -310,7 +326,8 @@
                                                                 <td>
                                                                     <h5>$200</h5>
                                                                 </td>
-                                                                <td><a class="view_invoice btn btn-outline-dark p-1">View Details</a></td>
+                                                                <td><a class="view_invoice btn btn-outline-dark p-1">View
+                                                                        Details</a></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -323,7 +340,8 @@
                                                         <p class="p-0 m-0"><b>Order ID:</b> <span> #4789546458</span></p>
                                                         <p class="p-0 m-0"><b>date:</b> <span>10-11-2022</span></p>
                                                     </div>
-                                                    <span class="go_back btn btn-dark  h-50 mt-3"><i class="fas fa-long-arrow-alt-left"></i> go back</span>
+                                                    <span class="go_back btn btn-dark  h-50 mt-3"><i
+                                                            class="fas fa-long-arrow-alt-left"></i> go back</span>
                                                 </div>
                                                 <div class="invoice_body">
                                                     <div class="table-responsive">
@@ -476,13 +494,13 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td></td>
-                                                                    <td class="package coupon" colspan="2">
-                                                                        <b>(-) Discount coupon</b>
+                                                                    <td class="package text-danger" colspan="2">
+                                                                        <b>(-) Voucher</b>
                                                                     </td>
                                                                     <td class="qnty">
                                                                         <b></b>
                                                                     </td>
-                                                                    <td class="total coupon">
+                                                                    <td class="total text-danger">
                                                                         <b>$0.00</b>
                                                                     </td>
                                                                 </tr>
@@ -501,7 +519,7 @@
                                                             </tfoot>
                                                         </table>
                                                     </div>
-                                                </div>  
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -550,3 +568,7 @@
     </div>
 
 @endsection
+
+@push('scripts')
+<script src="{{ asset('frontend/js/profile_js_action.js') }}"></script>
+@endpush

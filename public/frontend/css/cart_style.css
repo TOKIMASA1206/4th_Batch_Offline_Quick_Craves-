@@ -24,3 +24,85 @@
   font-size: 18px;
   font-weight: 300;
 }
+
+/* --------------common design--------------------- */
+
+.cart{
+  font-family: "Barlow", sans-serif;
+}
+.cart a {
+  text-decoration: none;
+  color: #000;
+}
+
+/* =====================  CART  ====================== */
+/* Table Styles */
+
+/* テーブルヘッダーのスタイル */
+
+.t_header th{
+  background-color: #FFB11B !important;
+  color: white !important;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.t_body td{
+  background-color: #FFF7E8 !important;
+  padding: 10px 15px !important ;
+  vertical-align: middle;
+}
+
+.cart .quantity_btn{
+  display: flex;
+  margin: 0 auto;
+}
+.cart .quantity_btn input{
+  margin: 0 10px;
+  width: 50px;
+  text-align: center;
+}
+
+/* Total確認    スタイル */
+
+
+
+.cart_list_checkout p{
+  font-weight: 100;
+  font-size: 16px;
+}
+.cart_list_checkout .total{
+  font-weight: bold;
+  font-size: 18px;
+}
+.cart_list_checkout .checkout_btn{
+  font-size: 18px;
+  padding: 8px;
+  border: none;
+  background-color: #FFB11B;
+}
+
+.cart_list_checkout input{
+  vertical-align: middle;
+}
+.cart_list_checkout label{
+  vertical-align: middle;
+}
+.cart_list_checkout .total-point{
+  border:3px solid #FFB11B;
+  padding: 5px 8px;
+  border-radius: 20px;
+  font-weight:500;
+  vertical-align: middle;
+}
+.cart_list_checkout .add-point i{
+  color: #FFB11B;
+  transition: transform 0.3s ease;
+}
+.cart_list_checkout .add-point i:hover{
+  color: #f3821f;
+  transform: scale(1.3);
+}
+
+
+
