@@ -25,8 +25,8 @@
 
     {{-- Font Awesome --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     {{-- Google Font --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,11 +34,14 @@
     {{-- Title Font --}}
     <link href="https://fonts.googleapis.com/css2?family=Amarante&family=Chelsea+Market&display=swap" rel="stylesheet">
     {{-- Common Font --}}
-    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Jost:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
 
     <!-- CSS -->
     @yield('style')
     <link rel="stylesheet" href="{{ asset('frontend/css/buttonDesigns.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/sidebar.css') }}">
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -68,9 +71,6 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-
-                    </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
@@ -113,16 +113,77 @@
         </nav>
 
         <main>
-            <div class="mb-5" style="height: 15rem; background: rgba(255, 206, 100, 0.169)">
-                @yield('page-title')
-            </div>
+            <div class="d-flex">
+                <div id="sidebar">
+                    <div class="d-flex">
+                        <button class="toggle-btn" type="button">
+                            <i class="fa-solid fa-bars"></i>
+                        </button>
+                        <div class="sidebar-logo">
+                            <a href="#" style="text-decoration: none">MENU</a>
+                        </div>
+                    </div>
+                    <ul class="sidebar-nav">
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link" style="text-decoration: none">
+                                <i class="fa-solid fa-house"></i>
+                                <span>Home</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link">
+                                <i class="fa-solid fa-user"></i>
+                                <span>Profile</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link">
+                                <i class="fa-solid fa-wallet"></i>
+                                <span>Wallet</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link">
+                                <i class="fa-solid fa-basket-shopping"></i>
+                                <span>My Cart</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link">
+                                <i class="fa-solid fa-play"></i>
+                                <span>Proceed</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="sidebar-footer">
+                        <a href="#" class="sidebar-link">
+                            <i class="fa-solid fa-gear"></i>
+                            <span>Setting</span>
+                        </a>
+                        <a href="#" class="sidebar-link">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            <span>Logout</span>
+                        </a>
+                    </div>
+                </div>
 
-            @yield('content')
+                <div id="content" style="width: 100%">
+                    <div id="page-title" class="mb-5" style="height: 15rem; background: rgba(255, 206, 100, 0.169)">
+                        @yield('page-title')
+                    </div>
+
+                    <div class="content-inner">
+                        @yield('content')
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
-    
+
     @stack('scripts')
     {{-- Javascript --}}
     <script src="{{ asset('frontend/js/profile_js_action.js') }}"></script>
+    <script src="{{ asset('frontend/js/sidebar.js') }}"></script>
 </body>
+
 </html>
