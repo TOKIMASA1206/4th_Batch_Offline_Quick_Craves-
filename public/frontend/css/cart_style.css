@@ -41,10 +41,12 @@
 /* テーブルヘッダーのスタイル */
 
 .t_header th{
-  background-color: #FFB11B !important;
-  color: white !important;
+  background-color: #FFF7E8 !important;
   font-size: 16px;
   font-weight: bold;
+}
+.t_header .clear_all{
+  color:#FFB11B;
 }
 
 .t_body td{
@@ -53,12 +55,8 @@
   vertical-align: middle;
 }
 
-.cart .quantity_btn{
-  display: flex;
-  margin: 0 auto;
-}
 .cart .quantity_btn input{
-  margin: 0 10px;
+  margin: 0 4px;
   width: 50px;
   text-align: center;
 }

@@ -16,15 +16,7 @@
 
 @section('content')
 
-    <div class="row">
-
-
-
-        <div class="col-1">
-            <header class="header">
-                menu
-            </header>
-        </div>
+    <div class="row fade-in">
 
 
 

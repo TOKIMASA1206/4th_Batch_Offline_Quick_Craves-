@@ -35,6 +35,7 @@
 
     <!-- CSS -->
     @yield('style')
+    <link rel="stylesheet" href="{{ asset('frontend/css/animate.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/buttonDesigns.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/sidebar.css') }}">
 
@@ -177,8 +178,8 @@
 
     @stack('scripts')
     {{-- Javascript --}}
-    <script src="{{ asset('frontend/js/profile_js_action.js') }}"></script>
     <script src="{{ asset('frontend/js/sidebar.js') }}"></script>
+    <script src="{{ asset('frontend/js/animate.js') }}"></script>
 </body>
 
 </html>

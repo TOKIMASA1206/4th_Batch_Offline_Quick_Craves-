@@ -16,7 +16,7 @@
 
 @section('content')
 
-    <div class="row">
+    <div class="row fade-in">
 
 
 
@@ -31,7 +31,7 @@
                 <div class="container">
                     <div class="row">
 
-                        <div class="col-lg-8 wow fadeInUp" data-wow-duration="1s">
+                        <div class="col-lg-7 wow fadeInUp" data-wow-duration="1s">
                             <div class="cart">
                                 <div class="table-responsive">
                                     <table class="table text-center">
@@ -59,11 +59,14 @@
                                                     <h5>$180.00</h5>
                                                 </td>
                                                 <td class="pro_select">
-                                                    <div class="quantity_btn">
-                                                        <button class="btn btn-danger" id="minus-btn"><i class="fa-solid fa-minus"></i></button>
-                                                        <input class="form-control" type="text" placeholder="1">
-                                                        <button class="btn btn-success" id="plus-btn"><i
-                                                                class="fa-solid fa-plus"></i></button>
+                                                    <div class="quantity_btn d-flex justify-content-center align-items-center">
+                                                        <button class="btn btn-danger" data-action="minus" data-target="quantity1">
+                                                            <i class="fa-solid fa-minus"></i>
+                                                        </button>
+                                                        <input class="form-control" id="quantity1" type="text" value="1">
+                                                        <button class="btn btn-success" data-action="plus" data-target="quantity1">
+                                                            <i class="fa-solid fa-plus"></i>
+                                                        </button>
                                                     </div>
                                                 </td>
                                                 <td class="pro_tk">
@@ -81,11 +84,14 @@
                                                     <h5>$140.00</h5>
                                                 </td>
                                                 <td class="pro_select">
-                                                    <div class="quantity_btn">
-                                                        <button class="btn btn-danger"><i class="fa-solid fa-minus"></i></button>
-                                                        <input class="form-control" type="text" placeholder="1">
-                                                        <button class="btn btn-success"><i
-                                                                class="fa-solid fa-plus"></i></button>
+                                                    <div class="quantity_btn d-flex justify-content-center align-items-center">
+                                                        <button class="btn btn-danger" data-action="minus" data-target="quantity1">
+                                                            <i class="fa-solid fa-minus"></i>
+                                                        </button>
+                                                        <input class="form-control" id="quantity1" type="text" value="1">
+                                                        <button class="btn btn-success" data-action="plus" data-target="quantity1">
+                                                            <i class="fa-solid fa-plus"></i>
+                                                        </button>
                                                     </div>
                                                 </td>
                                                 <td class="pro_tk">
@@ -107,11 +113,14 @@
                                                     <h5>$220.00</h5>
                                                 </td>
                                                 <td class="pro_select">
-                                                    <div class="quantity_btn">
-                                                        <button class="btn btn-danger"><i class="fa-solid fa-minus"></i></button>
-                                                        <input class="form-control" type="text" placeholder="1">
-                                                        <button class="btn btn-success"><i
-                                                                class="fa-solid fa-plus"></i></button>
+                                                    <div class="quantity_btn d-flex justify-content-center align-items-center">
+                                                        <button class="btn btn-danger" data-action="minus" data-target="quantity1">
+                                                            <i class="fa-solid fa-minus"></i>
+                                                        </button>
+                                                        <input class="form-control" id="quantity1" type="text" value="1">
+                                                        <button class="btn btn-success" data-action="plus" data-target="quantity1">
+                                                            <i class="fa-solid fa-plus"></i>
+                                                        </button>
                                                     </div>
                                                 </td>
                                                 <td class="pro_tk">
@@ -132,11 +141,14 @@
                                                     <h5>$150.00</h5>
                                                 </td>
                                                 <td class="pro_select">
-                                                    <div class="quantity_btn">
-                                                        <button class="btn btn-danger"><i class="fa-solid fa-minus"></i></button>
-                                                        <input class="form-control" type="text" placeholder="1">
-                                                        <button class="btn btn-success"><i
-                                                                class="fa-solid fa-plus"></i></button>
+                                                    <div class="quantity_btn d-flex justify-content-center align-items-center">
+                                                        <button class="btn btn-danger" data-action="minus" data-target="quantity1">
+                                                            <i class="fa-solid fa-minus"></i>
+                                                        </button>
+                                                        <input class="form-control" id="quantity1" type="text" value="1">
+                                                        <button class="btn btn-success" data-action="plus" data-target="quantity1">
+                                                            <i class="fa-solid fa-plus"></i>
+                                                        </button>
                                                     </div>
                                                 </td>
                                                 <td class="pro_tk">
@@ -153,7 +165,7 @@
 
 
 
-                        <div class="ms-5 card shadow col-lg-3 wow fadeInUp p-4" data-wow-duration="1s">
+                        <div class="ms-5 card shadow col-lg-4 wow fadeInUp p-4" data-wow-duration="1s">
 
                             <div class="cart_list_checkout">
                                 <h5 class="fw-bold">Total Cart</h5>
@@ -170,17 +182,20 @@
                                     <div class="col">
                                         <h5 class="fw-bold mt-2">Method</h5>
                                     </div>
-                                    <div class="col-auto total-point"><span>2196 Cp</span><a class="add-point ms-2" href=""><i class="fa-solid fa-plus"></i></a></div>
+                                    <div class="col-auto total-point"><span>2196 Cp</span><a class="add-point ms-2"
+                                            href=""><i class="fa-solid fa-plus"></i></a></div>
                                 </div>
                                 <div class="check-method mb-1">
-                                    <input class="check-method-input" name="payment" type="radio" value="" id="card">
+                                    <input class="check-method-input" name="payment" type="radio" value=""
+                                        id="card">
                                     <label class="check-method-label" for="card">
                                         Credit Card
                                     </label>
                                 </div>
 
                                 <div class="check-method mb-1">
-                                    <input class="check-method-input" name="payment" type="radio" value="" id="cash">
+                                    <input class="check-method-input" name="payment" type="radio" value=""
+                                        id="cash">
                                     <label class="check-method-label" for="cash">
                                         Cash
                                     </label>
@@ -188,7 +203,8 @@
 
 
                                 <div class="check-method mb-1">
-                                    <input class="check-method-input" name="payment" type="radio" value="" id="point">
+                                    <input class="check-method-input" name="payment" type="radio" value=""
+                                        id="point">
                                     <label class="check-method-label" for="point">
                                         Point
                                     </label>
@@ -212,5 +228,5 @@
 @endsection
 
 @push('scripts')
-<script src="{{ asset('frontend/js/cart_js_action.js') }}"></script>
+    <script src="{{ asset('frontend/js/cart_js_action.js') }}"></script>
 @endpush
