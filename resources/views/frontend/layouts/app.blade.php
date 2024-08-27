@@ -116,7 +116,7 @@
             <div class="d-flex">
                 <div id="sidebar">
                     <div class="d-flex">
-                        <button class="toggle-btn" type="button">
+                        <button class="toggle-btn" type="button" style="margin-left: 2px">
                             <i class="fa-solid fa-bars"></i>
                         </button>
                         <div class="sidebar-logo">
@@ -149,7 +149,7 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">
+                            <a href="#" class="sidebar-link" style="margin-left: 5px">
                                 <i class="fa-solid fa-play"></i>
                                 <span>Proceed</span>
                             </a>
