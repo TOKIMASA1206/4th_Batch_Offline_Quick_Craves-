@@ -30,7 +30,7 @@
 /* --------------common design--------------------- */
 .card-bg{
   background-color: #FFF7E8;
-  border: 1px solid #F86F03;
+  border: 1px solid #FFB11B;
   border-radius: 10px;
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
 }
@@ -70,7 +70,7 @@
 }
 
 .profile-menu-item-left {
-  background-color: #F86F03;
+  background-color: #FFB11B;
   height: 50px;
   width: 50px;
   padding: 15px;
@@ -117,7 +117,7 @@
   top: 0;
   width: 5px;
   height: 100%;
-  background-color: #F86F03; /* アクティブなインジケーターの色 */
+  background-color: #FFB11B; /* アクティブなインジケーターの色 */
   transition: all 0.3s;
 }
 
@@ -131,7 +131,7 @@
 
 .menu-section-content{
   font-size: 16px;
-  font-weight: 800;
+  font-weight: 500;
 }
 
 
@@ -152,7 +152,7 @@
   margin: 0 auto;
 }
 .profile-content-link .wallet .link-icon{
-background-color:#FFBC3A;
+background-color:#FFB11B;
 }
 .profile-content-link .wallet h4{
 color:#FFBC3A;
@@ -189,7 +189,7 @@ color: #4CAF50;
   font-size: 14px;
   padding: 8px;
   border: none;
-  background-color: #F86F03;
+  background-color: #FFB11B;
 }
 
 .personal-info .info-cancel-btn{
@@ -213,7 +213,7 @@ color: #4CAF50;
 
 /* テーブルヘッダーのスタイル */
 .t_header th{
-  background-color: #F86F03 !important; /* あなたのデザインに合う色に変更してください */
+  background-color: #FFB11B !important;
   color: white !important;
   font-size: 16px;
   font-weight: bold;
@@ -242,7 +242,7 @@ color: #4CAF50;
   margin-top: 20px;
   padding: 15px;
   background-color: #FFF7E8;
-  border: 1px solid #F86F03;
+  border: 1px solid #FFB11B;
   border-radius: 10px;
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
 }
@@ -252,7 +252,7 @@ color: #4CAF50;
   font-size: 14px;
   padding: 10px;
   border: none !important;
-  background-color: #F86F03 !important;
+  background-color: #FFB11B !important;
 }
 
 .go_back:hover {

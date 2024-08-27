@@ -18,11 +18,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Amarante&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
-    {{-- reset CSS --}}
-    <link rel="stylesheet" href="{{ asset('frontend/css/reset.css') }}">
-    {{-- CSS --}}
-    <link rel="stylesheet" href="{{ asset('frontend/css/profile_style.css') }}">
-
     {{-- Font Awesome --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
@@ -40,6 +35,7 @@
 
     <!-- CSS -->
     @yield('style')
+    <link rel="stylesheet" href="{{ asset('frontend/css/animate.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/buttonDesigns.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/sidebar.css') }}">
 
@@ -182,8 +178,8 @@
 
     @stack('scripts')
     {{-- Javascript --}}
-    <script src="{{ asset('frontend/js/profile_js_action.js') }}"></script>
     <script src="{{ asset('frontend/js/sidebar.js') }}"></script>
+    <script src="{{ asset('frontend/js/animate.js') }}"></script>
 </body>
 
 </html>
