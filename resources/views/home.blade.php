@@ -112,7 +112,7 @@
                                                 <div class="fp_dashboard_body">
 
 
-                                                        <table class="table table-hover align-middle bg-white border text-secondary palanquin-dark-regular">
+                                                        <table class="table table-hover align-middle bg-white border text-secondary palanquin-dark-regular text-center">
                                                             <thead class="small text-secondary">
                                                                 <tr>
                                                                     <th>ID</th>
@@ -133,10 +133,10 @@
                                                                         <td></td>
                                                                         <td>
                                                                         <div class="d-flex flex-row">
-                                                                            <button type="submit" class="text-warning rounded form-control w-auto mx-1" data-bs-toggle="modal" data-bs-target="#edit-category-{{-- $category->id --}}" style="background-color: rgb(156, 150, 176);">
+                                                                            <button type="submit" class="text-warning rounded form-control w-auto mx-1" data-bs-toggle="modal" data-bs-target="#edit-menu-{{-- $category->id --}}" style="background-color: rgb(156, 150, 176);">
                                                                             <i class="fa-regular fa-pen-to-square text-dark"></i>
                                                                             </button>
-                                                                            <button type="submit" class="text-danger rounded form-control w-auto mx-1" data-bs-toggle="modal" data-bs-target="#delete-category-{{-- $category->id --}}" style="background-color: rgb(156, 150, 176);">
+                                                                            <button type="submit" class="text-danger rounded form-control w-auto mx-1" data-bs-toggle="modal" data-bs-target="#delete-menu-{{-- $category->id --}}" style="background-color: rgb(156, 150, 176);">
                                                                                 <i class="fa-regular fa-trash-can text-dark"></i>
                                                                             </button>
                                                                         </div>
@@ -152,7 +152,7 @@
                                                                                             <button class="dropdown-item text-primary" data-bs-toggle="modal" data-bs-target="#activate-post-{{ $post->id }}"><i class="fa-solid fa-eye"></i> Unhide Post{{ $post->id }}
                                                                                             </button>
                                                                                         @else --}}
-                                                                                            <button class="dropdown-item text-secondary" data-bs-toggle="modal" data-bs-target="#deactivate-post-{{-- $post->id --}}"><i class="fa-solid fa-eye-slash"></i> Hide Menu
+                                                                                            <button class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#inactivate-post-{{-- $post->id --}}"><i class="fa-solid fa-eye-slash"></i>Inactivate Menu
                                                                                             </button>
                                                                                         {{-- @endif --}}
                                                                                     </div>
@@ -166,7 +166,34 @@
                                                                         <td>Cheese Burger</td>
                                                                         <td>100p</td>
                                                                         <td></td>
-                                                                        <td></td>
+                                                                        <td>
+                                                                            <div class="d-flex flex-row">
+                                                                                <button type="submit" class="text-warning rounded form-control w-auto mx-1" data-bs-toggle="modal" data-bs-target="#edit-category-{{-- $category->id --}}" style="background-color: rgb(156, 150, 176);">
+                                                                                <i class="fa-regular fa-pen-to-square text-dark"></i>
+                                                                                </button>
+                                                                                <button type="submit" class="text-danger rounded form-control w-auto mx-1" data-bs-toggle="modal" data-bs-target="#delete-menu-{{-- $category->id --}}" style="background-color: rgb(156, 150, 176);">
+                                                                                    <i class="fa-regular fa-trash-can text-dark"></i>
+                                                                                </button>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div class="dropdown">
+                                                                                <button class="dropdown-item text-secondary" data-bs-toggle="dropdown">
+                                                                                    <i class="fa-solid fa-ellipsis"></i>
+                                                                                </button>
+
+                                                                                <div class="dropdown-menu">
+                                                                                    {{-- @if ($post->trashed())
+                                                                                        <button class="dropdown-item text-primary" data-bs-toggle="modal" data-bs-target="#activate-post-{{ $post->id }}"><i class="fa-solid fa-eye"></i> Unhide Post{{ $post->id }}
+                                                                                        </button>
+                                                                                    @else --}}
+                                                                                        <button class="dropdown-item text-success" data-bs-toggle="modal" data-bs-target="#activate-post-{{-- $post->id --}}"><i class="fa-solid fa-eye"></i>Activate Menu
+                                                                                        </button>
+                                                                                    {{-- @endif --}}
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td>55</td>
@@ -200,7 +227,86 @@
                                 <div class="tab-pane fade" id="v-pills-category" role="tabpanel"
                                     aria-labelledby="v-pills-category-tab">
                                     <div class="fp_dashboard_body">
-                                        <h3>CATEGORY</h3>
+                                        <div class="container">
+
+                                            <div class="row justify-content-center">
+
+                            {{-- テーブルの角を丸くしたい ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー--}}
+                                                <div class="tab-pane fade col-6 show active" id="v-pills-category-1" role="tabpanel" aria-labelledby="v-pills-category-tab1">
+                                                <div class="fp_dashboard_body" style="border-radius: 50% !important;">
+
+                                                    <form action="#" class="mt-3">
+                                                        <div class="input-group mb-3">
+                                                                <input type="text" class="form-control" placeholder="Category" aria-label="Category" aria-describedby="button-addon2">
+                                                                <button class="btn" type="submit" id="button-addon2" style="background-color: rgb(156, 150, 176);"><span class="palanquin-dark-regular text-white">+ Add</span></button>
+                                                        </div>
+                                                    </form>
+
+
+                                                        <table class="table table-hover align-middle bg-white border text-secondary palanquin-dark-regular text-center">
+                                                            <thead class="small text-secondary">
+                                                                <tr>
+                                                                    <th>ID</th>
+                                                                    <th>Category Name</th>
+                                                                    <th></th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                    <tr>
+                                                                        <td>1</td>
+                                                                        <td>Food</td>
+                                                                        <td>
+                                                                        <div class="d-flex flex-row">
+                                                                            <button type="submit" class="rounded form-control w-auto mx-1" data-bs-toggle="modal" data-bs-target="#edit-category-{{-- $category->id --}}" style="background-color: rgb(156, 150, 176);">
+                                                                            <i class="fa-regular fa-pen-to-square text-dark"></i>
+                                                                            </button>
+                                                                            <button type="submit" class="rounded form-control w-auto mx-1" data-bs-toggle="modal" data-bs-target="#delete-category-{{-- $category->id --}}" style="background-color: rgb(156, 150, 176);">
+                                                                                <i class="fa-regular fa-trash-can text-dark"></i>
+                                                                            </button>
+                                                                        </div>
+                                                                        @include('admin.categories.modal.status')
+                                                                        </td>
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>2</td>
+                                                                        <td>Drink</td>
+                                                                        <td>
+                                                                        <div class="d-flex flex-row">
+                                                                            <button type="submit" class="text-warning rounded form-control w-auto mx-1" data-bs-toggle="modal" data-bs-target="#edit-category-{{-- $category->id --}}" style="background-color: rgb(156, 150, 176);">
+                                                                            <i class="fa-regular fa-pen-to-square text-dark"></i>
+                                                                            </button>
+                                                                            <button type="submit" class="text-danger rounded form-control w-auto mx-1" data-bs-toggle="modal" data-bs-target="#delete-category-{{-- $category->id --}}" style="background-color: rgb(156, 150, 176);">
+                                                                                <i class="fa-regular fa-trash-can text-dark"></i>
+                                                                            </button>
+                                                                        </div>
+                                                                        </td>
+
+                                                                        @include('admin.menus.modal.status')
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>3</td>
+                                                                        <td>Burger</td>
+                                                                        <td>
+                                                                        <div class="d-flex flex-row">
+                                                                            <button type="submit" class="text-warning rounded form-control w-auto mx-1" data-bs-toggle="modal" data-bs-target="#edit-category-{{-- $category->id --}}" style="background-color: rgb(156, 150, 176);">
+                                                                            <i class="fa-regular fa-pen-to-square text-dark"></i>
+                                                                            </button>
+                                                                            <button type="submit" class="text-danger rounded form-control w-auto mx-1" data-bs-toggle="modal" data-bs-target="#delete-category-{{-- $category->id --}}" style="background-color: rgb(156, 150, 176);">
+                                                                                <i class="fa-regular fa-trash-can text-dark"></i>
+                                                                            </button>
+                                                                        </div>
+                                                                        </td>
+
+                                                                        @include('admin.menus.modal.status')
+                                                                    </tr>
+                                                            </tbody>
+                                                        </table>
+
+                                                </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -215,57 +321,70 @@
                                                 <input type="text" name="search" class="form-control form-control-sm" placeholder="Search for names">
                                             </form>
                                         </ul>
-                                        <table class="table table-hover align-middle bg-white border text-secondary">
-                                            <thead class="small table-success text-secondary">
+                                        <table class="table table-hover align-middle bg-white border text-secondary palanquin-dark-regular">
+                                            <thead class="small text-secondary">
                                                 <tr>
-                                                    <th></th>
-                                                    <th>NAME</th>
-                                                    <th>EMAIL</th>
-                                                    <th>CREATED AT</th>
-                                                    <th>STATUS</th>
+                                                    <th>ID</th>
+                                                    <th>Name</th>
+                                                    <th>Email</th>
+                                                    <th>Phone Number</th>
+                                                    <th>Number of Order</th>
+                                                    <th>Total Price</th>
                                                     <th></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                     <tr>
-                                                        <td>
-                                                            <i class="fa-solid fa-circle-user d-block text-center icon-md"></i>
-                                                        </td>
+                                                        <td>55</td>
                                                         <td>Hikaru</td>
-                                                        <td>Hikaru.email</td>
-                                                        <td>2024/8/21</td>
+                                                        <td>hikaru.mail</td>
+                                                        <td>080-1234-5678</td>
+                                                        <td>20</td>
+                                                        <td>20000p</td>
+                                                        <td>
+                                                                <div class="dropdown">
+                                                                    <button class="dropdown-item text-secondary" data-bs-toggle="dropdown">
+                                                                        <i class="fa-solid fa-ellipsis"></i>
+                                                                    </button>
+
+                                                                    <div class="dropdown-menu">
+                                                                        {{-- @if ($post->trashed())
+                                                                            <button class="dropdown-item text-primary" data-bs-toggle="modal" data-bs-target="#activate-post-{{ $post->id }}"><i class="fa-solid fa-eye"></i> Unhide Post{{ $post->id }}
+                                                                            </button>
+                                                                        @else --}}
+                                                                            <button class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#inactivate-user-{{-- $post->id --}}"><i class="fa-solid fa-eye-slash"></i> Inactivate User
+                                                                            </button>
+                                                                        {{-- @endif --}}
+                                                                    </div>
+                                                                </div>
+                                                        </td>
+                                                        @include('admin.users.modal.status')
                                                     </tr>
                                                     <tr>
-                                                        <td>
-                                                            <i class="fa-solid fa-circle-user d-block text-center icon-md"></i>
-                                                        </td>
+                                                        <td>55</td>
                                                         <td>Hikaru</td>
-                                                        <td>Hikaru.email</td>
-                                                        <td>2024/8/21</td>
-                                                    </tr>
-                                                    <tr>
+                                                        <td>hikaru.mail</td>
+                                                        <td>080-1234-5678</td>
+                                                        <td>20</td>
+                                                        <td>20000p</td>
                                                         <td>
-                                                            <i class="fa-solid fa-circle-user d-block text-center icon-md"></i>
+                                                            <div class="dropdown">
+                                                                <button class="dropdown-item text-secondary" data-bs-toggle="dropdown">
+                                                                    <i class="fa-solid fa-ellipsis"></i>
+                                                                </button>
+
+                                                                <div class="dropdown-menu">
+                                                                    {{-- @if ($post->trashed())
+                                                                        <button class="dropdown-item text-primary" data-bs-toggle="modal" data-bs-target="#activate-post-{{ $post->id }}"><i class="fa-solid fa-eye"></i> Unhide Post{{ $post->id }}
+                                                                        </button>
+                                                                    @else --}}
+                                                                        <button class="dropdown-item text-success" data-bs-toggle="modal" data-bs-target="#activate-user-{{-- $post->id --}}"><i class="fa-solid fa-eye"></i> Activate User
+                                                                        </button>
+                                                                    {{-- @endif --}}
+                                                                </div>
+                                                            </div>
+
                                                         </td>
-                                                        <td>Hikaru</td>
-                                                        <td>Hikaru.email</td>
-                                                        <td>2024/8/21</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <i class="fa-solid fa-circle-user d-block text-center icon-md"></i>
-                                                        </td>
-                                                        <td>Hikaru</td>
-                                                        <td>Hikaru.email</td>
-                                                        <td>2024/8/21</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <i class="fa-solid fa-circle-user d-block text-center icon-md"></i>
-                                                        </td>
-                                                        <td>Hikaru</td>
-                                                        <td>Hikaru.email</td>
-                                                        <td>2024/8/21</td>
                                                     </tr>
                                             </tbody>
                                         </table>
