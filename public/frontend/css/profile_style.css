@@ -1,32 +1,5 @@
 
 
-/* ---------------------HEADER----------------------- */
-
-.header{
-  background-color: #FFD686;
-  height: 100vh;
-}
-
-.main{
-  height: 100vh;
-}
-
-
-.page-title{
-  font-family: "Amarante", serif;
-  padding: 100px;
-}
-.page-title h1{
-  color: #FFB11B;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.page-title .sub-title{
-  font-size: 18px;
-  font-weight: 300;
-}
-
 /* --------------common design--------------------- */
 .card-bg{
   background-color: #FFF7E8;
@@ -207,9 +180,6 @@ color: #4CAF50;
 
 
 /* =======================- Order ================= */
-.order.table td{
-  vertical-align: middle;
-}
 
 /* テーブルヘッダーのスタイル */
 .t_header th{
@@ -221,6 +191,7 @@ color: #4CAF50;
 
 .t_body td{
   background-color: #FFF7E8 !important;
+  vertical-align: middle;
 }
 
 /* 完了、アクティブ、キャンセルのラベルスタイル */
