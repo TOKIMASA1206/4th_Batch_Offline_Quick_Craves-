@@ -1,0 +1,155 @@
+
+.proceed{
+  font-family: "Barlow", sans-serif;
+}
+.proceed h1 {
+  font-family: "Amarante", sans-serif;
+}
+.proceed-item {
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+}
+.proceed-item .left{
+  background-color:#f4f4f4fc;
+  text-align: center;
+  padding: 8px;
+}
+
+.proceed-img-container {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.proceed-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.proceed-item-title {
+  font-size: 1.25rem;
+}
+
+.proceed-item .right {
+  padding: 0 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.proceed-item .right p{
+  color: #f32607;
+  font-weight:500;
+  margin-top: 27px;
+}
+
+.proceed-status {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.proceed-status i {
+  font-size: 22px !important;
+  margin: 0 8px;
+  transition: transform 1.3s ease;
+}
+
+.making-mark-first,
+.making-mark-second,
+.completed-mark-first,
+.completed-mark-second {
+  transition: display 1.5s ease;
+}
+
+
+.start-mark {
+  color: #3BE489;
+}
+
+.making-mark-second {
+  display: none;
+  color: #3BE489;
+}
+
+.completed-mark-second {
+  display: none;
+  color: #3BE489;
+}
+
+.status-bar {
+  width: 100%;
+  height: 8px;
+  background-color: #e0e0e0;
+  border-radius: 0.25rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.status-bar-color-1,
+.status-bar-color-2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #3BE489;
+  transform: translateX(-100%);
+  transition: transform 1.3s ease;
+}
+
+
+
+.status-texts {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 20px;
+  width: 110%;
+}
+
+.status-texts span {
+  cursor: pointer;
+  padding: 10px;
+  font-weight: bold;
+}
+
+
+/* ====================- invoice =============== */
+
+
+/* 詳細表示のスタイル */
+
+
+.invoice {
+  padding: 30px;
+  background-color: #FFF7E8;
+  border: 1px solid #FFB11B;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* テーブルのボディとフッターのスタイル */
+
+.t_header th{
+  background-color: #FFB11B !important;
+  color: white !important;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.t_body td{
+  background-color: #FFF7E8 !important;
+  vertical-align: middle;
+}
+
+.invoice_body .table tfoot {
+  font-weight: bold;
+}
+
+

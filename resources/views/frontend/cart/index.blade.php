@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
 
-@section('title', 'Profile')
+@section('title', 'Cart')
 
 @section('style')
     <link rel="stylesheet" href="{{ asset('frontend/css/cart_style.css') }}">
@@ -9,7 +9,7 @@
 @section('page-title')
     <div class="row justify-content-center align-items-center" style="height: 100%">
         <div class="text-center">
-            <h1 class="display-4 ar" style="color: #FFB11B;">User Dashboard</h1>
+            <h1 class="display-4 ar" style="color: #FFB11B;">Cart Detail</h1>
         </div>
     </div>
 @endsection
@@ -17,14 +17,6 @@
 @section('content')
 
     <div class="row fade-in">
-
-
-
-        {{-- <div class="col-1">
-            <header class="header">
-                menu
-            </header>
-        </div> --}}
 
         <div class="col">
             <section class="cart_view mt_125 xs_mt_95 mb_100 xs_mb_70">
@@ -47,8 +39,7 @@
                                         </thead>
                                         <tbody>
                                             <tr class="t_body">
-                                                <td class="pro_img"><img src="images/menu1.png" alt="product"
-                                                        class="img-fluid w-100"></td>
+                                                <td class="pro_img"><img src="{{ asset('frontend/images/slider_img_3.png') }}" class="cart-img" alt="Burger"></td>
                                                 <td class="pro_name">
                                                     <a href="#">Hyderabadi Biryani</a>
                                                     <span>Medium</span>
@@ -76,8 +67,7 @@
                                                             class="fa-regular fa-circle-xmark fs-4 fs-4"></i></i></a></td>
                                             </tr>
                                             <tr class="t_body">
-                                                <td class="pro_img"><img src="images/menu2.png" alt="product"
-                                                        class="img-fluid w-100"></td>
+                                                <td class="pro_img"><img src="{{ asset('frontend/images/slider_img_3.png') }}" class="cart-img" alt="Burger"></td>
                                                 <td class="pro_name"><a href="#">Chicken Masala</a><span>Small</span>
                                                 </td>
                                                 <td class="pro_status">
@@ -101,8 +91,7 @@
                                                             class="fa-regular fa-circle-xmark fs-4"></i></i></a></td>
                                             </tr>
                                             <tr class="t_body">
-                                                <td class="pro_img"><img src="images/menu3.png" alt="product"
-                                                        class="img-fluid w-100"></td>
+                                                <td class="pro_img"><img src="{{ asset('frontend/images/slider_img_3.png') }}" class="cart-img" alt="Burger"></td>
                                                 <td class="pro_name">
                                                     <a href="#">Daria Shevtsova</a>
                                                     <span>Large</span>
@@ -130,8 +119,7 @@
                                                             class="fa-regular fa-circle-xmark fs-4"></i></i></a></td>
                                             </tr>
                                             <tr class="t_body">
-                                                <td class="pro_img"><img src="images/menu4.png" alt="product"
-                                                        class="img-fluid w-100"></td>
+                                                <td class="pro_img"><img src="{{ asset('frontend/images/slider_img_3.png') }}" class="cart-img" alt="Burger"></td>
                                                 <td class="pro_name">
                                                     <a href="#">Hyderabadi Biryani</a>
                                                     <span>Medium</span>
@@ -165,9 +153,9 @@
 
 
 
-                        <div class="ms-5 card shadow col-lg-4 wow fadeInUp p-4" data-wow-duration="1s">
+                        <div class="cart_list_checkout ms-5 card shadow col-lg-4 wow fadeInUp p-4" data-wow-duration="1s">
 
-                            <div class="cart_list_checkout">
+                            <div>
                                 <h5 class="fw-bold">Total Cart</h5>
 
                                 <hr>

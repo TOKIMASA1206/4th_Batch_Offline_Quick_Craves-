@@ -1,31 +1,4 @@
-/* ---------------------HEADER----------------------- */
 
-.header{
-  background-color: #FFD686;
-  height: 100vh;
-}
-
-.main{
-  height: 100vh;
-}
-
-
-.page-title{
-  font-family: "Amarante", serif;
-  padding: 100px;
-}
-.page-title h1{
-  color: #FFB11B;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.page-title .sub-title{
-  font-size: 18px;
-  font-weight: 300;
-}
-
-/* --------------common design--------------------- */
 
 .cart{
   font-family: "Barlow", sans-serif;
@@ -44,6 +17,7 @@
   background-color: #FFF7E8 !important;
   font-size: 16px;
   font-weight: bold;
+  vertical-align: middle;
 }
 .t_header .clear_all{
   color:#FFB11B;
@@ -55,6 +29,11 @@
   vertical-align: middle;
 }
 
+.cart .cart-img{
+  width: 110px;
+  height: 110px;
+}
+
 .cart .quantity_btn input{
   margin: 0 4px;
   width: 50px;
@@ -63,7 +42,9 @@
 
 /* Total確認    スタイル */
 
-
+.cart_list_checkout{
+  max-height: 500px;
+}
 
 .cart_list_checkout p{
   font-weight: 100;
