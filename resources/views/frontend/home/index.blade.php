@@ -13,7 +13,7 @@
 @endsection
 
 @section('content')
-    <div class="container">
+    <div class="container fade-in">
 
         {{-- Category Button --}}
         <div class="text-center mb-4">
