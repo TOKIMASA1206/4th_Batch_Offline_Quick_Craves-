@@ -159,7 +159,8 @@
                         <div class="status-bar bar-making">
                             <div class="status-bar-color-1"></div>
                         </div>
-                        <i class="fa-regular fa-circle-dot making-mark-first"></i>
+                        <i class="fa-regular fa-circle-dot making-mark-f
+                        irst"></i>
                         <i class="fa-solid fa-circle making-mark-second"></i>
                         <div class="status-bar">
                             <div class="status-bar-color-2"></div>

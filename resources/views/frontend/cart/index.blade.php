@@ -201,7 +201,7 @@
                                 <hr>
                                 <p class="total d-flex justify-content-between"><span>Total:</span> <span>$134.00</span>
                                 </p>
-                                <a class="checkout_btn btn btn-dark w-100" href=" #">Checkout</a>
+                                <button class="checkout_btn btn-yellow-black fs-5 w-100" href=" #">Checkout</button>
                             </div>
                         </div>
                     </div>
