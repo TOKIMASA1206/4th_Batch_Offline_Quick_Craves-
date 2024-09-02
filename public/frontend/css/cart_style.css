@@ -43,7 +43,7 @@
 /* Total確認    スタイル */
 
 .cart_list_checkout{
-  max-height: 500px;
+  max-height: 480px;
 }
 
 .cart_list_checkout p{
@@ -53,12 +53,6 @@
 .cart_list_checkout .total{
   font-weight: bold;
   font-size: 18px;
-}
-.cart_list_checkout .checkout_btn{
-  font-size: 18px;
-  padding: 8px;
-  border: none;
-  background-color: #FFB11B;
 }
 
 .cart_list_checkout input{

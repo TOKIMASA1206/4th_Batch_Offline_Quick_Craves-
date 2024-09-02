@@ -23,6 +23,11 @@ class ProfileController extends Controller
         //
         return view('frontend.profile.index');
     }
+    public function card()
+    {
+        //
+        return view('frontend.card.index');
+    }
 
     /**
      * Show the form for creating a new resource.

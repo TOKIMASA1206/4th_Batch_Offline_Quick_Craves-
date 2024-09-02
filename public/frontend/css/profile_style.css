@@ -173,7 +173,6 @@ color: #4CAF50;
   display: none;
 }
 .personal-info .edit-form-save{
-  background-color: #886653;
   width: 50%;
 }
 
@@ -216,18 +215,6 @@ color: #4CAF50;
   border: 1px solid #FFB11B;
   border-radius: 10px;
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-}
-
-/* 戻るボタンのスタイル */
-.go_back {
-  font-size: 14px;
-  padding: 10px;
-  border: none !important;
-  background-color: #FFB11B !important;
-}
-
-.go_back:hover {
-  background-color: #000 !important;
 }
 
 /* インボイスヘッダーのスタイル */

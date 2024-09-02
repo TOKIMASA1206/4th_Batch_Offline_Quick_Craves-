@@ -17,6 +17,7 @@ Route::group(["middleware" => "auth"], function(){
     Route::get('/profile',[ProfileController::class, 'index'])->name('profile_index');
     Route::get('/cart',[CartController::class, 'index'])->name('cart_index');
     Route::get('/proceed',[ProceedController::class, 'index'])->name('proceed_index');
+    Route::get('/card',[ProfileController::class, 'card'])->name('card_index');
 
     Route::get('/admin/dashboard', [App\Http\Controllers\AdminController::class, 'index'])->name('index');
 });

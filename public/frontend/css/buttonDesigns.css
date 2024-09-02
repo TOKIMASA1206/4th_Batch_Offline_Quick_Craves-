@@ -14,7 +14,7 @@
 }
 
 .btn-brown-outline {
-    background-color: white;
+    background-color: #FFFFFB;
     color: #886653;
     border: solid 1px #886653;
     padding: 6px 20px;
@@ -47,7 +47,7 @@
 .btn-pink-outline {
     background-color: white;
     color: #F3725F;
-    border: solid 2px #F3725F;
+    border: solid 1px #F3725F;
     padding: 6px 20px;
     border-radius: 5px;
     cursor: pointer;
@@ -89,4 +89,22 @@
 .btn-yellow-outline:hover {
     background-color: #FFB11B;
     color: white;
+}
+
+.btn-yellow-black {
+    font-size: 14px;
+    padding: 6px 10px;
+    font-weight: 500;
+    color: #fff;
+    border-radius: 0.25rem;
+    border: 1px solid transparent;
+    border: none;
+    background-color: #FFB11B;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-yellow-black:hover {
+    background-color: #000;
+    border-color: #000;
 }

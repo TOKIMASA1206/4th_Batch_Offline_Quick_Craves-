@@ -112,9 +112,9 @@
                                         aria-labelledby="v-pills-home-tab">
                                         <div class="personal-info card-bg py-4 px-5">
                                             <button id="edit-btn"
-                                                class="info-edit-btn btn btn-dark float-end m-0">Edit</button>
+                                                class="info-edit-btn btn-yellow-black float-end m-0">Edit</button>
                                             <button id="cancel-btn"
-                                                class="info-cancel-btn btn btn-dark float-end m-0">Cancel</button>
+                                                class="info-cancel-btn btn-yellow-black float-end m-0">Cancel</button>
                                             <h3 class="menu-section-title mb-4 mt-2">
                                                 Personal Info
                                             </h3>
@@ -152,7 +152,7 @@
                                                         value="000-000-0000" class="form-control">
                                                 </div>
                                                 <button type="submit"
-                                                    class="edit-form-save btn btn-primary mx-auto">Save</button>
+                                                    class="edit-form-save btn-brown mx-auto">Save</button>
                                             </form>
                                         </div>
                                     </div>
@@ -190,7 +190,7 @@
                                                                 <td>
                                                                     <h5>$560</h5>
                                                                 </td>
-                                                                <td><a class="view_invoice btn btn-outline-dark p-1">View
+                                                                <td><a class="view_invoice btn-yellow-black p-1">View
                                                                         Details</a></td>
                                                             </tr>
                                                             <tr class="t_body">
@@ -206,7 +206,7 @@
                                                                 <td>
                                                                     <h5>$654</h5>
                                                                 </td>
-                                                                <td><a class="view_invoice btn btn-outline-dark p-1">View
+                                                                <td><a class="view_invoice btn-yellow-black p-1">View
                                                                         Details</a></td>
                                                             </tr>
                                                             <tr class="t_body">
@@ -222,7 +222,7 @@
                                                                 <td>
                                                                     <h5>$440</h5>
                                                                 </td>
-                                                                <td><a class="view_invoice btn btn-outline-dark p-1">View
+                                                                <td><a class="view_invoice btn-yellow-black p-1">View
                                                                         Details</a></td>
                                                             </tr>
                                                             <tr class="t_body">
@@ -238,7 +238,7 @@
                                                                 <td>
                                                                     <h5>$225</h5>
                                                                 </td>
-                                                                <td><a class="view_invoice btn btn-outline-dark p-1">View
+                                                                <td><a class="view_invoice btn-yellow-black p-1">View
                                                                         Details</a></td>
                                                             </tr>
                                                             <tr class="t_body">
@@ -254,7 +254,7 @@
                                                                 <td>
                                                                     <h5>$335</h5>
                                                                 </td>
-                                                                <td><a class="view_invoice btn btn-outline-dark p-1">View
+                                                                <td><a class="view_invoice btn-yellow-black p-1">View
                                                                         Details</a></td>
                                                             </tr>
                                                             <tr class="t_body">
@@ -270,7 +270,7 @@
                                                                 <td>
                                                                     <h5>$550</h5>
                                                                 </td>
-                                                                <td><a class="view_invoice btn btn-outline-dark p-1">View
+                                                                <td><a class="view_invoice btn-yellow-black p-1">View
                                                                         Details</a></td>
                                                             </tr>
                                                             <tr class="t_body">
@@ -286,7 +286,7 @@
                                                                 <td>
                                                                     <h5>$545</h5>
                                                                 </td>
-                                                                <td><a class="view_invoice btn btn-outline-dark p-1">View
+                                                                <td><a class="view_invoice btn-yellow-black p-1">View
                                                                         Details</a></td>
                                                             </tr>
                                                             <tr class="t_body">
@@ -302,7 +302,7 @@
                                                                 <td>
                                                                     <h5>$600</h5>
                                                                 </td>
-                                                                <td><a class="view_invoice btn btn-outline-dark p-1">View
+                                                                <td><a class="view_invoice btn-yellow-black p-1">View
                                                                         Details</a></td>
                                                             </tr>
                                                             <tr class="t_body">
@@ -318,7 +318,7 @@
                                                                 <td>
                                                                     <h5>$200</h5>
                                                                 </td>
-                                                                <td><a class="view_invoice btn btn-outline-dark p-1">View
+                                                                <td><a class="view_invoice btn-yellow-black p-1">View
                                                                         Details</a></td>
                                                             </tr>
                                                         </tbody>
@@ -332,7 +332,7 @@
                                                         <p class="p-0 m-0"><b>Order ID:</b> <span> #4789546458</span></p>
                                                         <p class="p-0 m-0"><b>date:</b> <span>10-11-2022</span></p>
                                                     </div>
-                                                    <span class="go_back btn btn-dark  h-50 mt-3"><i
+                                                    <span class="go_back btn-yellow-black  h-50 mt-3"><i
                                                             class="fas fa-long-arrow-alt-left"></i> go back</span>
                                                 </div>
                                                 <div class="invoice_body">
@@ -541,7 +541,7 @@
                                                         class="form-control" placeholder="comfirm_password">
                                                 </div>
                                                 <button type="submit"
-                                                    class="password-save btn btn-primary mx-auto">Submit</button>
+                                                    class="password-save btn-brown mx-auto">Submit</button>
                                             </form>
                                         </div>
                                     </div>
