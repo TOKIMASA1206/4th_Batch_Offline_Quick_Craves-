@@ -1,0 +1,173 @@
+.points {
+    margin: 0;
+    font-size: 1.75rem;
+    font-weight: bold;
+}
+
+.voucher-btn {
+    color: #ffb11b;
+    font-size: 1.5rem;
+    padding: 8px 40px;
+    border: 2px solid #ffb11b;
+    border-radius: 24px;
+    background: transparent;
+    transition: background-color 0.3s ease;
+}
+
+.voucher-btn:hover {
+    color: #fff;
+    background: #ffb11b;
+}
+
+/* ========== Card Info ============= */
+.wlt-card-info {
+    border: 2px solid #ffb11b;
+    border-radius: 24px;
+}
+
+#w_card_info_title {
+    padding-left: 2rem;
+    font-size: 18px;
+    color: #ffb11b;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+}
+
+#w_card_info_title:hover {
+    color: #c98425;
+}
+
+.w-card-info-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+}
+
+.w-card-info-content.expanded {
+    max-height: 300px; /* Adjust this value depending on the content height */
+}
+
+.card_info_triangle {
+    display: inline-block;
+    transition: transform 0.4s ease-out;
+}
+
+.card_info_triangle.rotated {
+    transform: rotate(90deg);
+}
+
+.w-card-detail {
+    width: 90%;
+    margin: 0 auto;
+    padding: 24px;
+    border: none;
+    border-radius: 24px;
+    box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.089);
+    background-color: #f2f2f2;
+}
+
+.w-card-img {
+    width: 100%;
+    height: 100px;
+    box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.396);
+    object-fit: cover;
+}
+
+.add-cardInfo-btn {
+    color: green;
+    background: transparent;
+    border: none;
+    transition: color 0.4s ease;
+}
+
+.add-cardInfo-btn:hover {
+    color: rgb(25, 110, 25);
+}
+
+.card-modal-title {
+    font-family: "Amarante", serif;
+    color: #ffb11b;
+}
+.card-modal-delete-title {
+    font-family: "Amarante", serif;
+    color: #f3725f;
+}
+
+/* ============= Stamps ================== */
+.stamps {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 24px 40px;
+    background-color: #ffc250;
+    border-radius: 24px;
+}
+
+.stamps p {
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 8px;
+    font-family: serif;
+    font-size: 1.2rem;
+}
+
+.view-rewards-btn {
+    background: white;
+    color: #ffc14b;
+    font-size: 0.8rem;
+    border: none;
+    border-radius: 24px;
+    padding: 8px 32px;
+    transition: background-color 0.3s ease;
+}
+
+.view-rewards-btn:hover {
+    background: #d28e11;
+    color: white;
+}
+
+.stamp-bar {
+    display: flex;
+}
+
+.stamp-box {
+    width: 100%;
+    height: 1.5rem;
+    background-color: #805100;
+    transition: background-color 0.3s ease-in-out;
+    border: 1px solid #925d00;
+}
+
+.stamp-box.completed {
+    background-color: #ffffff;
+}
+
+/* ============ Transaction ============ */
+.transaction-item {
+    background-color: #fff2dd;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 15px;
+    position: relative;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.transaction-subtitle {
+    font-size: 20px;
+    color: #ffb11b;
+    font-family: Snell Roundhand, cursive;
+}
+
+.transaction-title {
+    font-size: 24px;
+    font-weight: bolder;
+    line-height: 32px;
+}
+
+.transaction-item small {
+    font-family: Bookman, URW Bookman L, serif;
+}
+
+.transaction-status p {
+    font-size: 24px;
+    color: #ffb11b;
+}

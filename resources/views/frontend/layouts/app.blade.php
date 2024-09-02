@@ -38,6 +38,7 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/animate.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/buttonDesigns.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/sidebar.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/wallet-page.css') }}">
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -121,25 +122,25 @@
                     </div>
                     <ul class="sidebar-nav">
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link" style="text-decoration: none">
+                            <a href="{{ url('/') }}" class="sidebar-link" style="text-decoration: none">
                                 <i class="fa-solid fa-house"></i>
                                 <span>Home</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">
+                            <a href="{{ route('profile_index') }}" class="sidebar-link">
                                 <i class="fa-solid fa-user"></i>
                                 <span>Profile</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">
+                            <a href="{{ route('wallet.index') }}" class="sidebar-link">
                                 <i class="fa-solid fa-wallet"></i>
                                 <span>Wallet</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">
+                            <a href="{{ route('cart_index') }}" class="sidebar-link">
                                 <i class="fa-solid fa-basket-shopping"></i>
                                 <span>My Cart</span>
                             </a>
@@ -164,7 +165,8 @@
                 </div>
 
                 <div id="content" style="width: 100%">
-                    <div id="page-title" class="mb-5" style="height: 15rem; background: rgba(255, 206, 100, 0.169)">
+                    <div id="page-title" class="mb-5"
+                        style="height: 15rem; background: rgba(255, 206, 100, 0.169)">
                         @yield('page-title')
                     </div>
 
@@ -178,6 +180,7 @@
 
     @stack('scripts')
     {{-- Javascript --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="{{ asset('frontend/js/sidebar.js') }}"></script>
     <script src="{{ asset('frontend/js/animate.js') }}"></script>
 </body>
