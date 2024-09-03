@@ -79,8 +79,8 @@
                                         <button class="btn btn-outline-danger" type="button"
                                             onclick="decrementQuantity()"><i class="fa-solid fa-minus"></i></button>
                                         <input type="number" name="quantity" id="quantity" value="1"
-                                            min="1" class="form-control text-center mx-1" style="width: 60px;"
-                                            onchange="updateTotal()">
+                                            min="1" class="form-control text-end mx-1" style="width: 60px;"
+                                            onchange="updateTotal()" readonly>
                                         <button class="btn btn-outline-success" type="button"
                                             onclick="incrementQuantity()"><i class="fa-solid fa-plus"></i></button>
                                     </div>

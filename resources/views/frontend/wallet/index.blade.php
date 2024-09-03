@@ -9,19 +9,21 @@
 @endsection
 
 @section('content')
-    <div class="container col-6 p-0">
-        <div class="d-flex gap-5 mb-4 fade-in">
-            <div>
-                <h2 class="h1 mb-3 ar">Crave Point(CP)</h2>
+    <div class="container col-lg-6 col-md-8 col-12">
+        <div class="d-flex flex-column flex-md-row gap-3 gap-md-5 mb-4 fade-in">
+            <div class="w-100">
+                <h2 class="h1 mb-3 ar text-center text-md-start">Crave Point(CP)</h2>
                 <div class="text-center d-flex justify-content-center gap-3 align-items-center rounded-pill px-5 py-2"
                     style="border: 2px solid #FFB11B;">
                     <h3 class="points" id="points">1,234.60 CP</h3>
-                    <button class="btn btn-outline-warning ml-3" id="add-points"><i class="fas fa-plus"></i></button>
+                    <button class="btn btn-outline-warning ml-3" id="add-points" data-bs-toggle="modal"
+                        data-bs-target="#pointChargeModal"><i class="fas fa-plus"></i></button>
                 </div>
             </div>
 
-            <div class="text-center d-flex align-items-end">
-                <button class="voucher-btn">Vouchers & Rewards</button>
+            <div class="text-center d-flex justify-content-center">
+                <button class="voucher-btn" data-bs-toggle="modal" data-bs-target="#vouchersRewardsModal">Vouchers &
+                    Rewards</button>
             </div>
         </div>
 
@@ -34,7 +36,7 @@
             <div class="w-card-info-content" id="w_card_info_content">
                 <div class="w-card-detail mb-3">
                     <div class="row align-items-center">
-                        <div class="d-flex col-9">
+                        <div class="d-flex col-12 col-md-9">
                             <div class="me-4">
                                 <img src="{{ asset('logos/visa-card-icon.jpg') }}" alt="Visa" class="w-card-img">
                             </div>
@@ -43,7 +45,7 @@
                                 <h4>Due Date: 12/24</h4>
                             </div>
                         </div>
-                        <div class="col-3">
+                        <div class="col-12 col-md-3 text-md-end text-center mt-3 mt-md-0">
                             <button type="button" class="btn btn-outline-secondary me-2" data-bs-toggle="modal"
                                 data-bs-target="#cardEditModal">Edit</button>
                             <button type="button" class="btn btn-outline-danger"><i class="fa-regular fa-trash-can"
@@ -62,13 +64,14 @@
 
         {{-- Stamp section --}}
         <div class="stamps row m-0 fade-in">
-            <div class="col-3">
+            <div class="col-12 col-md-3 text-center text-md-start mb-3 mb-md-0">
                 <p>6 Stamps Earned</p>
-                <button class="view-rewards-btn">View Rewards</button>
+                <button class="view-rewards-btn" data-bs-toggle="modal" data-bs-target="#vouchersRewardsModal">View
+                    Rewards</button>
             </div>
-            <div class="col-9">
+            <div class="col-12 col-md-9">
                 <h4 class="text-end text-white mb-3">6/10</h4>
-                <div class="stamp-bar">
+                <div class="stamp-bar d-flex justify-content-between">
                     <div class="stamp-box completed"></div>
                     <div class="stamp-box completed"></div>
                     <div class="stamp-box completed"></div>
@@ -151,6 +154,8 @@
     @include('frontend.wallet.modals.add')
     @include('frontend.wallet.modals.edit')
     @include('frontend.wallet.modals.delete')
+    @include('frontend.wallet.modals.point-charge')
+    @include('frontend.wallet.modals.voucher-modal')
 @endsection
 
 @push('scripts')

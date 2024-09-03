@@ -1,0 +1,59 @@
+#v_modal_content {
+    background-color: #f8f4eb;
+    border-radius: 10px;
+}
+
+#v_myTab .nav-link {
+    border: none;
+    color: #000;
+    font-weight: bold;
+}
+
+#v_myTab .nav-link.active {
+    background-color: #ffb11b;
+    color: #fff;
+}
+
+#vouchersRewardsModalLabel {
+    color: #ffb11b;
+}
+
+#vouchers-tab,
+#rewards-tab {
+    font-size: 18px;
+}
+
+.voucher-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 2px solid #ffb11b;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+.voucher-icon img {
+    width: 60px;
+    height: 60px;
+    margin-right: 8px;
+}
+
+.voucher-details {
+    flex-grow: 1;
+    margin-left: 10px;
+}
+
+.voucher-title {
+    font-weight: bold;
+    font-size: 24px;
+    margin: 0;
+}
+
+.voucher-expiry {
+    font-size: 10px;
+    color: #666;
+    margin: 0;
+    text-align: end;
+}

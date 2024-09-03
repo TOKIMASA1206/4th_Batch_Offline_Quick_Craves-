@@ -1,0 +1,74 @@
+.unique-current-point-text {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+}
+
+.unique-current-point-display {
+    border: 2px solid#ff9800;
+    border-radius: 24px;
+}
+.unique-current-point-display h3 {
+    font-size: 36px;
+    color: #ffb74d;
+    margin: 0;
+}
+
+.unique-charge-options-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.unique-charge-option-item {
+    margin-bottom: 10px;
+}
+
+.unique-charge-option-item button {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 2px solid #ffb74d;
+    background-color: #fcf8ed;
+    color: #333;
+    cursor: pointer;
+    text-align: left;
+    transition: background-color 0.3s ease;
+}
+
+.unique-charge-option-item button.active {
+    background-color: #ffb74d;
+    color: #fff;
+}
+
+.unique-modal-footer {
+    display: flex;
+}
+
+.unique-modal-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.unique-cancel-button {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+.unique-cancel-button:hover {
+    background-color: #bdbdbd;
+}
+
+.unique-charge-button {
+    background-color: #ffb74d;
+    color: white;
+}
+
+.unique-charge-button:hover {
+    background-color: #ff9800;
+}
