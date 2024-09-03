@@ -39,10 +39,13 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/buttonDesigns.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/sidebar.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/wallet-page.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/pointChargeModal.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/voucherModal.css') }}">
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-
+    {{-- JQuery --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <style>
         .ar {
             font-family: "Amarante", serif;
@@ -146,20 +149,26 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link" style="margin-left: 5px">
+                            <a href="{{ route('proceed_index') }}" class="sidebar-link" style="margin-left: 5px">
                                 <i class="fa-solid fa-play"></i>
                                 <span>Proceed</span>
                             </a>
                         </li>
                     </ul>
                     <div class="sidebar-footer">
-                        <a href="#" class="sidebar-link">
+                        {{-- <a href="#" class="sidebar-link">
                             <i class="fa-solid fa-gear"></i>
                             <span>Setting</span>
-                        </a>
-                        <a href="#" class="sidebar-link">
+                        </a> --}}
+                        <a href="{{ route('logout') }}" class="sidebar-link"
+                            onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
                             <i class="fa-solid fa-right-from-bracket"></i>
                             <span>Logout</span>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
                         </a>
                     </div>
                 </div>
@@ -180,7 +189,6 @@
 
     @stack('scripts')
     {{-- Javascript --}}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="{{ asset('frontend/js/sidebar.js') }}"></script>
     <script src="{{ asset('frontend/js/animate.js') }}"></script>
 </body>
