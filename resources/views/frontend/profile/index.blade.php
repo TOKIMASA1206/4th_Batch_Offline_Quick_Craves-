@@ -23,9 +23,9 @@
         <div class="col profile">
             <div class="container">
                 <div class="main">
-                    <div class="card">
+                    <div class="card-style">
                         <div class="row">
-                            <div class="col-3 profile-menu">
+                            <div class="col-md-3 profile-menu">
                                 <div class="card-bg">
                                     <div class="profile-menu-top p-4 mb-4">
                                         <div class="user-icon">
@@ -72,7 +72,7 @@
                             </div>
 
 
-                            <div class="col profile-content p-3 pe-4 pb-4">
+                            <div class="profile-content col-md  p-3 pe-4 pb-4">
                                 <h2 class="mb-4">Welcome To Your Profile </h2>
                                 <div class=" profile-content-link mb-5">
 
@@ -190,7 +190,7 @@
                                                                 <td>
                                                                     <h5>$560</h5>
                                                                 </td>
-                                                                <td><a class="view_invoice btn-yellow-black p-1">View
+                                                                <td><a class="view_invoice btn-yellow-black p-1">
                                                                         Details</a></td>
                                                             </tr>
                                                             <tr class="t_body">
@@ -206,7 +206,7 @@
                                                                 <td>
                                                                     <h5>$654</h5>
                                                                 </td>
-                                                                <td><a class="view_invoice btn-yellow-black p-1">View
+                                                                <td><a class="view_invoice btn-yellow-black p-1">
                                                                         Details</a></td>
                                                             </tr>
                                                             <tr class="t_body">
@@ -222,7 +222,7 @@
                                                                 <td>
                                                                     <h5>$440</h5>
                                                                 </td>
-                                                                <td><a class="view_invoice btn-yellow-black p-1">View
+                                                                <td><a class="view_invoice btn-yellow-black p-1">
                                                                         Details</a></td>
                                                             </tr>
                                                             <tr class="t_body">
@@ -238,7 +238,7 @@
                                                                 <td>
                                                                     <h5>$225</h5>
                                                                 </td>
-                                                                <td><a class="view_invoice btn-yellow-black p-1">View
+                                                                <td><a class="view_invoice btn-yellow-black p-1">
                                                                         Details</a></td>
                                                             </tr>
                                                             <tr class="t_body">
@@ -254,7 +254,7 @@
                                                                 <td>
                                                                     <h5>$335</h5>
                                                                 </td>
-                                                                <td><a class="view_invoice btn-yellow-black p-1">View
+                                                                <td><a class="view_invoice btn-yellow-black p-1">
                                                                         Details</a></td>
                                                             </tr>
                                                             <tr class="t_body">
@@ -270,7 +270,7 @@
                                                                 <td>
                                                                     <h5>$550</h5>
                                                                 </td>
-                                                                <td><a class="view_invoice btn-yellow-black p-1">View
+                                                                <td><a class="view_invoice btn-yellow-black p-1">
                                                                         Details</a></td>
                                                             </tr>
                                                             <tr class="t_body">
@@ -286,7 +286,7 @@
                                                                 <td>
                                                                     <h5>$545</h5>
                                                                 </td>
-                                                                <td><a class="view_invoice btn-yellow-black p-1">View
+                                                                <td><a class="view_invoice btn-yellow-black p-1">
                                                                         Details</a></td>
                                                             </tr>
                                                             <tr class="t_body">
@@ -302,7 +302,7 @@
                                                                 <td>
                                                                     <h5>$600</h5>
                                                                 </td>
-                                                                <td><a class="view_invoice btn-yellow-black p-1">View
+                                                                <td><a class="view_invoice btn-yellow-black p-1">
                                                                         Details</a></td>
                                                             </tr>
                                                             <tr class="t_body">
@@ -318,7 +318,7 @@
                                                                 <td>
                                                                     <h5>$200</h5>
                                                                 </td>
-                                                                <td><a class="view_invoice btn-yellow-black p-1">View
+                                                                <td><a class="view_invoice btn-yellow-black p-1">
                                                                         Details</a></td>
                                                             </tr>
                                                         </tbody>

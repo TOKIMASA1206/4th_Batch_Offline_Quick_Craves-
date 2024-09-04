@@ -29,6 +29,36 @@
     color: white;
 }
 
+.btn-blue {
+    background-color: #6777EF;
+    color: white;
+    border: none;
+    padding: 6px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-blue:hover {
+    background-color: #3047f4;
+}
+.btn-blue-outline {
+    background-color: white;
+    color: #6777EF;
+    border: solid 1px #6777EF;
+    padding: 6px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-blue-outline:hover {
+    background-color: #6777EF;
+    color: white;
+}
+
 .btn-pink {
     background-color: #F3725F;
     color: white;
@@ -61,7 +91,7 @@
 }
 
 .btn-yellow {
-    background-color: #FFDD9D;
+    background-color: #FFB11B;
     color: white;
     border: none;
     padding: 6px 20px;
@@ -72,7 +102,7 @@
 }
 
 .btn-yellow:hover {
-    background-color: #FFB11B;
+    background-color: #c38108;
 }
 
 .btn-yellow-outline {
@@ -91,6 +121,58 @@
     color: white;
 }
 
+.btn-yellow-black {
+    font-size: 14px;
+    padding: 6px 10px;
+    font-weight: 500;
+    color: #fff;
+    border-radius: 0.25rem;
+    border: 1px solid transparent;
+    border: none;
+    background-color: #FFB11B;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-yellow-black:hover {
+    background-color: #000;
+    border-color: #000;
+}
+
+.btn-blue-black {
+    font-size: 14px;
+    padding: 6px 10px;
+    font-weight: 500;
+    color: #fff;
+    border-radius: 0.25rem;
+    border: 1px solid transparent;
+    border: none;
+    background-color: #5492FF;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-blue-black:hover {
+    background-color: #000;
+    border-color: #000;
+}
+.btn-red-black {
+    font-size: 14px;
+    padding: 6px 10px;
+    font-weight: 500;
+    color: #fff;
+    border-radius: 0.25rem;
+    border: 1px solid transparent;
+    border: none;
+    background-color: #FC544B;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-red-black:hover {
+    background-color: #000;
+    border-color: #000;
+}
 .btn-yellow-black {
     font-size: 14px;
     padding: 6px 10px;
