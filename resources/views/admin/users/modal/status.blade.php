@@ -2,19 +2,24 @@
 
 <div class="modal fade palanquin-dark-regular" tabindex="-1" id="inactivate-user-{{-- $post->id --}}">
     <div class="modal-dialog">
-      <div class="modal-content"  style="background-color: rgb(199, 199, 245) !important ">
-        <div class="modal-header">
-          <h5 class="modal-title" style="color: rgb(81, 51, 179)">Inactivate User</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title text-danger fw-bold mx-auto">Inactivate User</h2>
+            </div>
+            <div class="modal-body">
+                <p class="text-center">Are you sure you want to <span class="text-danger">inactivate</span> " ######## " ?
+                </p>
+                <div class="row mt-3">
+                    <div class="col">
+                        <button type="button" class=" btn btn-outline-danger w-100 fw-bold"
+                            data-bs-dismiss="modal"><span>Close</span></button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class=" btn btn-danger w-100 fw-bold">Inactivate</button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-          <p>Are you sure you want to <span class="text-danger">Inactivate</span> " ######## " ?</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn" data-bs-dismiss="modal" style="border-color:rgb(81, 51, 179)"><span style="color: rgb(81, 51, 179)">Close</span></button>
-          <button type="button" class="btn text-white" style="background-color: rgb(81, 51, 179)">Inactivate</button>
-        </div>
-      </div>
     </div>
 </div>
 
@@ -22,19 +27,25 @@
 {{--  Activate  --}}
 
 <div class="modal fade palanquin-dark-regular" tabindex="-1" id="activate-user-{{-- $post->id --}}">
-<div class="modal-dialog">
-  <div class="modal-content"  style="background-color: rgb(199, 199, 245) !important ">
-    <div class="modal-header">
-      <h5 class="modal-title" style="color: rgb(81, 51, 179)">Activate User</h5>
-      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title text-success fw-bold mx-auto">activate User</h2>
+            </div>
+            <div class="modal-body">
+                <p class="text-center">Are you sure you want to <span class="text-success">activate</span> " ######## "
+                    ?
+                </p>
+                <div class="row mt-3">
+                    <div class="col">
+                        <button type="button" class=" btn btn-outline-success w-100 fw-bold"
+                            data-bs-dismiss="modal"><span>Close</span></button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class=" btn btn-success w-100 fw-bold">activate</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="modal-body">
-      <p>Are you sure you want to <span class="text-success">Activate</span> " ######## " ?</p>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn" data-bs-dismiss="modal" style="border-color:rgb(81, 51, 179)"><span style="color: rgb(81, 51, 179)">Close</span></button>
-      <button type="button" class="btn text-white" style="background-color: rgb(81, 51, 179)">Activate</button>
-    </div>
-  </div>
-</div>
 </div>

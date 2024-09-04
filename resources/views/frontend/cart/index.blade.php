@@ -23,7 +23,7 @@
                 <div class="container">
                     <div class="row">
 
-                        <div class="col-lg-7 wow fadeInUp" data-wow-duration="1s">
+                        <div class="col-lg-7 wow fade-in" data-wow-duration="1s">
                             <div class="cart">
                                 <div class="table-responsive">
                                     <table class="table text-center">
@@ -153,7 +153,7 @@
 
 
 
-                        <div class="cart_list_checkout ms-5 card shadow col-lg-4 wow fadeInUp p-4" data-wow-duration="1s">
+                        <div class="cart_list_checkout card shadow col-lg-4 fade-in p-4">
 
                             <div>
                                 <h5 class="fw-bold">Total Cart</h5>

@@ -1,6 +1,6 @@
 <div class="tab-pane fade" id="v-pills-user" role="tabpanel"
 aria-labelledby="v-pills-user-tab">
-<div class="fp_dashboard_body">
+<div class="fp_dashboard_body ps-4">
     <ul class="navbar-nav ms-auto mb-2 w-25">
         <form action="{{-- route('admin.search') --}}">
             <input type="text" name="search"
@@ -9,21 +9,21 @@ aria-labelledby="v-pills-user-tab">
         </form>
     </ul>
     <table
-        class="table table-hover align-middle bg-white border text-secondary palanquin-dark-regular">
-        <thead class="small text-secondary">
+        class="table table-hover align-middle border palanquin-dark-regular mx-auto">
+        <thead class="small">
             <tr>
-                <th style="color: rgb(52, 52, 117)">ID</th>
-                <th style="color: rgb(52, 52, 117)">Name</th>
-                <th style="color: rgb(52, 52, 117)">Email</th>
-                <th style="color: rgb(52, 52, 117)">Phone Number</th>
-                <th style="color: rgb(52, 52, 117)">Number of Order</th>
-                <th style="color: rgb(52, 52, 117)">Total Price</th>
-                <th></th>
+                <th class="th-bg text-center ">#</th>text-center
+                <th class="th-bg">Name</th>
+                <th class="th-bg">Email</th>
+                <th class="th-bg">Phone Number</th>
+                <th class="th-bg">Number of Order</th>
+                <th class="th-bg">Total Price</th>
+                <th class="th-bg"></th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>55</td>
+                <td class="text-center">55</td>
                 <td>Hikaru</td>
                 <td>hikaru.mail</td>
                 <td>080-1234-5678</td>
@@ -54,7 +54,7 @@ aria-labelledby="v-pills-user-tab">
                 @include('admin.users.modal.status')
             </tr>
             <tr>
-                <td>55</td>
+                <td class="text-center">55</td>
                 <td>Hikaru</td>
                 <td>hikaru.mail</td>
                 <td>080-1234-5678</td>

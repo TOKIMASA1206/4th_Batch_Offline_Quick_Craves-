@@ -16,7 +16,7 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="container fade-in">
       <div class="row">
         <div class="col-lg-8">
           <div class="proceed">

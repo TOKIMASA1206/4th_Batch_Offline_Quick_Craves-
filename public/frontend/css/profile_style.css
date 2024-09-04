@@ -107,6 +107,13 @@
   font-weight: 500;
 }
 
+.card-style{
+  background-color:transparent;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.65rem;
+  padding:0;
+}
+
 
 
 /* ========================Profile Info Content===================== */
@@ -240,4 +247,15 @@ color: #4CAF50;
   font-size: 14px;
   display: inline-block;
   border:none;
+}
+
+
+@media (max-width: 768px) {
+  .card-style {
+    border: none;
+  }
+
+  .profile-content h2{
+    margin-top: 30px;
+  }
 }
