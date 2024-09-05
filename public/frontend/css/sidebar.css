@@ -1,52 +1,16 @@
+/* Sidebar Styles */
 #sidebar {
-    width: 90px;
-    min-width: 90px;
+    width: 9rem;
+    height: 100%;
     z-index: 1000;
-    transition: all 0.25s ease-in-out;
     background-color: #ffd482;
-    display: flex;
-    flex-direction: column;
-}
-
-#sidebar.expand {
-    width: 200px;
-    min-width: 200px;
-}
-
-.content-inner {
-    transition: transform 0.25s ease-in-out;
-}
-
-.toggle-btn {
-    background-color: transparent;
-    cursor: pointer;
-    border: 0;
-    padding: 1rem 1.5rem;
-}
-
-.toggle-btn i {
-    font-size: 2rem;
-    color: white;
-}
-
-.sidebar-logo {
-    margin: auto 0;
-}
-
-.sidebar-logo a {
-    color: #fff;
-    font-size: 24px;
-    font-weight: 600;
-}
-
-#sidebar:not(.expand) .sidebar-logo,
-#sidebar:not(.expand) a.sidebar-link span {
-    display: none;
+    transition: all 0.3s ease;
 }
 
 .sidebar-nav {
-    padding: 2rem 0;
-    flex: 1 1 auto;
+    list-style: none;
+    text-align: left;
+    padding: 0;
 }
 
 a.sidebar-link {
@@ -54,14 +18,8 @@ a.sidebar-link {
     color: #fff;
     display: block;
     font-size: 1.25rem;
-    white-space: nowrap;
-    border-left: 3px solid transparent;
     text-decoration: none;
-}
-
-.sidebar-link i {
-    font-size: 1.7rem;
-    margin-right: 0.75rem;
+    white-space: nowrap;
 }
 
 a.sidebar-link:hover {
@@ -69,7 +27,73 @@ a.sidebar-link:hover {
     border-left: 3px solid #ff6715;
 }
 
-.sidebar-item {
-    position: relative;
-    margin-bottom: 16px;
+/* Hamburger Menu Styles */
+.hamburger-menu {
+    margin-top: 12px;
+    position: absolute;
+    left: 15px;
+    z-index: 1100;
+    cursor: pointer;
+    font-size: 8px;
+    color: rgb(255, 181, 44);
+    background-color: transparent;
+    border: 1px solid rgb(255, 181, 44);
+    border-radius: 12px;
+    padding: 6px 12px;
+    transition: all 0.4s ease;
 }
+
+.hamburger-menu:hover {
+    color: rgb(255, 255, 255);
+    background-color: rgba(255, 181, 44, 0.805);
+}
+
+.hamburger-menu i {
+    font-size: 1.5rem;
+}
+
+/* Mobile and Tablet Styles */
+@media (max-width: 768px) {
+    #search_bar {
+        display: none;
+    }
+
+    #search_sidebar {
+        display: block;
+    }
+
+    #sidebar {
+        width: 100%;
+        max-width: 100%;
+        position: absolute;
+        left: -100%;
+    }
+
+    #sidebar.show {
+        left: 0;
+    }
+
+    .sidebar-nav {
+        margin-top: 4rem;
+        padding: 0;
+    }
+}
+
+/* Desktop Styles */
+@media (min-width: 769px) {
+    #search_sidebar {
+        display: none;
+    }
+
+    .hamburger-menu {
+        display: none;
+    }
+}
+
+
+@media (max-width: 1090px) {
+    a.sidebar-link {
+        font-size: 1.15rem;
+    }
+}
+

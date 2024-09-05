@@ -1,13 +1,14 @@
-.card-title {
-    font-size: 1.25rem;
-    font-weight: bold;
+/* General Styles */
+.menu-title {
+    font-size: 1.25rem !important; /* Bootstrapのフォントサイズを上書き */
+    font-weight: bold !important;
     transition: color 0.5s ease;
 }
 
 .price-tag {
-    font-size: 1.5rem;
+    font-size: 1.5rem !important; /* Bootstrapのフォントサイズを上書き */
     font-weight: bold;
-    color: #ff5722;
+    color: #ff5722 !important; /* カスタムカラーを優先 */
 }
 
 .discount-price {
@@ -16,18 +17,18 @@
 }
 
 .badge-category {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background-color: #ff5722;
-    color: white;
-    font-size: 0.9rem;
-    padding: 0.3rem 0.6rem;
-    border-radius: 0.25rem;
+    position: absolute !important; /* Bootstrapのpositionを上書き */
+    top: 10px !important;
+    left: 10px !important;
+    background-color: #ff5722 !important;
+    color: white !important;
+    font-size: 0.9rem !important;
+    padding: 0.3rem 0.6rem !important;
+    border-radius: 0.25rem !important;
 }
 
 .rating-stars {
-    color: #ffa500;
+    color: #ffa500 !important; /* カスタムカラーを優先 */
 }
 
 .card-icon-group {
@@ -36,14 +37,14 @@
 
 .card-icon-group i {
     margin-right: 10px;
-    color: white;
+    color: white !important; /* カスタムカラーを優先 */
     cursor: pointer;
 }
 
 .card-img-top {
-    height: 250px;
-    width: 100%;
-    object-fit: cover;
+    height: 250px !important; /* Bootstrapの画像サイズを上書き */
+    width: 100% !important;
+    object-fit: cover !important;
 }
 
 .card {
@@ -51,25 +52,26 @@
 }
 
 .card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    transform: translateY(-10px) !important; /* Bootstrapのhover効果を上書き */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15) !important;
 }
 
 .card:hover .card-title {
-    color: #ff5722;
+    color: #ff5722 !important; /* カスタムカラーを優先 */
 }
 
 .btn-yellow-index {
-    background-color: #ffb11b;
-    color: white;
-    border: none;
-    padding: 6px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
+    background-color: #ffb11b !important; /* カスタムカラーを優先 */
+    color: white !important;
+    border: none !important; /* Bootstrapのborderを削除 */
+    padding: 6px 20px !important; /* Bootstrapのpaddingを上書き */
+    border-radius: 5px !important;
+    cursor: pointer !important;
+    font-size: 16px !important;
+    transition: background-color 0.3s ease !important;
 }
 
+/* Animation for menu items */
 @keyframes slideIn {
     from {
         opacity: 0;
@@ -95,6 +97,83 @@
 }
 
 .menu-item {
-    animation-duration: 0.5s;
-    animation-fill-mode: both;
+    animation-duration: 0.5s !important; /* Bootstrapのanimation-durationを上書き */
+    animation-fill-mode: both !important;
+}
+
+/* Responsive Breakpoints */
+
+/* Mobile Devices (Up to 576px) */
+@media (max-width: 576px) {
+    .card-img-top {
+        height: 150px !important; /* Smaller height for mobile */
+    }
+
+    .menu-title {
+        font-size: 1rem !important; /* Smaller font size */
+    }
+
+    .price-tag {
+        font-size: 1.2rem !important; /* Smaller price tag */
+    }
+
+    .badge-category {
+        font-size: 0.75rem !important; /* Smaller badge font */
+    }
+
+    .card {
+        margin-bottom: 20px !important; /* Increase space between cards */
+    }
+
+    .btn-yellow-index {
+        font-size: 14px !important; /* Smaller button text */
+        padding: 4px 12px !important; /* Adjust padding */
+    }
+
+    /* Adjust the column layout for mobile */
+    .row-cols-1 {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 15px !important;
+    }
+}
+
+/* Tablets (Up to 768px) */
+@media (max-width: 768px) {
+    .card-img-top {
+        height: 200px !important; /* Medium height for tablets */
+    }
+
+    .menu-title {
+        font-size: 1.1rem !important; /* Medium font size */
+    }
+
+    .price-tag {
+        font-size: 1.3rem !important; /* Medium price tag */
+    }
+
+    .badge-category {
+        font-size: 0.85rem !important; /* Adjust badge font */
+    }
+
+    .row-cols-md-4 {
+        grid-template-columns: repeat(2, 1fr) !important; /* 2 columns on tablets */
+    }
+
+    .btn-yellow-index {
+        font-size: 15px !important; /* Adjust button size */
+        padding: 5px 16px !important;
+    }
+}
+
+/* Desktops (Medium to large screens) */
+@media (min-width: 769px) {
+    .row-cols-md-4 {
+        grid-template-columns: repeat(4, 1fr) !important; /* 4 columns on desktop */
+    }
+
+    .btn-yellow-index {
+        font-size: 16px !important; /* Default size for desktop */
+        padding: 6px 20px !important;
+    }
 }

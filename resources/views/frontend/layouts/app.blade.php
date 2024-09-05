@@ -26,8 +26,10 @@
     {{-- Google Font --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     {{-- Title Font --}}
     <link href="https://fonts.googleapis.com/css2?family=Amarante&family=Chelsea+Market&display=swap" rel="stylesheet">
+
     {{-- Common Font --}}
     <link
         href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Jost:ital,wght@0,100..900;1,100..900&display=swap"
@@ -35,6 +37,7 @@
 
     <!-- CSS -->
     @yield('style')
+    <link rel="stylesheet" href="{{ asset('frontend/css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/animate.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/buttonDesigns.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/sidebar.css') }}">
@@ -42,204 +45,200 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/pointChargeModal.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/voucherModal.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/footer.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/menuIndex.css') }}">
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
     {{-- JQuery --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <style>
-        .ar {
-            font-family: "Amarante", serif;
-            font-weight: 400;
-            font-style: normal;
-        }
-    </style>
-
 </head>
 
 <body>
     <div id="app">
+        <!--============ Header ===================-->
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand fs-2 ar" href="{{ url('/') }}">
                     <img src="{{ asset('logos/Logo.png') }}" width="70rem" alt="logo"> Quick Craves
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
+                <div id="search_bar">
+                    <form class="form-inline my-2 my-lg-0 d-flex gap-2">
+                        <div>
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search Menu"
+                                aria-label="Search">
+                        </div>
+                        <button class="btn btn-outline-success my-2 my-sm-0 " type="submit">Search</button>
+                    </form>
                 </div>
             </div>
         </nav>
 
-        <div class="d-flex">
-            <div id="sidebar">
-                <div class="d-flex">
-                    <button class="toggle-btn" type="button" style="margin-left: 2px">
+        <div id="content" style="width: 100%">
+            <div class="d-flex pb-5">
+
+                <!--============ Sidebar ===================-->
+                <div>
+
+                    <!-- Hamberder Menu -->
+                    <button class="hamburger-menu" id="hamburger-btn">
                         <i class="fa-solid fa-bars"></i>
                     </button>
-                    <div class="sidebar-logo">
-                        <a href="#" style="text-decoration: none">MENU</a>
+
+                    <!-- side bar -->
+                    <div id="sidebar" class="">
+                        <ul class="sidebar-nav">
+                            <li class="pt-3 mb-2" id="search_sidebar">
+                                <form class="form-inline w-50 ms-3">
+                                    <div>
+                                        <input class="form-control mr-sm-2" type="search" placeholder="Search Menu"
+                                            aria-label="Search">
+                                    </div>
+                                </form>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="{{ url('/') }}" class="sidebar-link">
+                                    <i class="fa-solid fa-house"></i>
+                                    <span>Home</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="{{ route('profile_index') }}" class="sidebar-link">
+                                    <i class="fa-solid fa-user"></i>
+                                    <span>Profile</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="{{ route('wallet.index') }}" class="sidebar-link">
+                                    <i class="fa-solid fa-wallet"></i>
+                                    <span>Wallet</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="{{ route('cart_index') }}" class="sidebar-link">
+                                    <i class="fa-solid fa-basket-shopping"></i>
+                                    <span>My Cart</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item mb-5">
+                                <a href="{{ route('proceed_index') }}" class="sidebar-link">
+                                    <i class="fa-solid fa-play"></i>
+                                    <span>Proceed</span>
+                                </a>
+                            </li>
+
+                            <!-- Authentication Links -->
+                            @guest
+                                @if (Route::has('login'))
+                                    <li class="sidebar-item">
+                                        <a href="{{ route('login') }}" class="sidebar-link">
+                                            <i class="fa-solid fa-right-to-bracket"></i>
+                                            <span>{{ __('Login') }}</span>
+                                        </a>
+                                    </li>
+                                @endif
+                                @if (Route::has('register'))
+                                    <li class="sidebar-item">
+                                        <a href="{{ route('register') }}" class="sidebar-link">
+                                            <i class="fa-solid fa-user-plus"></i>
+                                            <span>{{ __('Register') }}</span>
+                                        </a>
+                                    </li>
+                                @endif
+                            @else
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                        document.getElementById('logout-form').submit();">
+                                        <i class="fa-solid fa-right-from-bracket"></i>
+                                        <span>{{ __('Logout') }}</span>
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        class="d-none">
+                                        @csrf
+                                    </form>
+                                </li>
+                            @endguest
+                        </ul>
                     </div>
                 </div>
-                <ul class="sidebar-nav">
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link" style="text-decoration: none">
-                            <i class="fa-solid fa-house"></i>
-                            <span>Home</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
-                            <i class="fa-solid fa-user"></i>
-                            <span>Profile</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
-                            <i class="fa-solid fa-wallet"></i>
-                            <span>Wallet</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
-                            <i class="fa-solid fa-basket-shopping"></i>
-                            <span>My Cart</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link" style="margin-left: 5px">
-                            <i class="fa-solid fa-play"></i>
-                            <span>Proceed</span>
-                        </a>
-                    </li>
-                </ul>
-                <div class="sidebar-footer">
-                    <a href="#" class="sidebar-link">
-                        <i class="fa-solid fa-gear"></i>
-                        <span>Setting</span>
-                    </a>
-                    <a href="#" class="sidebar-link">
-                        <i class="fa-solid fa-right-from-bracket"></i>
-                        <span>Logout</span>
-                    </a>
-                </div>
-            </div>
 
-            <div id="content" style="width: 100%">
-                <main>
-                    <div id="page-title" class="mb-5"
+                <!--============ Main ===================-->
+                <main style="width: 100%">
+
+                    <!-- Content Title -->
+                    <div id="page-title" class="mb-5 fade-in"
                         style="height: 15rem; background: rgba(255, 206, 100, 0.169)">
                         @yield('page-title')
                     </div>
 
-                    <div class="content-inner">
+                    <!-- Content  -->
+                    <div class="content-inner mx-auto">
                         @yield('content')
                     </div>
                 </main>
-                <footer class="mt-5">
-                    <div class="container p-3 fade-in">
-                        <div class="row">
-                            <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
-                                <a class="footer-title d-flex align-items-center mb-3" href="{{ url('/') }}">
-                                    <img src="{{ asset('logos/Logo.png') }}" alt="logo" class="footer-logo me-2">
-                                    <h5 class="text-uppercase mb-0">Quick Craves</h5>
-                                </a>
-                                
-                                <p>
-                                    Satisfy your cravings with our quick and delicious options. Your satisfaction is our
-                                    priority.
-                                </p>
-                            </div>
-                            <!-- Column 2 -->
-                            <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
-                                <h5 class="text-uppercase">Navigation</h5>
-                                <ul class="row mb-0">
-                                    <li class="col-md-2">
-                                        <a href="#">Home</a>
-                                    </li>
-                                    <li class="col-md-2">
-                                        <a href="#">Profile</a>
-                                    </li>
-                                    <li class="col-md-2">
-                                        <a href="#">Wallet</a>
-                                    </li>
-                                    <li class="col-md-2">
-                                        <a href="#">Cart</a>
-                                    </li>
-                                    <li class="col-md-2">
-                                        <a href="#">Proceed</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- Column 3 -->
-                            <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
-                                <h5 class="text-uppercase">Contact Us</h5>
-                                <ul class="list-unstyled mb-0">
-                                    <li>
-                                        <i class="fa-solid fa-envelope"></i> info@quickcraves.com
-                                    </li>
-                                    <li>
-                                        <i class="fa-solid fa-phone"></i> +1 234 567 890
-                                    </li>
-                                    <li>
-                                        <i class="fa-solid fa-map-marker-alt"></i> 123 Main St, City, Country
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <hr>
-                    <div class="text-center fade-in pt-2">
-                        © 2024 Quick Craves. All rights reserved.
-                    </div>
-                </footer>
-
             </div>
         </div>
     </div>
+    <!--============ Footer ===================-->
+    <footer class=""">
+        <div class="container p-3 fade-in">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+                    <a class="footer-title d-flex align-items-center mb-3" href="{{ url('/') }}">
+                        <img src="{{ asset('logos/Logo.png') }}" alt="logo" class="footer-logo me-2">
+                        <h5 class="text-uppercase mb-0">Quick Craves</h5>
+                    </a>
+
+                    <p>
+                        Satisfy your cravings with our quick and delicious options. Your satisfaction is our
+                        priority.
+                    </p>
+                </div>
+                <!-- Column 2 -->
+                <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">Navigation</h5>
+                    <ul class="row mb-0">
+                        <li class="col-md-2">
+                            <a href="#">Home</a>
+                        </li>
+                        <li class="col-md-2">
+                            <a href="#">Profile</a>
+                        </li>
+                        <li class="col-md-2">
+                            <a href="#">Wallet</a>
+                        </li>
+                        <li class="col-md-2">
+                            <a href="#">Cart</a>
+                        </li>
+                        <li class="col-md-2">
+                            <a href="#">Proceed</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Column 3 -->
+                <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">Contact Us</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li>
+                            <i class="fa-solid fa-envelope"></i> info@quickcraves.com
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-phone"></i> +1 234 567 890
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-map-marker-alt"></i> 123 Main St, City, Country
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+        <div class="text-center fade-in pt-2">
+            © 2024 Quick Craves. All rights reserved.
+        </div>
+    </footer>
 
     @stack('scripts')
     {{-- Javascript --}}
