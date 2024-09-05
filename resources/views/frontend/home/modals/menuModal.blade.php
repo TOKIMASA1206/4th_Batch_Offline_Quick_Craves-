@@ -1,6 +1,6 @@
 {{-- Modal --}}
 <div class="modal fade" id="productDetailModal" tabindex="-1" aria-labelledby="productDetailModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-body">
                 <div>
@@ -9,11 +9,11 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-6">
-                            <img src="{{ asset('frontend/images/food1.jpg') }}" alt="food1" style="width: 100%">
+                        <div class="col-12 col-md-6 mb-4 mb-md-0">
+                            <img src="{{ asset('frontend/images/food1.jpg') }}" alt="food1" class="img-fluid">
                         </div>
 
-                        <div class="col-6">
+                        <div class="col-12 col-md-6">
                             <h1 class="ar mb-3">Grilled Salmon</h1>
                             <h3 class="price-tag mb-3">&#8369; 90.50</h3>
                             <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -22,8 +22,8 @@
                             </p>
 
                             <form action="" method="POST">
-                                <div class="row gap-5 mb-4">
-                                    <div class="col-5">
+                                <div class="row mb-4">
+                                    <div class="col-12 col-lg-6 mb-3 mb-lg-0">
                                         <h4 class="mb-3">Select Size</h4>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="size" id="sizeLarge"
@@ -50,7 +50,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-5">
+                                    <div class="col-12 col-lg-6">
                                         <h4 class="mb-3">Select Option</h4>
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" name="option[]"
