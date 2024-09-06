@@ -2,9 +2,9 @@
 #sidebar {
     width: 9rem;
     height: 100%;
-    z-index: 1000;
     background-color: #ffd482;
     transition: all 0.3s ease;
+    
 }
 
 .sidebar-nav {
@@ -35,9 +35,9 @@ a.sidebar-link:hover {
     z-index: 1100;
     cursor: pointer;
     font-size: 8px;
-    color: rgb(255, 181, 44);
+    color: #fff;
     background-color: transparent;
-    border: 1px solid rgb(255, 181, 44);
+    border: 1px solid #fff;
     border-radius: 12px;
     padding: 6px 12px;
     transition: all 0.4s ease;
@@ -51,6 +51,10 @@ a.sidebar-link:hover {
 .hamburger-menu i {
     font-size: 1.5rem;
 }
+
+.no-scroll {
+    overflow: hidden;
+  }
 
 /* Mobile and Tablet Styles */
 @media (max-width: 768px) {
@@ -66,6 +70,8 @@ a.sidebar-link:hover {
         width: 100%;
         max-width: 100%;
         position: absolute;
+        height: 100Vh;
+        z-index: 999;
         left: -100%;
     }
 

@@ -7,23 +7,20 @@
 @endsection
 
 @section('page-title')
-    <div class="row justify-content-center align-items-center" style="height: 100%">
-        <div class="text-center">
-            <h1 class="display-4 ar" style="color: #FFB11B;">Cart Detail</h1>
-        </div>
-    </div>
+            <h1 class="banner_title ar">Cart View</h1>
+@endsection
+
+@section('sub-title')
+    <span class="sub_title"><i class="fa-solid fa-house-chimney"></i> <span class="me-2">Home</span> - <span class="mx-2">Cart View</span></span>
 @endsection
 
 @section('content')
 
-    <div class="row fade-in">
 
-        <div class="col">
-            <section class="cart_view mt_125 xs_mt_95 mb_100 xs_mb_70">
+            <section class="cart_view ">
                 <div class="container">
                     <div class="row">
-
-                        <div class="col-lg-7 wow fade-in" data-wow-duration="1s">
+                        <div class="col-lg-8 wow fade-in" data-wow-duration="1s">
                             <div class="cart">
                                 <div class="table-responsive">
                                     <table class="table text-center">
@@ -153,13 +150,13 @@
 
 
 
-                        <div class="cart_list_checkout card shadow col-lg-4 fade-in p-4">
+                        <div class="cart_list_checkout card shadow col-lg-3 fade-in p-4">
 
                             <div>
                                 <h5 class="fw-bold">Total Cart</h5>
 
                                 <hr>
-                                <p class="d-flex justify-content-between"><span>Subtotal:</span> <span>$124.00</span></p>
+                                <p class="d-flex justify-content-between fw-bold"><span>Subtotal:</span> <span>$124.00</span></p>
                                 <select name="" id="" class="form-select">
                                     <option value="">Voucher</option>
                                     <option value="">Voucher</option>
@@ -207,11 +204,7 @@
                     </div>
                 </div>
             </section>
-        </div>
 
-
-
-    </div>
 
 @endsection
 

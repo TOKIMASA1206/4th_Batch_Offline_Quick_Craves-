@@ -44,6 +44,7 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/wallet-page.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/pointChargeModal.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/voucherModal.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/banner.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/footer.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/menuIndex.css') }}">
 
@@ -74,7 +75,7 @@
             </div>
         </nav>
 
-        <div id="content" style="width: 100%">
+        <div id="content" style="width: 100%" class="ba">
             <div class="d-flex">
 
                 <!--============ Sidebar ===================-->
@@ -86,7 +87,7 @@
                     </button>
 
                     <!-- side bar -->
-                    <div id="sidebar" class="">
+                    <div id="sidebar">
                         <ul class="sidebar-nav">
                             <li class="pt-3 mb-2" id="search_sidebar">
                                 <form class="form-inline w-50 ms-3">
@@ -165,11 +166,14 @@
 
                 <!--============ Main ===================-->
                 <main style="width: 100%">
-
-                    <!-- Content Title -->
-                    <div id="page-title" class="mb-5 fade-in"
-                        style="height: 15rem; background: rgba(255, 206, 100, 0.169)">
-                        @yield('page-title')
+            <div id="content" style="width: 100%">
+                <main>
+                    <div id="page-title" class="mb-5">
+                        <div class="overlay"></div>
+                        <div>
+                            @yield('page-title')
+                            @yield('sub-title')
+                        </div>
                     </div>
 
                     <!-- Content  -->
@@ -181,7 +185,7 @@
         </div>
     </div>
     <!--============ Footer ===================-->
-    <footer class=""">
+    <footer class="">
         <div class="container p-3 fade-in">
             <div class="row">
                 <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
