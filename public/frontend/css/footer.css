@@ -5,6 +5,7 @@ footer {
   font-family: 'Barlow', sans-serif;
   padding: 20px 0;
   font-weight: 600;
+  z-index: 999;
 }
 
 footer h5 {

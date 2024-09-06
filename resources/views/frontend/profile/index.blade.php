@@ -7,31 +7,29 @@
 @endsection
 
 @section('page-title')
-    <div class="row justify-content-center align-items-center" style="height: 100%">
-        <div class="text-center">
-            <h1 class="display-4 ar" style="color: #FFB11B;">User Dashboard</h1>
-        </div>
-    </div>
+    <h1 class="banner_title ar">User Dashboard</h1>
+@endsection
+
+@section('sub-title')
+    <span class="sub_title"><i class="fa-solid fa-house-chimney"></i> <span class="me-2">Home</span> - <span class="mx-2">User Dashboard</span></span>
 @endsection
 
 @section('content')
 
     <div class="row fade-in">
 
-
-
         <div class="col profile">
             <div class="container">
                 <div class="main">
                     <div class="card-style">
                         <div class="row">
-                            <div class="col-md-3 profile-menu">
+                            <div class="col-lg-3 profile-menu">
                                 <div class="card-bg">
                                     <div class="profile-menu-top p-4 mb-4">
                                         <div class="user-icon">
                                             <i class="fa-solid fa-user text-center mx-0"></i>
                                         </div>
-                                        <h4 class="user-name">John Kurt</h4>
+                                        <h4 class="user-name ar">John Kurt</h4>
                                     </div>
                                     <div class="profile-menu-bottom">
                                         <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
@@ -73,7 +71,7 @@
 
 
                             <div class="profile-content col-md  p-3 pe-4 pb-4">
-                                <h2 class="mb-4">Welcome To Your Profile </h2>
+                                <h2 class="mb-4 ar">Welcome To Your Profile </h2>
                                 <div class=" profile-content-link mb-5">
 
                                     <div class="row">
@@ -161,7 +159,7 @@
                                     <div class="tab-pane fade" id="v-pills-order" role="tabpanel"
                                         aria-labelledby="v-pills-order-tab">
                                         <div class="body">
-                                            <h3 class="menu-section-title mb-3 mt-2">
+                                            <h3 class="menu-section-title mb-3 mt-2 ar">
                                                 Order List
                                             </h3>
                                             <div class="order">
@@ -562,5 +560,5 @@
 @endsection
 
 @push('scripts')
-<script src="{{ asset('frontend/js/profile_js_action.js') }}"></script>
+    <script src="{{ asset('frontend/js/profile_js_action.js') }}"></script>
 @endpush

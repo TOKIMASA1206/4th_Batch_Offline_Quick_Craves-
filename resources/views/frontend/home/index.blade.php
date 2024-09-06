@@ -1,12 +1,13 @@
 @extends('frontend.layouts.app')
 
 @section('page-title')
-    <div class="row justify-content-center align-items-center" style="height: 100%">
-        <div class="text-center">
-            <h1 class="display-4 ar" style="color: #FFB11B;">Our Popular Foods Menu</h1>
-        </div>
-    </div>
+    <h1 class="banner_title ar">Our Popular Foods Menu</h1>
 @endsection
+@section('sub-title')
+    <span class="sub_title"><i class="fa-solid fa-house-chimney"></i> <span class="me-2">Home</span> - <span class="mx-2">Menu</span></span>
+@endsection
+
+
 
 @section('content')
     <div class="container">
