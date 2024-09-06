@@ -1,11 +1,11 @@
 @extends('frontend.layouts.app')
 
 @section('page-title')
-    <div class="row justify-content-center align-items-center" style="height: 100%">
-        <div class="text-center">
-            <h1 class="display-4 ar" style="color: #FFB11B;">Wallet</h1>
-        </div>
-    </div>
+    <h1 class="banner_title ar">Your Balance & Transactions</h1>
+@endsection
+
+@section('sub-title')
+    <span class="sub_title"><i class="fa-solid fa-house-chimney"></i> <span class="me-2">Home</span> - <span class="mx-2">Wallet</span></span>
 @endsection
 
 @section('content')
@@ -64,12 +64,12 @@
 
         {{-- Stamp section --}}
         <div class="stamps row m-0 fade-in">
-            <div class="col-12 col-md-3 text-center text-md-start mb-3 mb-md-0">
+            <div class="col-12 col-xl-4 text-center text-md-start mb-3 mb-md-0">
                 <p>6 Stamps Earned</p>
                 <button class="view-rewards-btn" data-bs-toggle="modal" data-bs-target="#vouchersRewardsModal">View
                     Rewards</button>
             </div>
-            <div class="col-12 col-md-9">
+            <div class="col-12 col-xl-8 stamp-bar-section">
                 <h4 class="text-end text-white mb-3">6/10</h4>
                 <div class="stamp-bar d-flex justify-content-between">
                     <div class="stamp-box completed"></div>

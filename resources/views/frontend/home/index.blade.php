@@ -1,22 +1,19 @@
 @extends('frontend.layouts.app')
 
-@section('style')
-    <link rel="stylesheet" href="{{ asset('frontend/css/menuIndex.css') }}">
+@section('page-title')
+    <h1 class="banner_title ar">Our Popular Foods Menu</h1>
+@endsection
+@section('sub-title')
+    <span class="sub_title"><i class="fa-solid fa-house-chimney"></i> <span class="me-2">Home</span> - <span class="mx-2">Menu</span></span>
 @endsection
 
-@section('page-title')
-    <div class="row justify-content-center align-items-center" style="height: 100%">
-        <div class="text-center">
-            <h1 class="display-4 ar" style="color: #FFB11B;">Our Popular Foods Menu</h1>
-        </div>
-    </div>
-@endsection
+
 
 @section('content')
-    <div class="container fade-in">
+    <div class="container">
 
         {{-- Category Button --}}
-        <div class="text-center mb-4">
+        <div class="text-center mb-4 fade-in">
             <button class="btn-yellow-index category-btn me-1" data-category="all">All Menu</button>
             <button class="btn-yellow-outline category-btn me-1" data-category="burger">Burger</button>
             <button class="btn-yellow-outline category-btn me-1" data-category="dessert">Desserts</button>
@@ -28,14 +25,14 @@
         </div>
 
         {{-- Menu List --}}
-        <div class="container my-5">
-            <div class="row row-cols-1 row-cols-md-4 g-4">
+        <div class="container my-5 fade-in">
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
                 <div class="col menu-item" data-category="grill">
                     <div class="card">
                         <div class="badge-category">Grill</div>
                         <img src="{{ asset('frontend/images/food1.jpg') }}" class="card-img-top" alt="Salmon">
                         <div class="card-body">
-                            <h4 class="card-title text-center m-0">Salmon</h4>
+                            <h4 class="card-title menu-title text-center m-0">Salmon</h4>
                             <div class="d-flex justify-content-center align-items-center">
                                 <span class="price-tag">&#8369;90.50</span>
                             </div>
@@ -54,7 +51,7 @@
                         <div class="badge-category">Dessert</div>
                         <img src="{{ asset('frontend/images/food2.jpg') }}" class="card-img-top" alt="Acai Bowl">
                         <div class="card-body">
-                            <h4 class="card-title text-center m-0">Acai Bowl</h4>
+                            <h4 class="card-title menu-title text-center m-0">Acai Bowl</h4>
                             <div class="d-flex justify-content-center align-items-center gap-2">
                                 <span class="price-tag">&#8369;80.00</span>
                                 <span class="discount-price">&#8369;90.00</span>
@@ -74,7 +71,7 @@
                         <div class="badge-category">Salad</div>
                         <img src="{{ asset('frontend/images/food3.jpg') }}" class="card-img-top" alt="Salad">
                         <div class="card-body">
-                            <h4 class="card-title text-center m-0">Salad</h4>
+                            <h4 class="card-title menu-title text-center m-0">Salad</h4>
                             <div class="d-flex justify-content-center align-items-center">
                                 <span class="price-tag">$99.00</span>
                             </div>
@@ -92,7 +89,7 @@
                         <div class="badge-category">Soup</div>
                         <img src="{{ asset('frontend/images/food4.jpg') }}" class="card-img-top" alt="Soup">
                         <div class="card-body">
-                            <h4 class="card-title text-center m-0">Soup</h4>
+                            <h4 class="card-title menu-title text-center m-0">Soup</h4>
                             <div class="d-flex justify-content-center align-items-center">
                                 <span class="price-tag">$99.00</span>
                             </div>
@@ -110,7 +107,7 @@
                         <div class="badge-category">Noodle</div>
                         <img src="{{ asset('frontend/images/food5.jpg') }}" class="card-img-top" alt="Noodle">
                         <div class="card-body">
-                            <h4 class="card-title text-center m-0">Udon Noodle</h4>
+                            <h4 class="card-title menu-title text-center m-0">Udon Noodle</h4>
                             <div class="d-flex justify-content-center align-items-center">
                                 <span class="price-tag">$99.00</span>
                             </div>
@@ -129,7 +126,7 @@
                         <img src="{{ asset('frontend/images/slider_img_1.png') }}" class="card-img-top"
                             alt="Tomato Pasta">
                         <div class="card-body">
-                            <h4 class="card-title text-center m-0">>Tomato Pasta</h4>
+                            <h4 class="card-title menu-title text-center m-0">>Tomato Pasta</h4>
                             <div class="d-flex justify-content-center align-items-center">
                                 <span class="price-tag">$99.00</span>
                             </div>
@@ -147,7 +144,7 @@
                         <div class="badge-category">Wrap</div>
                         <img src="{{ asset('frontend/images/slider_img_2.png') }}" class="card-img-top" alt="Beef Wrap">
                         <div class="card-body">
-                            <h4 class="card-title text-center m-0">Beef Wrap</h4>
+                            <h4 class="card-title menu-title text-center m-0">Beef Wrap</h4>
                             <div class="d-flex justify-content-center align-items-center">
                                 <span class="price-tag">$99.00</span>
                             </div>
@@ -165,7 +162,7 @@
                         <div class="badge-category">Burger</div>
                         <img src="{{ asset('frontend/images/slider_img_3.png') }}" class="card-img-top" alt="Burger">
                         <div class="card-body">
-                            <h4 class="card-title text-center m-0">Cheese Burger</h4>
+                            <h4 class="card-title menu-title text-center m-0">Cheese Burger</h4>
                             <div class="d-flex justify-content-center align-items-center">
                                 <span class="price-tag">$99.00</span>
                             </div>

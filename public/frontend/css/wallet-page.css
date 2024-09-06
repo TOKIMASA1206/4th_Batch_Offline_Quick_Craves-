@@ -4,6 +4,12 @@
     font-weight: bold;
 }
 
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+}
+
 .voucher-btn {
     color: #ffb11b;
     font-size: 1.5rem;
@@ -12,6 +18,7 @@
     border-radius: 24px;
     background: transparent;
     transition: background-color 0.3s ease;
+    width: 100%;
 }
 
 .voucher-btn:hover {
@@ -107,7 +114,7 @@
     color: #ffffff;
     margin-bottom: 8px;
     font-family: serif;
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 
 .view-rewards-btn {
@@ -123,6 +130,10 @@
 .view-rewards-btn:hover {
     background: #d28e11;
     color: white;
+}
+
+.stamp-bar-section {
+    padding-top: 10px;
 }
 
 .stamp-bar {
@@ -170,4 +181,113 @@
 .transaction-status p {
     font-size: 24px;
     color: #ffb11b;
+}
+
+
+/* ====== Responsive Adjustments ====== */
+
+/* Web (large screens) */
+@media (min-width: 1200px) {
+    .points {
+        font-size: 2rem;
+    }
+
+    .stamps p {
+        font-size: 1.5rem;
+    }
+
+    .transaction-title {
+        font-size: 26px;
+    }
+}
+
+/* Tablet (medium screens) */
+@media (max-width: 992px) {
+    .container {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .voucher-btn {
+        font-size: 1rem;
+    }
+
+    .stamp-box {
+        width: 12%; /* Slightly larger width for better visibility */
+    }
+
+    .transaction-title {
+        font-size: 22px;
+    }
+
+    .transaction-status p {
+        font-size: 22px;
+    }
+
+    .points {
+        font-size: 1.5rem;
+    }
+}
+
+/* Mobile (small screens) */
+@media (max-width: 768px) {
+    .points {
+        font-size: 1.25rem;
+        text-align: center;
+    }
+
+    .voucher-btn {
+        font-size: 1.25rem;
+        padding: 8px 30px;
+    }
+
+    .stamps {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .transaction-item {
+        padding: 15px;
+    }
+
+    .transaction-title {
+        font-size: 20px;
+    }
+
+    .transaction-status p {
+        font-size: 20px;
+    }
+}
+
+/* Extra small devices (phones) */
+@media (max-width: 576px) {
+    .voucher-btn {
+        font-size: 1rem;
+        padding: 6px 20px;
+    }
+
+    .stamp-box {
+        width: 20%; /* Larger for better visibility on small devices */
+    }
+
+    .transaction-title {
+        font-size: 18px;
+    }
+
+    .transaction-status p {
+        font-size: 18px;
+    }
+
+    .wlt-card-info {
+        padding: 15px;
+    }
+
+    .points {
+        font-size: 1rem;
+    }
+
+    .stamps p {
+        font-size: 1rem;
+    }
 }
