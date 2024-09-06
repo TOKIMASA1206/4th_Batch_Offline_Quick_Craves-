@@ -12,9 +12,10 @@
                             <div class="fp__dashboard_menu">
 
 
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="nav-link">
+                                    @csrf
                                 <div class="nav flex-column nav-pills palanquin-dark-regular" id="v-pills-tab" role="tablist"
-                                    aria-orientation="vertical"
-     !important">
+                                    aria-orientation="vertical">
 
                                     <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill"
                                         data-bs-target="#v-pills-home-1" type="button" role="tab"
@@ -41,13 +42,14 @@
                                     <button class="nav-link" id="v-pills-proceed-tab" data-bs-toggle="pill"
                                         data-bs-target="#v-pills-proceed" type="button" role="tab"
                                         aria-controls="v-pills-proceed" aria-selected="false"><span
-                                        ><i
-                                                class="fa-solid fa-forward"></i></span>PROCEED</button>
+                                        ><i class="fa-solid fa-forward"></i></span>PROCEED</button>
 
-                                    <button class="nav-link" type="button"><span> <i
-                                                class="fas fa-sign-out-alt"></i>
-                                        </span>Logout</button>
-                                </div>
+
+                                    <button type="submit" class="nav-link">
+                                        <span><i class="fa-solid fa-sign-out-alt"></i></span>LOGOUT</button>
+
+                                 </div>
+                                </form>
                             </div>
                         </div>
                         <div class="col-xl-9 col-lg-8 wow fadeInUp" data-wow-duration="1s"
@@ -82,7 +84,6 @@
                 </div>
             </div>
         </section>
-        
     </body>
     </html>
 @endsection

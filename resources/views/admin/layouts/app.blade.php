@@ -94,7 +94,7 @@
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
-                        @else
+                        {{-- @else
                             <a class="text-decoration-none text-dark amarante-regular me-2 fs-2" href="#">
                                 {{ Auth::user()->name }}
                             </a>
@@ -103,7 +103,7 @@
                                 <button type="submit" class="btn btn-link"><i
                                         class="fa-solid fa-right-from-bracket text-dark fs-2"></i></button>
                             </form>
-
+ --}}
 
                         @endguest
                     </ul>
