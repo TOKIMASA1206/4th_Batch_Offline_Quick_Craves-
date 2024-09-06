@@ -37,6 +37,48 @@
                                         aria-selected="false"></span><span><i
                                                 class="fa-solid fa-star"></i></span>Pizza</button>
 
+                                                <button class="nav-link" id="v-pills-category-tab3" data-bs-toggle="pill"
+                                        data-bs-target="#v-pills-category-3{{-- -id --}}" type="button"
+                                        role="tab" aria-controls="v-pills-category3"
+                                        aria-selected="false"></span><span><i
+                                                class="fa-solid fa-star"></i></span>Pizza</button>
+
+                                                <button class="nav-link" id="v-pills-category-tab3" data-bs-toggle="pill"
+                                        data-bs-target="#v-pills-category-3{{-- -id --}}" type="button"
+                                        role="tab" aria-controls="v-pills-category3"
+                                        aria-selected="false"></span><span><i
+                                                class="fa-solid fa-star"></i></span>Pizza</button>
+
+                                                <button class="nav-link" id="v-pills-category-tab3" data-bs-toggle="pill"
+                                        data-bs-target="#v-pills-category-3{{-- -id --}}" type="button"
+                                        role="tab" aria-controls="v-pills-category3"
+                                        aria-selected="false"></span><span><i
+                                                class="fa-solid fa-star"></i></span>Pizza</button>
+
+                                                <button class="nav-link" id="v-pills-category-tab3" data-bs-toggle="pill"
+                                        data-bs-target="#v-pills-category-3{{-- -id --}}" type="button"
+                                        role="tab" aria-controls="v-pills-category3"
+                                        aria-selected="false"></span><span><i
+                                                class="fa-solid fa-star"></i></span>Pizza</button>
+
+                                                <button class="nav-link" id="v-pills-category-tab3" data-bs-toggle="pill"
+                                        data-bs-target="#v-pills-category-3{{-- -id --}}" type="button"
+                                        role="tab" aria-controls="v-pills-category3"
+                                        aria-selected="false"></span><span><i
+                                                class="fa-solid fa-star"></i></span>Pizza</button>
+
+                                                <button class="nav-link" id="v-pills-category-tab3" data-bs-toggle="pill"
+                                        data-bs-target="#v-pills-category-3{{-- -id --}}" type="button"
+                                        role="tab" aria-controls="v-pills-category3"
+                                        aria-selected="false"></span><span><i
+                                                class="fa-solid fa-star"></i></span>Pizza</button>
+
+                                                <button class="nav-link" id="v-pills-category-tab3" data-bs-toggle="pill"
+                                        data-bs-target="#v-pills-category-3{{-- -id --}}" type="button"
+                                        role="tab" aria-controls="v-pills-category3"
+                                        aria-selected="false"></span><span><i
+                                                class="fa-solid fa-star"></i></span>Pizza</button>
+
 
                                     {{-- <a href="#" class="list-group-item">FOOD</a>
                                                                     <a href="#" class="list-group-item" >DRINK</a>
