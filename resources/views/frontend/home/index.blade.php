@@ -9,10 +9,10 @@
 @endsection
 
 @section('content')
-    <div class="container fade-in">
+    <div class="container">
 
         {{-- Category Button --}}
-        <div class="text-center mb-4">
+        <div class="text-center mb-4 fade-in">
             <button class="btn-yellow-index category-btn me-1" data-category="all">All Menu</button>
             <button class="btn-yellow-outline category-btn me-1" data-category="burger">Burger</button>
             <button class="btn-yellow-outline category-btn me-1" data-category="dessert">Desserts</button>
@@ -24,7 +24,7 @@
         </div>
 
         {{-- Menu List --}}
-        <div class="container my-5">
+        <div class="container my-5 fade-in">
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
                 <div class="col menu-item" data-category="grill">
                     <div class="card">

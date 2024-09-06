@@ -75,7 +75,7 @@
         </nav>
 
         <div id="content" style="width: 100%">
-            <div class="d-flex pb-5">
+            <div class="d-flex">
 
                 <!--============ Sidebar ===================-->
                 <div>
@@ -173,7 +173,7 @@
                     </div>
 
                     <!-- Content  -->
-                    <div class="content-inner mx-auto">
+                    <div class="content-inner mx-auto pb-5">
                         @yield('content')
                     </div>
                 </main>
