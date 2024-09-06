@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CartController;
@@ -28,5 +29,5 @@ Route::group(["middleware" => "auth"], function () {
     Route::get('wallet', [WalletController::class, 'index'])->name('wallet.index');
 
     #ADMIN
-    Route::get('/admin/dashboard', [App\Http\Controllers\AdminController::class, 'index'])->name('index');
+    Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('index');
 });
