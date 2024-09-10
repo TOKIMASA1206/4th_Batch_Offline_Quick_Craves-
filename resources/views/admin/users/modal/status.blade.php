@@ -1,6 +1,6 @@
 {{-- Deactivate --}}
 
-<div class="modal fade palanquin-dark-regular" tabindex="-1" id="inactivate-user-{{-- $post->id --}}">
+<div class="modal fade palanquin-dark-regular" tabindex="-1" id="activate-user-{{-- $post->id --}}">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -26,7 +26,7 @@
 
 {{--  Activate  --}}
 
-<div class="modal fade palanquin-dark-regular" tabindex="-1" id="activate-user-{{-- $post->id --}}">
+<div class="modal fade palanquin-dark-regular" tabindex="-1" id="inactivate-user-{{-- $post->id --}}">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

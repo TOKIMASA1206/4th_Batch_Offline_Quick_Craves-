@@ -170,7 +170,7 @@
                 <main>
                     <div id="page-title" class="mb-5">
                         <div class="overlay"></div>
-                        <div>
+                        <div class="fade-in page-text">
                             @yield('page-title')
                             @yield('sub-title')
                         </div>
