@@ -28,6 +28,11 @@ Route::group(["middleware" => "auth"], function () {
     #WALLET
     Route::get('wallet', [WalletController::class, 'index'])->name('wallet.index');
 
-    #ADMIN
-    Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('index');
+
+
+    Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin'], function() {
+
+        Route::get('/dashboard', [AdminController::class, 'index'])->name('index');
+    });
+
 });
