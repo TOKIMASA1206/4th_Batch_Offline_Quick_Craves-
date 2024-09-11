@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('carts', function (Blueprint $table) {
+        Schema::create('menu_sizes', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('menu_item_id')->constrained('menu_items')->onDelete('cascade');
+            $table->string('name');
+            $table->double('price');
             $table->timestamps();
         });
     }
@@ -22,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('carts');
+        Schema::dropIfExists('menu_sizes');
     }
 };
