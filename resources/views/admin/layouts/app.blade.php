@@ -35,6 +35,9 @@
 
     <!-- JS CDNs  -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    {{-- JQuery --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -70,7 +73,17 @@
         </nav>
 
         <main class="py-4">
-            @yield('content')
+            <div class="row">
+
+                <div class="col-md-3">
+                    @include('admin.layouts.sidebar')
+                </div>
+
+                <div class="col-md-9">
+                    @yield('content')
+                </div>
+
+            </div>
         </main>
     </div>
 

@@ -78,7 +78,7 @@
 
 
 
-.fp__dashboard_menu button {
+.fp__dashboard_menu a {
     text-align: left;
     font-size: 16px;
     font-weight: 500;
@@ -91,7 +91,7 @@
     text-transform: capitalize;
 }
 
-.fp__dashboard_menu button span {
+.fp__dashboard_menu a span {
     display: inline-block;
     width: 50px;
     height: 50px;
@@ -107,7 +107,7 @@
     background: #4147e10a !important;
 }
 
-.fp__dashboard_menu button.active::after {
+.fp__dashboard_menu a.active::after {
     position: absolute;
     content: "";
     background: var(--colorPrimary);
