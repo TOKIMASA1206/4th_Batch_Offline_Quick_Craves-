@@ -9,8 +9,8 @@
         <div class="card card-primary">
             <div class="card-header">
                 <h4>All Categories</h4>
-                <div class="card-header-action">
-                    <a href="" class="btn btn-primary">
+                <div class="card-header-action text-end">
+                    <a href="{{ route('admin.category.create') }}" class="btn btn-primary">
                         Create new
                     </a>
                 </div>
