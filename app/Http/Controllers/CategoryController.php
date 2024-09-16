@@ -36,35 +36,16 @@ class CategoryController extends Controller
         try {
             $category = new Category();
             $category->name = $request->name;
-            $category->slug = $this->createUniqueSlug($request->name);
+            $category->slug = generateUniqueSlug('Category' ,$request->name);
             $category->show_at_home = $request->show_at_home;
             $category->status = $request->status;
             $category->save();
 
-            // 成功メッセージをセッションにフラッシュ
             return to_route('admin.category.index')->with('success', 'Category created successfully.');
         } catch (\Exception $e) {
             logger($e);
-            // エラーメッセージをセッションにフラッシュ
             return back()->with('error', 'There was an error creating the category.');
         }
-    }
-
-    private function createUniqueSlug($name)
-    {
-        // ベースのスラッグを生成
-        $slug = Str::slug($name);
-        $originalSlug = $slug;
-
-        // 同じスラッグが存在するか確認
-        $count = 1;
-        while (Category::where('slug', $slug)->exists()) {
-            // 存在する場合、スラッグの末尾に数字を追加
-            $slug = $originalSlug . '-' . $count;
-            $count++;
-        }
-
-        return $slug;
     }
 
     /**
@@ -78,17 +59,29 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id) : View
     {
-        //
+        $category = Category::findOrFail($id);
+        return view('admin.categories.edit', compact('category'));
     }
-
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CategoryCreateRequest $request, string $id)
     {
-        //
+        try {
+            $category = Category::findOrFail($id);
+            $category->name = $request->name;
+            $category->slug = generateUniqueSlug('Category', $request->name, $category->slug);
+            $category->show_at_home = $request->show_at_home;
+            $category->status = $request->status;
+            $category->save();
+
+            return to_route('admin.category.index')->with('success', 'Category Updated successfully.');
+        } catch (\Exception $e) {
+            logger($e);
+            return back()->with('error', 'There was an error updating the category.');
+        }
     }
 
     /**

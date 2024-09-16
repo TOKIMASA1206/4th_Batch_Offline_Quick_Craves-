@@ -41,7 +41,19 @@
 </head>
 
 <body>
+    @if (session('success'))
+        <div class="alert alert-success fixed-alert">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    @if (session('error'))
+        <div class="alert alert-danger fixed-alert">
+            {{ session('error') }}
+        </div>
+    @endif
     <div id="app">
+
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand amarante-regular" href="#">
@@ -87,8 +99,16 @@
         </main>
     </div>
 
-    @stack('scripts')
+    <script>
+        $(document).ready(function() {
+            $('.alert').hide().fadeIn(1000);
 
+            setTimeout(function() {
+                $('.alert').fadeOut(1000);
+            }, 3000);
+        })
+    </script>
+    @stack('scripts')
 </body>
 
 </html>
