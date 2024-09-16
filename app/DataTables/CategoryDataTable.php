@@ -27,9 +27,22 @@ class CategoryDataTable extends DataTable
                 $delete = "<a href='" . route('admin.category.destroy', $query->id) . "' class='btn btn-danger delete-item'><i class='fas fa-trash'></i></a>";
 
                 return $edit . $delete;
-
             })
-
+            ->addColumn('show_at_home', function ($query) {
+                if ($query->show_at_home == 1) {
+                    return '<span class="badge badge-primary fs-6">Yes</span>';
+                } else {
+                    return '<span class="badge badge-danger fs-6">No</span>';
+                }
+            })
+            ->addColumn('status', function ($query) {
+                if ($query->status == 1) {
+                    return '<span class="badge badge-primary fs-6">Active</span>';
+                } else {
+                    return '<span class="badge badge-danger fs-6">Inactive</span>';
+                }
+            })
+            ->rawColumns(['show_at_home', 'status', 'action'])
             ->setRowId('id');
     }
 
