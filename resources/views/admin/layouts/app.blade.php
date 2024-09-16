@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" id="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -52,6 +52,7 @@
             {{ session('error') }}
         </div>
     @endif
+    <div class="alert fixed-alert"></div>
     <div id="app">
 
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
@@ -99,13 +100,85 @@
         </main>
     </div>
 
+    <!-- General JS Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script>
         $(document).ready(function() {
+
+            /** Success & Error message notification **/
             $('.alert').hide().fadeIn(1000);
 
             setTimeout(function() {
                 $('.alert').fadeOut(1000);
             }, 3000);
+
+
+            /* Sweet Alert Config  */
+            $('body').on('click', '.delete-item', function(e) {
+                e.preventDefault();
+                let url = $(this).attr('href');
+
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+
+                        $.ajax({
+                            method: 'DELETE',
+                            url: url,
+                            data: {
+                                _token: "{{ csrf_token() }}"
+                            },
+                            success: function(response) {
+                                if (response.status === 'success') {
+
+                                    // Show success alert message
+                                    $('.alert')
+                                        .removeClass('alert-danger')
+                                        .addClass('alert-success')
+                                        .text(response.message)
+                                        .hide().fadeIn(1000);
+
+                                    setTimeout(function() {
+                                        $('.alert').fadeOut(1000);
+                                    }, 3000);
+
+                                    Swal.fire({
+                                        title: "Deleted!",
+                                        text: "The Data has been deleted.",
+                                        icon: "success"
+                                    }).then(() => {
+                                        window.location.reload();
+                                    });
+
+                                } else if (response.status === 'error') {
+
+                                    // Show error alert message
+                                    $('.alert')
+                                        .removeClass('alert-success')
+                                        .addClass('alert-danger')
+                                        .text(response.message)
+                                        .hide().fadeIn(1000);
+
+                                    setTimeout(function() {
+                                        $('.alert').fadeOut(1000);
+                                    }, 3000);
+                                }
+                            },
+                            error: function(error) {
+                                console.error(error);
+                            }
+                        });
+                    }
+                });
+            });
         })
     </script>
     @stack('scripts')
