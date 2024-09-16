@@ -49,28 +49,18 @@ class CategoryController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id) : View
+    public function edit(Category $category) : View
     {
-        $category = Category::findOrFail($id);
         return view('admin.categories.edit', compact('category'));
     }
     /**
      * Update the specified resource in storage.
      */
-    public function update(CategoryCreateRequest $request, string $id)
+    public function update(CategoryCreateRequest $request, Category $category)
     {
         try {
-            $category = Category::findOrFail($id);
             $category->name = $request->name;
             $category->slug = generateUniqueSlug('Category', $request->name, $category->slug);
             $category->show_at_home = $request->show_at_home;
@@ -84,11 +74,16 @@ class CategoryController extends Controller
         }
     }
 
-    /**
+    /*
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Category $category)
     {
-        //
+        try {
+            $category->delete();
+            return  response(['status' => 'success', 'message' => 'Deleted Successfully!']);
+        } catch (\Exception $e) {
+            return response(['status' => 'error', 'message' => 'something went wrong']);
+        }
     }
 }
