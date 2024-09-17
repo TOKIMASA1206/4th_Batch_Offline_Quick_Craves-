@@ -57,7 +57,7 @@
 
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand amarante-regular" href="#">
+                <a class="navbar-brand amarante-regular" href="{{ route('admin.index') }}">
                     <img src="{{ asset('admin/logo/logo.png') }}" class="me-2 img-fluid" style="width: 60px">Quick Crave
                     Admin
                 </a>
@@ -88,7 +88,7 @@
         <main class="py-4">
             <div class="row">
 
-                <div class="col-md-3">
+                <div class="col-md-3 mb-5">
                     @include('admin.layouts.sidebar')
                 </div>
 
@@ -181,6 +181,8 @@
             });
         })
     </script>
+
+
     @stack('scripts')
 </body>
 

@@ -4,7 +4,7 @@
     <div class="tab-pane fade show active" id="v-pills-home-1" role="tabpanel" aria-labelledby="v-pills-home-tab">
         <div class="fp_dashboard_body ps-4">
             <div class="container">
-                <div class="row justify-content-center">
+                <div class="row">
                     <div class="col-lg-3 col-md-6 col-sm-6 col-12 mb-2">
                         <div class="card card-statistic-1 bg-white">
                             <div class="card-icon bg-primary">

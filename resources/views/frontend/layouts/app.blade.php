@@ -166,88 +166,88 @@
 
                 <!--============ Main ===================-->
                 <main style="width: 100%">
-            <div id="content" style="width: 100%">
-                <main>
-                    <div id="page-title" class="mb-5">
-                        <div class="overlay"></div>
-                        <div class="fade-in page-text">
-                            @yield('page-title')
-                            @yield('sub-title')
-                        </div>
-                    </div>
+                    <div id="content" style="width: 100%">
+                        <main>
+                            <div id="page-title" class="mb-5">
+                                <div class="overlay"></div>
+                                <div class="fade-in page-text">
+                                    @yield('page-title')
+                                    @yield('sub-title')
+                                </div>
+                            </div>
 
-                    <!-- Content  -->
-                    <div class="content-inner mx-auto pb-5">
-                        @yield('content')
+                            <!-- Content  -->
+                            <div class="content-inner mx-auto pb-5">
+                                @yield('content')
+                            </div>
+                        </main>
                     </div>
-                </main>
             </div>
         </div>
-    </div>
-    <!--============ Footer ===================-->
-    <footer class="">
-        <div class="container p-3 fade-in">
-            <div class="row">
-                <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
-                    <a class="footer-title d-flex align-items-center mb-3" href="{{ url('/') }}">
-                        <img src="{{ asset('logos/Logo.png') }}" alt="logo" class="footer-logo me-2">
-                        <h5 class="text-uppercase mb-0">Quick Craves</h5>
-                    </a>
+        <!--============ Footer ===================-->
+        <footer class="">
+            <div class="container p-3 fade-in">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+                        <a class="footer-title d-flex align-items-center mb-3" href="{{ url('/') }}">
+                            <img src="{{ asset('logos/Logo.png') }}" alt="logo" class="footer-logo me-2">
+                            <h5 class="text-uppercase mb-0">Quick Craves</h5>
+                        </a>
 
-                    <p>
-                        Satisfy your cravings with our quick and delicious options. Your satisfaction is our
-                        priority.
-                    </p>
-                </div>
-                <!-- Column 2 -->
-                <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
-                    <h5 class="text-uppercase">Navigation</h5>
-                    <ul class="row mb-0">
-                        <li class="col-md-2">
-                            <a href="#">Home</a>
-                        </li>
-                        <li class="col-md-2">
-                            <a href="#">Profile</a>
-                        </li>
-                        <li class="col-md-2">
-                            <a href="#">Wallet</a>
-                        </li>
-                        <li class="col-md-2">
-                            <a href="#">Cart</a>
-                        </li>
-                        <li class="col-md-2">
-                            <a href="#">Proceed</a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- Column 3 -->
-                <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
-                    <h5 class="text-uppercase">Contact Us</h5>
-                    <ul class="list-unstyled mb-0">
-                        <li>
-                            <i class="fa-solid fa-envelope"></i> info@quickcraves.com
-                        </li>
-                        <li>
-                            <i class="fa-solid fa-phone"></i> +1 234 567 890
-                        </li>
-                        <li>
-                            <i class="fa-solid fa-map-marker-alt"></i> 123 Main St, City, Country
-                        </li>
-                    </ul>
+                        <p>
+                            Satisfy your cravings with our quick and delicious options. Your satisfaction is our
+                            priority.
+                        </p>
+                    </div>
+                    <!-- Column 2 -->
+                    <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-uppercase">Navigation</h5>
+                        <ul class="row mb-0">
+                            <li class="col-md-2">
+                                <a href="#">Home</a>
+                            </li>
+                            <li class="col-md-2">
+                                <a href="#">Profile</a>
+                            </li>
+                            <li class="col-md-2">
+                                <a href="#">Wallet</a>
+                            </li>
+                            <li class="col-md-2">
+                                <a href="#">Cart</a>
+                            </li>
+                            <li class="col-md-2">
+                                <a href="#">Proceed</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Column 3 -->
+                    <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-uppercase">Contact Us</h5>
+                        <ul class="list-unstyled mb-0">
+                            <li>
+                                <i class="fa-solid fa-envelope"></i> info@quickcraves.com
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-phone"></i> +1 234 567 890
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-map-marker-alt"></i> 123 Main St, City, Country
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <hr>
-        <div class="text-center fade-in pt-2">
-            © 2024 Quick Craves. All rights reserved.
-        </div>
-    </footer>
+            <hr>
+            <div class="text-center fade-in pt-2">
+                © 2024 Quick Craves. All rights reserved.
+            </div>
+        </footer>
 
-    @stack('scripts')
-    {{-- Javascript --}}
-    <script src="{{ asset('frontend/js/sidebar.js') }}"></script>
-    <script src="{{ asset('frontend/js/animate.js') }}"></script>
+        @stack('scripts')
+        {{-- Javascript --}}
+        <script src="{{ asset('frontend/js/sidebar.js') }}"></script>
+        <script src="{{ asset('frontend/js/animate.js') }}"></script>
 </body>
 
 </html>

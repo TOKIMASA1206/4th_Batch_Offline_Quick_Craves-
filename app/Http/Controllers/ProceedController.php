@@ -15,6 +15,11 @@ class ProceedController extends Controller
         //
         return view('frontend.proceed.index');
     }
+    public function adminIndex()
+    {
+        //
+        return view('admin.proceeds.index');
+    }
 
     /**
      * Show the form for creating a new resource.
