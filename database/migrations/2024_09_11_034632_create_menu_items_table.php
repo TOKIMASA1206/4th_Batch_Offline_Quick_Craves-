@@ -13,16 +13,18 @@ return new class extends Migration
     {
         Schema::create('menu_items', function (Blueprint $table) {
             $table->id();
+            $table->string('item_image');
             $table->string('name');
             $table->string('slug');
-            $table->string('item_image');
+            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->text('description');
             $table->double('price');
             $table->double('offer_price')->default(0);
             $table->boolean('show_at_home')->default(1);
             $table->boolean('status')->default(1);
-            $table->timestamps(); 
+            $table->timestamps();
         });
+        // php artisan migrate:refresh --path=
     }
 
     /**
