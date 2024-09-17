@@ -21,7 +21,7 @@
                                 <span><i class="fa-solid fa-star"></i></span>
                                 CATEGORY
                             </a>
-                            <a class="nav-link {{ request()->is('admin/users*') ? 'active' : '' }}">
+                            <a href="{{ route('admin.user.index') }}" class="nav-link {{ request()->is('admin/users*') ? 'active' : '' }}">
                                 <span><i class="fa-solid fa-users"></i></span>
                                 USER
                             </a>
