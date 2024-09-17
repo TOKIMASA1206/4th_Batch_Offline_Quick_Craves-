@@ -59,6 +59,20 @@
     color: white;
 }
 
+.btn-red {
+    background-color: #FC544B;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-red:hover {
+    background-color: #EA472F;
+}
 .btn-pink {
     background-color: #F3725F;
     color: white;
@@ -94,7 +108,7 @@
     background-color: #FFB11B;
     color: white;
     border: none;
-    padding: 6px 20px;
+    padding: 6px 10px;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
@@ -109,7 +123,7 @@
     background-color: white;
     color: #FFB11B;
     border: solid 2px #FFB11B;
-    padding: 6px 20px;
+    padding: 6px 10px;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;

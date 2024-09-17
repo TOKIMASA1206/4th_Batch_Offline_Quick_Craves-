@@ -23,8 +23,8 @@ class CategoryDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function($query){
-                $edit = "<a href='" . route('admin.category.edit', $query->id) . "' class='btn btn-primary me-2'><i class='fas fa-edit'></i></a>";
-                $delete = "<a href='" . route('admin.category.destroy', $query->id) . "' class='btn btn-danger delete-item'><i class='fas fa-trash'></i></a>";
+                $edit = "<a href='" . route('admin.category.edit', $query->id) . "' class='btn-yellow me-2'><i class='fas fa-edit'></i></a>";
+                $delete = "<a href='" . route('admin.category.destroy', $query->id) . "' class='btn-red delete-item'><i class='fas fa-trash'></i></a>";
 
                 return $edit . $delete;
             })

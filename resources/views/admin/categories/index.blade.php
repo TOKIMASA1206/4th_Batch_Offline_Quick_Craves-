@@ -1,25 +1,26 @@
 @extends('admin.layouts.app')
 
 @section('content')
-    <section class="section">
-        <div class="section-header">
-            <h1>Categories</h1>
-        </div>
+    <div class="tab-pane fade show active" id="v-pills-category" role="tabpanel" aria-labelledby="v-pills-category-tab">
+        <section class="section">
 
-        <div class="card card-primary">
-            <div class="card-header">
-                <h4>All Categories</h4>
-                <div class="card-header-action text-end">
-                    <a href="{{ route('admin.category.create') }}" class="btn btn-primary">
-                        Create new
-                    </a>
+            <div class="card card-primary">
+                <div class="card-header">
+                    <div class="row mt-3">
+                        <h1 class="col">All Categories</h1>
+                        <div class="card-header-action col text-end">
+                            <a href="{{ route('admin.category.create') }}" class="btn btn-primary">
+                                Create new
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    {{ $dataTable->table() }}
                 </div>
             </div>
-            <div class="card-body">
-                {{ $dataTable->table() }}
-            </div>
-        </div>
-    </section>
+        </section>
+    </div>
 @endsection
 
 @push('scripts')

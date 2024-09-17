@@ -2,14 +2,17 @@
 
 @section('content')
     <section class="section me-3">
-        <div class="section-header">
-            <a href="{{ route('admin.category.index') }}" class="btn btn-sm btn-primary mb-3">Back</a>
-            <h1>Edit Category</h1>
-        </div>
 
         <div class="card card-primary">
             <div class="card-header">
-                <h4>Edit Category</h4>
+                <div class="row mt-3">
+                    <h1 class="col">Edit Category</h1>
+                    <div class="card-header-action col text-end">
+                        <a href="{{ route('admin.category.index') }}" class="btn btn-dark">
+                            < Back
+                        </a>
+                    </div>
+                </div>
             </div>
             <div class="card-body">
                 <form action="{{ route('admin.category.update', $category->id) }}" method="POST">
