@@ -33,7 +33,7 @@
                 <h2 class="modal-title text-primary fw-bold mx-auto">activate User</h2>
             </div>
             <div class="modal-body">
-                <p class="text-center">Are you sure you want to <span class="text-primary">activate</span> " ######## "
+                <p class="text-center">Are you sure you want to <span class="text-primary">activate</span> " "
                     ?
                 </p>
                 <div class="row mt-3">

@@ -63,12 +63,26 @@
                 <canvas id="salesChart" width="400" height="200"></canvas>
                 <script src="script.js"></script>
             </div>
+
+            <div class="w-50">
+                <canvas id="genderChart"></canvas>
+            </div>
+
+            <div class="w-50">
+                <canvas id="ageChart"></canvas>
+            </div>
+
         </div>
     </div>
 @endsection
 
 
 @push('scripts')
+
     <script src="{{ asset('admin/js/statistics_style.js') }}"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+
+    <script src="{{ asset('admin/js/user_style.js') }}"></script>
 @endpush
+
