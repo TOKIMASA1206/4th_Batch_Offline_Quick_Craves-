@@ -14,6 +14,15 @@ class MenuItemsSeeder extends Seeder
      */
     public function run(): void
     {
+        // Fetch all available category IDs from the categories table
+        $categoryIds = DB::table('categories')->pluck('id')->toArray();
+
+        // Ensure there are category IDs to assign
+        if (empty($categoryIds)) {
+            $this->command->info('No categories found. Please seed categories first.');
+            return;
+        }
+
         for ($i = 1; $i <= 10; $i++) {
 
             $price = rand(100, 1000);
@@ -23,14 +32,15 @@ class MenuItemsSeeder extends Seeder
             $offer_price = $price * (1 - $discount);
 
             DB::table('menu_items')->insert([
+                'item_image' => '/uploads/default-food-image.png',
                 'name' => 'Menu Item ' . $i,
                 'slug' => Str::slug('Menu Item ' . $i),
-                'item_image' => '/uploads/default-food-image.png',
                 'description' => 'This is the description for Menu Item ' . $i,
                 'price' => $price,
                 'offer_price' => round($offer_price, 2),
                 'show_at_home' => 1,
                 'status' => 1,
+                'category_id' => $categoryIds[array_rand($categoryIds)],  // Assign random category_id
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

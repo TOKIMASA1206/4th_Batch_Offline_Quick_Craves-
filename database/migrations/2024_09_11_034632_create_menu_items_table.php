@@ -24,7 +24,6 @@ return new class extends Migration
             $table->boolean('status')->default(1);
             $table->timestamps();
         });
-        // php artisan migrate:refresh --path=
     }
 
     /**
