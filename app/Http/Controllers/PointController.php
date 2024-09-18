@@ -44,7 +44,9 @@ class PointController extends Controller
 
     public function store(PointCreateRequest $request)
     {
+        $validateData = $request->validated();
         try {
+            $this->point = $validateData['points'];
             $point = new Point();
             $point->points = $request->points;
             $point->purchase_amount = $request->purchase_amount;
@@ -60,7 +62,9 @@ class PointController extends Controller
 
     public function update(PointCreateRequest $request, Point $point)
     {
+        $validateData = $request->validated();
         try {
+            $this->point = $validateData['points'];
             $point->points = $request->points;
             $point->purchase_amount = $request->purchase_amount;
             $point->bonus_points = $request->bonus_points;
