@@ -4,7 +4,7 @@
     <div class="tab-pane fade show active" id="v-pills-home-1" role="tabpanel" aria-labelledby="v-pills-home-tab">
         <div class="fp_dashboard_body ps-4">
             <div class="container">
-                <div class="row">
+                <div class="row justify-content-center">
                     <div class="col-lg-3 col-md-6 col-sm-6 col-12 mb-2">
                         <div class="card card-statistic-1 bg-white">
                             <div class="card-icon bg-primary">
@@ -53,24 +53,31 @@
                 </div>
             </div>
 
+        <div class="row mt-5">
 
-            <div class="w-100 mt-5">
-                <div class="d-flex justify-content-end mb-4">
+            <div class="col-6">
+                <canvas id="genderChart"></canvas>
+            </div>
+
+            <div class="col-6">
+                <canvas id="ageChart"></canvas>
+            </div>
+
+        </div>
+
+        <div>
+            <div class="mt-5 mx-auto" style="height: 50%">
+                <div class="d-flex justify-content-end mt-4">
                     <button onclick="updateChart('week')" class="btn-blue me-2">week</button>
                     <button onclick="updateChart('month')" class="btn-blue me-2">month</button>
                     <button onclick="updateChart('year')" class="btn-blue me-4">year</button>
                 </div>
-                <canvas id="salesChart" width="400" height="200"></canvas>
+                <canvas id="salesChart" ></canvas>
                 <script src="script.js"></script>
             </div>
+        </div>
 
-            <div class="w-50">
-                <canvas id="genderChart"></canvas>
-            </div>
 
-            <div class="w-50">
-                <canvas id="ageChart"></canvas>
-            </div>
 
         </div>
     </div>

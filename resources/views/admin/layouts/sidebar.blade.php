@@ -35,6 +35,11 @@
                                 <span><i class="fa-solid fa-forward"></i></span>
                                 PROCEED
                             </a>
+                            <a href="{{ route('admin.point.index') }}"
+                                class="nav-link {{ request()->is('admin/point*') ? 'active' : '' }}">
+                                <span><i class="fa-brands fa-product-hunt"></i></span>
+                                POINT
+                            </a>
 
                             @csrf
                             <button type="submit"
