@@ -12,7 +12,7 @@
                                 <span><i class="fa-solid fa-house"></i></span>
                                 HOME
                             </a>
-                            <a class="nav-link {{ request()->is('admin/menu*') ? 'active' : '' }}">
+                            <a href="{{ route('admin.menu-item.index') }}"  class="nav-link {{ request()->is('admin/menu-item*') ? 'active' : '' }}">
                                 <span><i class="fa-solid fa-utensils"></i></span>
                                 MENU
                             </a>
