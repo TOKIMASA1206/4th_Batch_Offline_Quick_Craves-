@@ -24,6 +24,8 @@ Route::group(["middleware" => "auth"], function () {
 
     # PROFILE
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile_index');
+    Route::patch('/profile/update', [ProfileController::class, 'update'])->name('profile_update');
+    Route::patch('/profile/password', [ProfileController::class, 'passwordUpdate'])->name('profile_password_update');
 
     #CART
     Route::get('/cart', [CartController::class, 'index'])->name('cart_index');
@@ -51,6 +53,8 @@ Route::group(["middleware" => "auth"], function () {
         Route::get('/proceed',[ProceedController::class, 'adminIndex'])->name('proceed.index');
 
         /**  User  */
+        Route::patch('/user/{id}/activate',[UserController::class, 'activate']) ->name('user.activate');
+
         Route::resource('user',UserController::class);
 
         /**  Menu Item  */

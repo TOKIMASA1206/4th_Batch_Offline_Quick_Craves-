@@ -57,31 +57,16 @@
 
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand amarante-regular" href="{{ route('admin.index') }}">
+                <a class="navbar-brand " href="{{ route('admin.index') }}">
                     <img src="{{ asset('admin/logo/logo.png') }}" class="me-2 img-fluid" style="width: 60px">Quick Crave
                     Admin
                 </a>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <a class="navbar-brand" href="{{ route('home') }}">
+                    Front >
+                </a>
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @endguest
-                    </ul>
-                </div>
+                
             </div>
         </nav>
 

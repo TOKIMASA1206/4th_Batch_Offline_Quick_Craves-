@@ -11,7 +11,8 @@
 @endsection
 
 @section('sub-title')
-    <span class="sub_title"><i class="fa-solid fa-house-chimney"></i> <span class="me-2">Home</span> - <span class="mx-2">User Dashboard</span></span>
+    <span class="sub_title"><i class="fa-solid fa-house-chimney"></i> <span class="me-2">Home</span> - <span
+            class="mx-2">User Dashboard</span></span>
 @endsection
 
 @section('content')
@@ -25,11 +26,15 @@
                         <div class="row">
                             <div class="col-lg-3 profile-menu">
                                 <div class="card-bg">
-                                    <div class="profile-menu-top p-4 mb-4">
+                                    <div class="profile-menu-top p-4 mb-3">
                                         <div class="user-icon">
-                                            <i class="fa-solid fa-user text-center mx-0"></i>
+                                            @if (Auth::user()->profile->avatar)
+                                                <img src="{{ asset(Auth::user()->profile->avatar) }}" alt="">
+                                            @else
+                                                <i class="fa-solid fa-user text-center mx-0"></i>
+                                            @endif
                                         </div>
-                                        <h4 class="user-name ar">John Kurt</h4>
+                                        <h4 class="user-name ar">{{ Auth::user()->name }}</h4>
                                     </div>
                                     <div class="profile-menu-bottom">
                                         <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
@@ -77,7 +82,7 @@
                                     <div class="row">
 
                                         <div class="col card-bg p-4">
-                                            <a href="" class="wallet">
+                                            <a href="{{route('wallet.index')}}" class="wallet">
                                                 <div class="link-icon mb-3 ">
                                                     <i class="fa-solid fa-wallet text-center mx-0"></i>
                                                 </div>
@@ -85,7 +90,7 @@
                                             </a>
                                         </div>
                                         <div class="col card-bg p-4 ms-3">
-                                            <a href="" class="proceed">
+                                            <a href="{{route('proceed_index')}}" class="proceed">
                                                 <div class="link-icon mb-3">
                                                     <i class="fa-solid fa-arrow-right text-center mx-0"></i>
                                                 </div>
@@ -93,7 +98,7 @@
                                             </a>
                                         </div>
                                         <div class="col card-bg p-4 ms-3">
-                                            <a href="" class="cart">
+                                            <a href="{{route('cart_index')}}" class="cart">
                                                 <div class="link-icon mb-3">
                                                     <i class="fa-solid fa-cart-shopping"></i>
                                                 </div>
@@ -119,35 +124,99 @@
                                             <div id="info-content" class="menu-section-content">
                                                 <div class="row mb-3">
                                                     <div class="col">Name:</div>
-                                                    <div class="col">John Kurt</div>
+                                                    <div class="col">{{ Auth::user()->name }}</div>
                                                 </div>
                                                 <div class="row mb-3">
                                                     <div class="col">Email:</div>
-                                                    <div class="col">example@email.com</div>
+                                                    <div class="col">{{ Auth::user()->email }}</div>
                                                 </div>
-                                                <div class="row">
+                                                <div class="row mb-3">
                                                     <div class="col">Phone Number:</div>
-                                                    <div class="col">000-000-0000</div>
+                                                    <div class="col">
+                                                        @if (Auth::user()->profile->phone)
+                                                            {{ Auth::user()->profile->phone }}
+                                                        @else
+                                                            Not set yet.
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <div class="col">Gender:</div>
+                                                    <div class="col">
+                                                        @if (Auth::user()->profile->gender)
+                                                            {{ Auth::user()->profile->gender }}
+                                                        @else
+                                                            Not set yet.
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <div class="col">Age:</div>
+                                                    <div class="col">
+                                                        @if (Auth::user()->profile->age)
+                                                            {{ Auth::user()->profile->age }}
+                                                        @else
+                                                            Not set yet.
+                                                        @endif
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <form id="edit-form" class="edit-form text-center px-3">
+                                            <form action="{{ route('profile_update') }}" method="post" id="edit-form"
+                                                class="edit-form text-center px-3" enctype="multipart/form-data">
+                                                @csrf
+                                                @method('PATCH')
+                                                <div class="row mb-3">
+                                                    <label for="name"
+                                                        class="form-label fw-bold text-start p-0">Profile Image</label>
+                                                    <img src="{{ asset(Auth::user()->profile->avatar) }}" class="mb-3"
+                                                        alt="" style="max-width: 400px">
+
+                                                    <input type="file" id="name" name="avatar" value=""
+                                                        class="form-control">
+                                                </div>
                                                 <div class="row mb-3">
                                                     <label for="name"
                                                         class="form-label fw-bold text-start p-0">Name</label>
                                                     <input type="text" id="name" name="name"
-                                                        value="John Kurt" class="form-control">
+                                                        value="{{ Auth::user()->name }}" class="form-control">
                                                 </div>
                                                 <div class="row mb-3">
                                                     <label for="email"
                                                         class="form-label fw-bold text-start p-0">Email</label>
                                                     <input type="text" id="email" name="email"
-                                                        value="example@email.com" class="form-control">
+                                                        value="{{ Auth::user()->email }}" class="form-control">
                                                 </div>
-                                                <div class="row mb-5">
+                                                <div class="row mb-3">
                                                     <label for="phone"
                                                         class="form-label fw-bold text-start p-0">Phone</label>
                                                     <input type="text" id="phone" name="phone"
-                                                        value="000-000-0000" class="form-control">
+                                                        value="{{ Auth::user()->profile->phone }}" class="form-control">
+                                                </div>
+
+                                                <div class="row mb-4">
+                                                    <div class="col text-start p-0">
+                                                        <label for="gender"
+                                                            class="form-label fw-bold text-start p-0">Gender</label>
+                                                        <select id="gender" name="gender" class="form-control">
+                                                            <option value="">Select Gender</option>
+                                                            <option value="male"
+                                                                {{ old('gender', Auth::user()->profile->gender) == 'male' ? 'selected' : '' }}>
+                                                                Male</option>
+                                                            <option
+                                                                value="female"{{ old('gender', Auth::user()->profile->gender) == 'female' ? 'selected' : '' }}>
+                                                                Female</option>
+                                                            <option value="other"
+                                                                {{ old('gender', Auth::user()->profile->gender) == 'other' ? 'selected' : '' }}>
+                                                                Other</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col text-start">
+                                                        <label for="age"
+                                                            class="form-label fw-bold text-start p-0">Age</label>
+                                                        <input type="number" id="age" name="age"
+                                                            class="form-control"
+                                                            value="{{ old('age', Auth::user()->profile->age) }}">
+                                                    </div>
                                                 </div>
                                                 <button type="submit"
                                                     class="edit-form-save btn-brown mx-auto">Save</button>
@@ -519,7 +588,10 @@
                                         aria-labelledby="v-pills-settings-tab">
                                         <div class="change-password card-bg  py-4 px-5">
                                             <h3 class="menu-section-title mb-4 mt-2">Change Password</h3>
-                                            <form id="" class="change-password-content text-center px-3">
+                                            <form action="{{ route('profile_password_update') }}" method="post"
+                                                class="change-password-content text-center px-3">
+                                                @csrf
+                                                @method('PATCH')
                                                 <div class="row mb-3">
                                                     <label for="current_password"
                                                         class="form-label fw-bold text-start p-0">Current Password</label>
@@ -533,10 +605,11 @@
                                                         class="form-control" placeholder="new_password">
                                                 </div>
                                                 <div class="row mb-5">
-                                                    <label for="comfirm_password"
+                                                    <label for="new_password_confirmation"
                                                         class="form-label fw-bold text-start p-0">Confirm Password</label>
-                                                    <input type="text" id="comfirm_password" name="comfirm_password"
-                                                        class="form-control" placeholder="comfirm_password">
+                                                    <input type="text" id="new_password_confirmation"
+                                                        name="new_password_confirmation" class="form-control"
+                                                        placeholder="comfirm_password">
                                                 </div>
                                                 <button type="submit"
                                                     class="password-save btn-brown mx-auto">Submit</button>
