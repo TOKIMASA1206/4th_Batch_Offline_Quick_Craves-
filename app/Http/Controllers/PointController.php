@@ -46,12 +46,10 @@ class PointController extends Controller
     {
         $validateData = $request->validated();
         try {
-            $this->point = $validateData['points'];
-            $point = new Point();
-            $point->points = $request->points;
-            $point->purchase_amount = $request->purchase_amount;
-            $point->bonus_points = $request->bonus_points;
-            $point->save();
+            $this->point->points = $validateData['points'];
+            $this->point->purchase_amount = $validateData['purchase_amount'];
+            $this->point->bonus_points = $validateData['bonus_points'];
+            $this->point->save();
 
             return to_route('admin.point.index')->with('success', 'Category created successfully.');
         } catch (\Exception $e) {
@@ -64,11 +62,10 @@ class PointController extends Controller
     {
         $validateData = $request->validated();
         try {
-            $this->point = $validateData['points'];
-            $point->points = $request->points;
-            $point->purchase_amount = $request->purchase_amount;
-            $point->bonus_points = $request->bonus_points;
-            $point->save();
+            $this->point->points = $validateData['points'];
+            $this->point->purchase_amount = $validateData['purchase_amount'];
+            $this->point->bonus_points = $validateData['bonus_points'];
+            $this->point->save();
 
             return to_route('admin.point.index')->with('success', 'Category Updated successfully.');
         } catch (\Exception $e) {
