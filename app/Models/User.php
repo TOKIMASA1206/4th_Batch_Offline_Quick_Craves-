@@ -45,4 +45,24 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+
+     // モデルイベントを設定してプロフィールを作成
+    protected static function booted()
+    {
+        static::created(function ($user) {
+            Profile::create([
+                'user_id' => $user->id,
+                'phone' => null,
+                'avatar' => '/uploads/avatar.jpg',
+                'gender' => null,
+                'age' => null,
+            ]);
+        });
+    }
+
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
 }

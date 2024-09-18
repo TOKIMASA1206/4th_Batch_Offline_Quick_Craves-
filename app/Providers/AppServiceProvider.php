@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
         //
 
         Gate::define('admin', function ($user) {
-            return $user->role_id === 1;
+            return $user->role === "admin";
         });
 
          // Bootstrapのデザインを使う

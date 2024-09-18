@@ -6,7 +6,10 @@
   border: 1px solid #FFB11B;
   border-radius: 10px;
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
 }
+
+
 
 .profile .main{
   padding: 0 25px;
@@ -19,15 +22,26 @@
   height: 100%;
 }
 
-.profile-menu-top .user-icon {
-  border: 1px solid #000;
-  border-radius: 100%;
-  width: 110px;
-  height: 110px;
+.profile-menu-top{
   text-align: center;
-  margin: 0 auto;
 }
 
+.profile-menu-top .user-icon {
+  border: 1px solid #000;
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  text-align: center;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.profile-menu-top .user-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 .profile-menu-top .user-icon i {
   color: #000;
   margin-top: 20px;
@@ -119,6 +133,10 @@
 /* ========================Profile Info Content===================== */
 .profile-content-link .row{
   margin: 0 auto;
+}
+
+.profile-content-link .card-bg:hover{
+  transform: translateY(-7px);
 }
 
 .profile-content-link a{

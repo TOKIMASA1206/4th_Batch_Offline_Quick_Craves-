@@ -8,3 +8,14 @@
     font-weight: 400;
     font-style: normal;
 }
+.fixed-alert {
+    position: fixed !important;
+    top: 32px !important;
+    right: 8px !important;
+    width: 20%;
+    z-index: 9999;
+    text-align: center;
+    padding: 20px;
+    margin: 0 auto;
+    border-radius: 10px;
+}

@@ -56,10 +56,29 @@
 </head>
 
 <body>
+    @if (session('success'))
+        <div class="alert alert-success fixed-alert">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    @if (session('error'))
+        <div class="alert alert-danger fixed-alert">
+            {{ session('error') }}
+        </div>
+    @endif
+
+    @if ($errors->any())
+        <div class="alert alert-danger fixed-alert">
+            @foreach ($errors->all() as $error)
+                <div>{{ $error }}</div>
+            @endforeach
+        </div>
+    @endif
     <div id="app">
         <!--============ Header ===================-->
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
+            <div class="container-fluid ">
                 <a class="navbar-brand fs-2 ar" href="{{ url('/') }}">
                     <img src="{{ asset('logos/Logo.png') }}" width="70rem" alt="logo"> Quick Craves
                 </a>
@@ -121,12 +140,20 @@
                                     <span>My Cart</span>
                                 </a>
                             </li>
-                            <li class="sidebar-item mb-5">
+                            <li class="sidebar-item">
                                 <a href="{{ route('proceed_index') }}" class="sidebar-link">
                                     <i class="fa-solid fa-play"></i>
                                     <span>Proceed</span>
                                 </a>
                             </li>
+                            @can('admin')
+                                <li class="sidebar-item mb-5">
+                                    <a href="{{ route('admin.index') }}" class="sidebar-link">
+                                        <i class="fa-solid fa-user-tie"></i>
+                                        <span>Admin</span>
+                                    </a>
+                                </li>
+                            @endcan
 
                             <!-- Authentication Links -->
                             @guest
@@ -204,19 +231,19 @@
                         <h5 class="text-uppercase">Navigation</h5>
                         <ul class="row mb-0">
                             <li class="col-md-2">
-                                <a href="#">Home</a>
+                                <a href="{{route('home')}}">Home</a>
                             </li>
                             <li class="col-md-2">
-                                <a href="#">Profile</a>
+                                <a href="{{route('profile_index')}}">Profile</a>
                             </li>
                             <li class="col-md-2">
-                                <a href="#">Wallet</a>
+                                <a href="{{route('wallet.index')}}">Wallet</a>
                             </li>
                             <li class="col-md-2">
-                                <a href="#">Cart</a>
+                                <a href="{{route('cart_index')}}">Cart</a>
                             </li>
                             <li class="col-md-2">
-                                <a href="#">Proceed</a>
+                                <a href="{{route('proceed_index')}}">Proceed</a>
                             </li>
                         </ul>
                     </div>
@@ -248,6 +275,16 @@
         {{-- Javascript --}}
         <script src="{{ asset('frontend/js/sidebar.js') }}"></script>
         <script src="{{ asset('frontend/js/animate.js') }}"></script>
+        <script>
+            $(document).ready(function() {
+                /** Success & Error message notification **/
+                $('.alert').hide().fadeIn(1000);
+
+                setTimeout(function() {
+                    $('.alert').fadeOut(1000);
+                }, 3000);
+            })
+        </script>
 </body>
 
 </html>
