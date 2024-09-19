@@ -12,6 +12,7 @@
 
     {{-- Custom CSS --}}
     <link rel="stylesheet" href="{{ asset('admin/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/css/uploadPreview.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/buttonDesigns.css') }}">
 
     {{-- Google Font --}}
@@ -38,6 +39,7 @@
 
     {{-- JQuery --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
 </head>
 
 <body>
@@ -66,7 +68,7 @@
                     Front >
                 </a>
 
-                
+
             </div>
         </nav>
 
@@ -87,8 +89,19 @@
 
     <!-- General JS Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('admin/modules/upload-preview/assets/js/jquery.uploadPreview.min.js') }}"></script>
 
     <script>
+        $.uploadPreview({
+            input_field: "#image-upload", // Default: .image-upload
+            preview_box: "#image-preview", // Default: .image-preview
+            label_field: "#image-label", // Default: .image-label
+            label_default: "Choose File", // Default: Choose File
+            label_selected: "Change File", // Default: Change File
+            no_label: false, // Default: false
+            success_callback: null // Default: null
+        });
+
         $(document).ready(function() {
 
             /** Success & Error message notification **/
