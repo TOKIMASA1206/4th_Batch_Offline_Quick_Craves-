@@ -31,7 +31,7 @@ class MenuItemDataTable extends DataTable
                                 <i class="fa fa-cog"></i>
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Menu Size & Options</a></li>
+                                <li><a class="dropdown-item" href="'. route("admin.menuSize.show", $query->id) .'">Menu Size & Options</a></li>
                             </ul>
                         </div>';
 
