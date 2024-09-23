@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\MenuItem;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +25,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('frontend.home.index');
+        $categories = Category::where(['show_at_home' => 1, 'status' => 1])->get();
+        return view('frontend.home.index', compact('categories'));
+    }
+
+    function loadMenuModal($menuId)
+    {
+        $menuItem = MenuItem::with(['menuSizes', 'menuOptions'])->findOrFail($menuId);
+
+        return view('frontend.layouts.ajax-files.menuModal', compact('menuItem'))->render();
     }
 }

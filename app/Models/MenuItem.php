@@ -15,11 +15,11 @@ class MenuItem extends Model
         return $this->belongsTo(Category::class);
     }
 
-    function productSizes() : HasMany {
+    function menuSizes() : HasMany {
         return $this->hasMany(MenuSize::class);
     }
 
-    function productOptions() : HasMany {
+    function menuOptions() : HasMany {
         return $this->hasMany(MenuOption::class);
     }
 }

@@ -11,6 +11,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     {{-- Custom CSS --}}
+    <link rel="stylesheet" href="{{ asset('frontend/css/toastr.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/css/uploadPreview.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/buttonDesigns.css') }}">
@@ -43,7 +44,7 @@
 </head>
 
 <body>
-    @if (session('success'))
+    {{-- @if (session('success'))
         <div class="alert alert-success fixed-alert">
             {{ session('success') }}
         </div>
@@ -53,7 +54,7 @@
         <div class="alert alert-danger fixed-alert">
             {{ session('error') }}
         </div>
-    @endif
+    @endif --}}
     <div class="alert fixed-alert"></div>
     <div id="app">
 
@@ -89,6 +90,7 @@
 
     <!-- General JS Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('frontend/js/toastr.min.js') }}"></script>
     <script src="{{ asset('admin/modules/upload-preview/assets/js/jquery.uploadPreview.min.js') }}"></script>
 
     <script>
@@ -137,17 +139,7 @@
                             success: function(response) {
                                 if (response.status === 'success') {
 
-                                    // Show success alert message
-                                    $('.alert')
-                                        .removeClass('alert-danger')
-                                        .addClass('alert-success')
-                                        .text(response.message)
-                                        .hide().fadeIn(1000);
-
-                                    setTimeout(function() {
-                                        $('.alert').fadeOut(1000);
-                                    }, 3000);
-
+                                    toastr.success(response.message)
                                     Swal.fire({
                                         title: "Deleted!",
                                         text: "The Data has been deleted.",
@@ -158,16 +150,7 @@
 
                                 } else if (response.status === 'error') {
 
-                                    // Show error alert message
-                                    $('.alert')
-                                        .removeClass('alert-success')
-                                        .addClass('alert-danger')
-                                        .text(response.message)
-                                        .hide().fadeIn(1000);
-
-                                    setTimeout(function() {
-                                        $('.alert').fadeOut(1000);
-                                    }, 3000);
+                                    toastr.error(response.message)
                                 }
                             },
                             error: function(error) {

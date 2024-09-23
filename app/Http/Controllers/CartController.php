@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cart;
+use Cart;
+use App\Models\MenuItem;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -16,51 +17,52 @@ class CartController extends Controller
         return view('frontend.cart.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    // Add Product into cart
+    function addToCart(Request $request)
     {
-        //
-    }
+        $menuItem = MenuItem::findOrFail($request->menu_item_id);
+        try {
+            $menuSize = $menuItem->menuSizes->where('id', $request->menu_size)->first();
+            $menuOptions = $menuItem->menuOptions->whereIn('id', $request->menu_option);
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+            $options = [
+                'menu_size' => [],
+                'menu_options' => [],
+                'menu_info' => [
+                    'image' => $menuItem->item_image,
+                    'slug' => $menuItem->slug,
+                ]
+            ];
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Cart $cart)
-    {
-        //
-    }
+            if ($menuSize !== null) {
+                $options['menu_size'] = [
+                    'id' => $menuSize?->id,
+                    'name' => $menuSize?->name,
+                    'price' => $menuSize?->price
+                ];
+            }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Cart $cart)
-    {
-        //
-    }
+            foreach ($menuOptions as $option) {
+                $options['menu_options'][] = [
+                    'id' => $option->id,
+                    'name' => $option->name,
+                    'price' => $option->price,
+                ];
+            }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Cart $cart)
-    {
-        //
-    }
+            Cart::add([
+                'id' => $menuItem->id,
+                'name' => $menuItem->name,
+                'qty' => $request->quantity,
+                'price' => $menuItem->offer_price > 0 ? $menuItem->offer_price : $menuItem->price,
+                'weight' => 0,
+                'options' => $options,
+            ]);
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Cart $cart)
-    {
-        //
+            return response(['status' => 'success', 'message' => 'Product added into cart!'], 200);
+        } catch (\Exception $e) {
+            logger($e);
+            return response(['status' => 'error', 'message' => 'Something went wrong!'], 500);
+        }
     }
 }
