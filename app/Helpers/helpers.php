@@ -28,3 +28,64 @@ if (!function_exists('generateUniqueSlug')) {
         return $slug;
     }
 }
+
+// Calculate product total price
+if (!function_exists('productTotal')) {
+    function productTotal($rowId)
+    {
+        $total = 0;
+
+        $product = Cart::get($rowId);
+
+        $productPrice = $product->price;
+        $sizePrice = $product->options?->menu_size['price'] ?? 0;
+        $optionsPrice = 0;
+        foreach ($product->options->menu_options as $option) {
+            $optionsPrice += $option['price'];
+        }
+
+        $total += round(($productPrice + $sizePrice + $optionsPrice) * $product->qty, 2);
+
+        return $total;
+    }
+}
+
+// Calculate cart total price
+if (!function_exists('cartTotal')) {
+    function cartTotal()
+    {
+        $total = 0;
+
+        foreach (Cart::content() as $item) {
+            $productPrice = $item->price;
+            $sizePrice = $item->options?->menu_size['price'] ?? 0;
+            $optionsPrice = 0;
+            foreach ($item->options->menu_options as $option) {
+                $optionsPrice += $option['price'];
+            }
+
+            $total += round(($productPrice + $sizePrice + $optionsPrice) * $item->qty, 2);
+        }
+
+        return $total;
+    }
+}
+
+// Grand cart total
+if (!function_exists('grandCartTotal')) {
+    function grandCartTotal()
+    {
+        $total = 0;
+        $cartTotal = cartTotal();
+
+        if (session()->has('coupon')) {
+            $discount = session()->get('coupon')['discount'];
+            $total = $cartTotal - $discount;
+
+            return $total;
+        } else {
+            $total = $cartTotal;
+            return $total;
+        }
+    }
+}

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Cart;
 use App\Models\MenuItem;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class CartController extends Controller
 {
@@ -63,6 +64,26 @@ class CartController extends Controller
         } catch (\Exception $e) {
             logger($e);
             return response(['status' => 'error', 'message' => 'Something went wrong!'], 500);
+        }
+    }
+
+    function cartQtyUpdate(Request $request): Response
+    {
+        $cartItem = Cart::get($request->rowId);
+        $product = MenuItem::findOrFail($cartItem->id);
+
+        try {
+            $cart = Cart::update($request->rowId, $request->qty);
+            return response([
+                'status' => 'success',
+                'product_total' => productTotal($request->rowId),
+                'qty' => $cart->qty,
+                'cartTotal' => cartTotal(),
+                'grand_cart_total' => grandCartTotal(),
+            ], 200);
+        } catch (\Exception $e) {
+            logger($e);
+            return response(['status' => 'error', 'message' => 'Something went wrong. Please reload the page.'], 500);
         }
     }
 }
