@@ -28,13 +28,13 @@
                                 <div class="card-bg">
                                     <div class="profile-menu-top p-4 mb-3">
                                         <div class="user-icon">
-                                            @if (Auth::user()->profile->avatar)
-                                                <img src="{{ asset(Auth::user()->profile->avatar) }}" alt="">
+                                            @if (@Auth::user()->profile->avatar)
+                                                <img src="{{ asset(@Auth::user()->profile->avatar) }}" alt="">
                                             @else
                                                 <i class="fa-solid fa-user text-center mx-0"></i>
                                             @endif
                                         </div>
-                                        <h4 class="user-name ar">{{ Auth::user()->name }}</h4>
+                                        <h4 class="user-name ar">{{ @Auth::user()->name }}</h4>
                                     </div>
                                     <div class="profile-menu-bottom">
                                         <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
@@ -124,17 +124,17 @@
                                             <div id="info-content" class="menu-section-content">
                                                 <div class="row mb-3">
                                                     <div class="col">Name:</div>
-                                                    <div class="col">{{ Auth::user()->name }}</div>
+                                                    <div class="col">{{ @Auth::user()->name }}</div>
                                                 </div>
                                                 <div class="row mb-3">
                                                     <div class="col">Email:</div>
-                                                    <div class="col">{{ Auth::user()->email }}</div>
+                                                    <div class="col">{{ @Auth::user()->email }}</div>
                                                 </div>
                                                 <div class="row mb-3">
                                                     <div class="col">Phone Number:</div>
                                                     <div class="col">
-                                                        @if (Auth::user()->profile->phone)
-                                                            {{ Auth::user()->profile->phone }}
+                                                        @if (@Auth::user()->profile->phone)
+                                                            {{ @Auth::user()->profile->phone }}
                                                         @else
                                                             Not set yet.
                                                         @endif
@@ -143,8 +143,8 @@
                                                 <div class="row mb-3">
                                                     <div class="col">Gender:</div>
                                                     <div class="col">
-                                                        @if (Auth::user()->profile->gender)
-                                                            {{ Auth::user()->profile->gender }}
+                                                        @if (@Auth::user()->profile->gender)
+                                                            {{ @Auth::user()->profile->gender }}
                                                         @else
                                                             Not set yet.
                                                         @endif
@@ -153,8 +153,8 @@
                                                 <div class="row mb-3">
                                                     <div class="col">Age:</div>
                                                     <div class="col">
-                                                        @if (Auth::user()->profile->age)
-                                                            {{ Auth::user()->profile->age }}
+                                                        @if (@Auth::user()->profile->age)
+                                                            {{ @Auth::user()->profile->age }}
                                                         @else
                                                             Not set yet.
                                                         @endif
@@ -168,7 +168,7 @@
                                                 <div class="row mb-3">
                                                     <label for="name"
                                                         class="form-label fw-bold text-start p-0">Profile Image</label>
-                                                    <img src="{{ asset(Auth::user()->profile->avatar) }}" class="mb-3"
+                                                    <img src="{{ asset(@Auth::user()->profile->avatar) }}" class="mb-3"
                                                         alt="" style="max-width: 400px">
 
                                                     <input type="file" id="name" name="avatar" value=""
@@ -178,19 +178,19 @@
                                                     <label for="name"
                                                         class="form-label fw-bold text-start p-0">Name</label>
                                                     <input type="text" id="name" name="name"
-                                                        value="{{ Auth::user()->name }}" class="form-control">
+                                                        value="{{ @Auth::user()->name }}" class="form-control">
                                                 </div>
                                                 <div class="row mb-3">
                                                     <label for="email"
                                                         class="form-label fw-bold text-start p-0">Email</label>
                                                     <input type="text" id="email" name="email"
-                                                        value="{{ Auth::user()->email }}" class="form-control">
+                                                        value="{{ @Auth::user()->email }}" class="form-control">
                                                 </div>
                                                 <div class="row mb-3">
                                                     <label for="phone"
                                                         class="form-label fw-bold text-start p-0">Phone</label>
                                                     <input type="text" id="phone" name="phone"
-                                                        value="{{ Auth::user()->profile->phone }}" class="form-control">
+                                                        value="{{ @Auth::user()->profile->phone }}" class="form-control">
                                                 </div>
 
                                                 <div class="row mb-4">
@@ -200,13 +200,13 @@
                                                         <select id="gender" name="gender" class="form-control">
                                                             <option value="">Select Gender</option>
                                                             <option value="male"
-                                                                {{ old('gender', Auth::user()->profile->gender) == 'male' ? 'selected' : '' }}>
+                                                                {{ old('gender', @Auth::user()->profile->gender) == 'male' ? 'selected' : '' }}>
                                                                 Male</option>
                                                             <option
-                                                                value="female"{{ old('gender', Auth::user()->profile->gender) == 'female' ? 'selected' : '' }}>
+                                                                value="female"{{ old('gender', @Auth::user()->profile->gender) == 'female' ? 'selected' : '' }}>
                                                                 Female</option>
                                                             <option value="other"
-                                                                {{ old('gender', Auth::user()->profile->gender) == 'other' ? 'selected' : '' }}>
+                                                                {{ old('gender', @Auth::user()->profile->gender) == 'other' ? 'selected' : '' }}>
                                                                 Other</option>
                                                         </select>
                                                     </div>
@@ -215,7 +215,7 @@
                                                             class="form-label fw-bold text-start p-0">Age</label>
                                                         <input type="number" id="age" name="age"
                                                             class="form-control"
-                                                            value="{{ old('age', Auth::user()->profile->age) }}">
+                                                            value="{{ old('age', @Auth::user()->profile->age) }}">
                                                     </div>
                                                 </div>
                                                 <button type="submit"

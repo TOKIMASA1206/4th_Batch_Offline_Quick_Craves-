@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" id="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }} | @yield('title')</title>
 
     <!-- Fonts -->
+
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,6 +38,7 @@
 
     <!-- CSS -->
     @yield('style')
+    <link rel="stylesheet" href="{{ asset('frontend/css/toastr.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/animate.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/buttonDesigns.css') }}">
@@ -47,34 +49,35 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/banner.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/footer.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/menuIndex.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/custom.css') }}">
+
+    {{-- JQuery --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
-    {{-- JQuery --}}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 
 <body>
-    @if (session('success'))
-        <div class="alert alert-success fixed-alert">
-            {{ session('success') }}
+    <div class="loading-overlay-container d-none">
+        <div class="loading-overlay">
+            <span class="loader"></span>
         </div>
-    @endif
+    </div>
 
-    @if (session('error'))
-        <div class="alert alert-danger fixed-alert">
-            {{ session('error') }}
-        </div>
-    @endif
+    {{-- Pop-Up Modal --}}
+    <div class="modal fade" id="productDetailModal" tabindex="-1" aria-labelledby="productDetailModal"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-body load_menu_modal_body">
 
-    @if ($errors->any())
-        <div class="alert alert-danger fixed-alert">
-            @foreach ($errors->all() as $error)
-                <div>{{ $error }}</div>
-            @endforeach
+                </div>
+            </div>
         </div>
-    @endif
+    </div>
+
     <div id="app">
         <!--============ Header ===================-->
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
@@ -209,6 +212,7 @@
                             </div>
                         </main>
                     </div>
+                </main>
             </div>
         </div>
         <!--============ Footer ===================-->
@@ -231,19 +235,19 @@
                         <h5 class="text-uppercase">Navigation</h5>
                         <ul class="row mb-0">
                             <li class="col-md-2">
-                                <a href="{{route('home')}}">Home</a>
+                                <a href="{{ route('home') }}">Home</a>
                             </li>
                             <li class="col-md-2">
-                                <a href="{{route('profile_index')}}">Profile</a>
+                                <a href="{{ route('profile_index') }}">Profile</a>
                             </li>
                             <li class="col-md-2">
-                                <a href="{{route('wallet.index')}}">Wallet</a>
+                                <a href="{{ route('wallet.index') }}">Wallet</a>
                             </li>
                             <li class="col-md-2">
-                                <a href="{{route('cart_index')}}">Cart</a>
+                                <a href="{{ route('cart_index') }}">Cart</a>
                             </li>
                             <li class="col-md-2">
-                                <a href="{{route('proceed_index')}}">Proceed</a>
+                                <a href="{{ route('proceed_index') }}">Proceed</a>
                             </li>
                         </ul>
                     </div>
@@ -271,11 +275,28 @@
             </div>
         </footer>
 
+        @include('frontend.layouts.components.global-scripts')
         @stack('scripts')
         {{-- Javascript --}}
+        <script src="{{ asset('frontend/js/toastr.min.js') }}"></script>
         <script src="{{ asset('frontend/js/sidebar.js') }}"></script>
         <script src="{{ asset('frontend/js/animate.js') }}"></script>
         <script>
+            toastr.options.progressBar = true;
+
+            @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                    toastr.error("{{ $error }}")
+                @endforeach
+            @endif
+
+            // Ser csrf ajax header
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
             $(document).ready(function() {
                 /** Success & Error message notification **/
                 $('.alert').hide().fadeIn(1000);
@@ -285,6 +306,7 @@
                 }, 3000);
             })
         </script>
+
 </body>
 
 </html>

@@ -25,6 +25,12 @@ Auth::routes();
 Route::group(["middleware" => "auth"], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
 
+    # Menu Modal Route
+    Route::get('/load-menu-modal{menuId}', [HomeController::class, 'loadMenuModal'])->name('load-menu-modal');
+
+    // Add to Cart Route
+    Route::post('add-to-cart', [CartController::class, 'addToCart'])->name('add-to-cart');
+    
     # PROFILE
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile_index');
     Route::patch('/profile/update', [ProfileController::class, 'update'])->name('profile_update');
