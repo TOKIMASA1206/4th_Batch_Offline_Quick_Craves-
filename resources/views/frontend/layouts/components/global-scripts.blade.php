@@ -23,4 +23,16 @@
             }
         })
     }
+
+    // Show Loader
+    function showLoader() {
+        $(".overlay-container").removeClass('d-none');
+        $(".overlay").addClass('active');
+    }
+
+    // Show Loader
+    function hideLoader() {
+        $(".overlay").removeClass('active');
+        $(".overlay-container").addClass('d-none');
+    }
 </script>

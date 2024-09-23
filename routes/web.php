@@ -25,19 +25,20 @@ Auth::routes();
 Route::group(["middleware" => "auth"], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
 
-    # Menu Modal Route
-    Route::get('/load-menu-modal{menuId}', [HomeController::class, 'loadMenuModal'])->name('load-menu-modal');
-
-    // Add to Cart Route
-    Route::post('add-to-cart', [CartController::class, 'addToCart'])->name('add-to-cart');
-    
     # PROFILE
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile_index');
     Route::patch('/profile/update', [ProfileController::class, 'update'])->name('profile_update');
     Route::patch('/profile/password', [ProfileController::class, 'passwordUpdate'])->name('profile_password_update');
 
+    # Menu Modal Route
+    Route::get('/load-menu-modal{menuId}', [HomeController::class, 'loadMenuModal'])->name('load-menu-modal');
+
+    // Add to Cart Route
+    Route::post('add-to-cart', [CartController::class, 'addToCart'])->name('add-to-cart');
+
     #CART
     Route::get('/cart', [CartController::class, 'index'])->name('cart_index');
+    Route::post('/cart-update-qty', [CartController::class, 'cartQtyUpdate'])->name('cart.quantity-update');
 
     #PROCEED
     Route::get('/proceed', [ProceedController::class, 'index'])->name('proceed_index');
