@@ -39,6 +39,8 @@ Route::group(["middleware" => "auth"], function () {
     #CART
     Route::get('/cart', [CartController::class, 'index'])->name('cart_index');
     Route::post('/cart-update-qty', [CartController::class, 'cartQtyUpdate'])->name('cart.quantity-update');
+    Route::post('/apply-voucher', [CartController::class, 'applyVoucher'])->name('apply-voucher');
+    Route::post('/remove-voucher', [CartController::class, 'removeVoucher'])->name('remove-voucher');
 
     #PROCEED
     Route::get('/proceed', [ProceedController::class, 'index'])->name('proceed_index');

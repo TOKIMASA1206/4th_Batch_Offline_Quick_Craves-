@@ -290,20 +290,13 @@
                 @endforeach
             @endif
 
-            // Ser csrf ajax header
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-
             $(document).ready(function() {
-                /** Success & Error message notification **/
-                $('.alert').hide().fadeIn(1000);
-
-                setTimeout(function() {
-                    $('.alert').fadeOut(1000);
-                }, 3000);
+                // Ser csrf ajax header
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
             })
         </script>
 

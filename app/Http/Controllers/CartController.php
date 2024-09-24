@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Cart;
 use App\Models\MenuItem;
+use App\Models\Voucher;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -14,8 +16,8 @@ class CartController extends Controller
      */
     public function index()
     {
-        //
-        return view('frontend.cart.index');
+        $vouchers = Voucher::where('expiry_date', '>=', Carbon::today())->get();
+        return view('frontend.cart.index', compact('vouchers'));
     }
 
     // Add Product into cart
@@ -85,5 +87,57 @@ class CartController extends Controller
             logger($e);
             return response(['status' => 'error', 'message' => 'Something went wrong. Please reload the page.'], 500);
         }
+    }
+
+    function applyVoucher(Request $request)
+    {
+        $request->validate([
+            'subTotal' => 'required|numeric|min:0',
+            'voucher' => 'required|exists:vouchers,id',
+        ]);
+
+        $subTotal = $request->input('subTotal');
+        $voucherId = $request->input('voucher');
+
+        $voucher = Voucher::find($voucherId);
+
+        if (!$voucher) {
+            return response(['message' => 'Voucher not found'], 404);
+        }
+
+        if ($voucher->expiry_date < now()) {
+            return response(['message' => 'This voucher is already expired'], 422);
+        }
+
+        $discount = (float) $voucher->discount_value;
+
+        // 割引がサブトータルを超えないようにする
+        if ($discount > $subTotal) {
+            $discount = $subTotal;
+        }
+
+        $finalTotal = $subTotal - $discount;
+
+        // セッションにバウチャー情報を保存（既存のバウチャーを上書き）
+        session()->put('voucher', [
+            'id' => $voucher->id,
+            'discount' => $discount,
+        ]);
+
+        return response([
+            'message' => 'Voucher Applied Successfully.',
+            'discount' => $discount,
+            'finalTotal' => $finalTotal,
+            'voucher' => $voucher,
+        ]);
+    }
+
+    public function removeVoucher(Request $request)
+    {
+        session()->forget('voucher');
+
+        return response([
+            'message' => 'Voucher has been removed',
+        ]);
     }
 }
