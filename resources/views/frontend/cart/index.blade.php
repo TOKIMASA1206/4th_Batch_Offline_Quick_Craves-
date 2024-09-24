@@ -108,25 +108,33 @@
                             <span>Subtotal:</span>
                             <span id="subtotal">₱ {{ cartTotal() }}</span>
                         </p>
+                        <p class="d-flex justify-content-between fw-bold">
+                            <span>Voucher:</span>
+                            <span id="subtotal">₱ 0</span>
+                        </p>
                         <select name="" id="" class="form-select">
                             <option value="">Voucher</option>
                             <option value="">Voucher</option>
                             <option value="">Voucher</option>
                         </select>
-                        <hr>
-                        <div class="row mb-3">
-                            <div class="col">
-                                <h5 class="fw-bold mt-2">Method</h5>
-                            </div>
-                            <div class="col-auto total-point"><span>2196 Cp</span><a class="add-point ms-2"
-                                    href=""><i class="fa-solid fa-plus"></i></a></div>
-                        </div>
 
                         <hr>
-                        <p class="total d-flex justify-content-between"><span>Total:</span> <span>₱
-                                {{ cartTotal() }}</span>
+                        <p class="total d-flex justify-content-between"><span>Total:</span>
+                            <span>₱ {{ cartTotal() }}</span>
                         </p>
-                        <button class="checkout_btn btn-yellow-black fs-5 w-100" href=" #">Checkout</button>
+                        <hr>
+
+                        <div class="row mb-2">
+                            <div class="col">
+                                <p class="m-0 mt-3">▽ Payment With </p>
+                            </div>
+                            <div class="total-point w-50 text-end col">
+                                <span class="me-2">2196 Cp</span>
+                                <a class="add-point ms-2" href=""><i class="fa-solid fa-plus me-3"></i></a>
+                            </div>
+                        </div>
+                        <button class="checkout_btn btn-yellow-black fs-5 w-100 mb-2" href=" #">Points</button>
+                        <button class="checkout_btn btn-yellow-black fs-5 w-100" href=" #">Paypal</button>
                     </div>
                 </div>
             </div>
