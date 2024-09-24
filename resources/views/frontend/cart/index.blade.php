@@ -110,17 +110,31 @@
                         </p>
                         <p class="d-flex justify-content-between fw-bold">
                             <span>Voucher:</span>
-                            <span id="subtotal">₱ 0</span>
+                            <span id="discount">
+                                @if (isset(session()->get('voucher')['discount']))
+                                    - ₱ {{ session()->get('voucher')['discount'] }}
+                                @else
+                                    ₱ 0
+                                @endif
+                            </span>
                         </p>
-                        <select name="" id="" class="form-select">
-                            <option value="">Voucher</option>
-                            <option value="">Voucher</option>
-                            <option value="">Voucher</option>
+                        <select name="" id="voucher_select" class="form-select">
+                            <option value="">Select Voucher</option>
+                            @foreach ($vouchers as $voucher)
+                                <option @selected(optional(session()->get('voucher'))->id == $voucher->id) value="{{ $voucher->id }}">
+                                    {{ $voucher->name }}
+                                </option>
+                            @endforeach
+                            <option value="">Cancel</option>
                         </select>
 
                         <hr>
-                        <p class="total d-flex justify-content-between"><span>Total:</span>
-                            <span>₱ {{ cartTotal() }}</span>
+                        <p class="total d-flex justify-content-between">
+                            <span>Total:</span>
+                            <span id="final_total">
+                                ₱
+                                {{ isset(session()->get('voucher')['discount']) ? cartTotal() - session()->get('voucher')['discount'] : cartTotal() }}
+                            </span>
                         </p>
                         <hr>
 
@@ -147,7 +161,9 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
+            var cartTotal = parseFloat("{{ cartTotal() }}");
 
+            // ============ Item Increment btn =============//
             $('.increment').on('click', function() {
                 let inputField = $(this).siblings(".quantity");
                 let currentValue = parseInt(inputField.val());
@@ -175,6 +191,7 @@
                 });
             });
 
+            // ============ Item Decrement =============//
             $('.decrement').on('click', function() {
                 let inputField = $(this).siblings(".quantity");
                 let currentValue = parseInt(inputField.val());
@@ -206,6 +223,7 @@
                 }
             });
 
+            //========== 商品の数が変更された際にqtyをajaxで送信 ===========//
             function cartQtyUpdate(rowId, qty, callback) {
                 $.ajax({
                     method: 'POST',
@@ -233,6 +251,65 @@
                     }
                 })
             }
+
+            $('#voucher_select').on('change', function() {
+                $('#voucher_select').change(function() {
+                    let selectedVoucher = $(this).val();
+                    let subTotal = parseFloat($('#subtotal').text().replace('₱', '').trim());
+
+                    if (selectedVoucher) {
+                        voucherApply(selectedVoucher, subTotal);
+                    } else {
+                        // バウチャーを解除する場合
+                        $('#discount').text('₱ 0');
+                        $('#final_total').text('₱ ' + subTotal.toFixed(2));
+
+                        // セッションからバウチャーを解除
+                        $.ajax({
+                            method: 'POST',
+                            url: "{{ route('remove-voucher') }}",
+                            data: {},
+                            success: function(response) {
+                                toastr.info(response.message);
+                            },
+                            error: function(xhr, status, error) {
+                                toastr.error('Failed to remove voucher.');
+                            }
+                        });
+                    }
+                });
+            })
+
+            function voucherApply(voucher, subTotal) {
+                $.ajax({
+                    method: 'POST',
+                    url: "{{ route('apply-voucher') }}",
+                    data: {
+                        voucher: voucher,
+                        subTotal: subTotal,
+                    },
+                    beforeSend: function() {
+                        showLoader();
+                    },
+                    success: function(response) {
+                        $('#discount').text('- ₱' + response.discount.toFixed(2));
+                        $('#final_total').text('₱ ' + response.finalTotal.toFixed(2));
+                        toastr.success(response.message);
+                    },
+                    error: function(xhr, status, error) {
+                        let errorMessage = 'Unexpected Error happened';
+                        if (xhr.responseJSON && xhr.responseJSON.message) {
+                            errorMessage = xhr.responseJSON.message;
+                        }
+                        toastr.error(errorMessage);
+                    },
+                    complete: function() {
+                        hideLoader();
+                    }
+                });
+            }
+
+
         })
     </script>
 @endpush
