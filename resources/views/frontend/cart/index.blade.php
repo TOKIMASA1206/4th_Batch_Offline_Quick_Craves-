@@ -85,7 +85,7 @@
                                     @endforeach
                                     @if (Cart::content()->count() === 0)
                                         <tr>
-                                            <td colspan="6" class="text-center d-inline" style="width: 100%;">
+                                            <td colspan="6" class="text-center fw-bold">
                                                 Cart is empty!
                                             </td>
                                         </tr>
@@ -138,16 +138,25 @@
                         </p>
                         <hr>
 
-                        <div class="row mb-2">
+                        <div class="row mb-3">
                             <div class="col">
-                                <p class="m-0 mt-3">▽ Payment With </p>
+                                <p class="m-0 mt-3 fw-normal">▽ Payment With </p>
                             </div>
-                            <div class="total-point w-50 text-end col">
-                                <span class="me-2">2196 Cp</span>
-                                <a class="add-point ms-2" href=""><i class="fa-solid fa-plus me-3"></i></a>
+                            <div class="total-point text-end col-auto p-2 me-2">
+                                @if (Auth::user()->points)
+                                    <span class="">
+                                        {{ Auth::user()->points->point_balance }} Cp
+                                    </span>
+                                @else
+                                    <span class="">
+                                        0 Cp
+                                    </span>
+                                @endif
+                                <a class="add-point ms-1" href="{{ route('wallet.index') }}"><i class="fa-solid fa-circle-plus"></i></a>
                             </div>
                         </div>
-                        <button class="checkout_btn btn-yellow-black fs-5 w-100 mb-2" href=" #">Points</button>
+                        <button class="checkout_btn btn-yellow-black fs-5 w-100 mb-2" id="pay-with-points" data-bs-toggle="modal"
+                        data-bs-target="#pointCheckoutModal"> Points</button>
                         <button class="checkout_btn btn-yellow-black fs-5 w-100" href=" #">Paypal</button>
                     </div>
                 </div>
@@ -155,7 +164,7 @@
         </div>
     </section>
 
-
+    @include('frontend.cart.modals.points_checkout')
 @endsection
 
 @push('scripts')
@@ -311,5 +320,40 @@
 
 
         })
+
+        // ポイント決済
+
+        document.getElementById('confirmPayWithPoints').addEventListener('click', function () {
+        var cartTotal = {{ cartTotal() }};
+        var pointBalance = {{ Auth::user()->points->point_balance ?? 0 }};
+
+        if (pointBalance < cartTotal) {
+            // ポイントが足りない場合、エラーメッセージを表示
+            document.getElementById('pointErrorMessage').style.display = 'block';
+            return;
+        }
+
+        $.ajax({
+            method: 'POST',
+            url: "",
+            data: {
+                _token: "{{ csrf_token() }}",
+                total: cartTotal,
+                points: pointBalance
+            },
+            success: function(response) {
+                if (response.success) {
+                    alert('Payment successful!');
+                    location.reload();
+                } else {
+                    alert('Payment failed. Please try again.');
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+                alert('An error occurred. Please try again.');
+            }
+        });
+    });
     </script>
 @endpush

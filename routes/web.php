@@ -46,7 +46,8 @@ Route::group(["middleware" => "auth"], function () {
     Route::get('/proceed', [ProceedController::class, 'index'])->name('proceed_index');
 
     #WALLET
-    Route::get('wallet', [WalletController::class, 'index'])->name('wallet.index');
+    Route::get('/wallet', [WalletController::class, 'index'])->name('wallet.index');
+    Route::post('/wallet/point/store', [WalletController::class, 'pointStore'])->name('wallet.point.store');
 
 
 

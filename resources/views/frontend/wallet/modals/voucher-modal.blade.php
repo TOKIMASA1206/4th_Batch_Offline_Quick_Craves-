@@ -21,33 +21,19 @@
                 <div class="tab-content mt-3" id="myTabContent">
                     <div class="tab-pane fade show active" id="vouchers" role="tabpanel"
                         aria-labelledby="vouchers-tab">
+                        @foreach ($vouchers as $voucher)
                         <div class="voucher-item">
                             <div class="voucher-icon">
                                 <img src="{{ asset('frontend/images/ticket.png') }}" alt="Ticket Icon">
                             </div>
                             <div class="voucher-details">
-                                <p class="voucher-title">FREE 75 CP</p>
-                                <p class="voucher-expiry">Expiry Date N/A</p>
+                                <p class="voucher-title">{{$voucher->name}}</p>
+                                @if($voucher->expiry_date)
+                                <p class="voucher-expiry">expiry_date：{{$voucher->expiry_date}}</p>
+                                @endif
                             </div>
                         </div>
-                        <div class="voucher-item">
-                            <div class="voucher-icon">
-                                <img src="{{ asset('frontend/images/ticket.png') }}" alt="Ticket Icon">
-                            </div>
-                            <div class="voucher-details">
-                                <p class="voucher-title">FREE 75 CP</p>
-                                <p class="voucher-expiry">Expiry Date N/A</p>
-                            </div>
-                        </div>
-                        <div class="voucher-item">
-                            <div class="voucher-icon">
-                                <img src="{{ asset('frontend/images/ticket.png') }}" alt="Ticket Icon">
-                            </div>
-                            <div class="voucher-details">
-                                <p class="voucher-title">FREE 75 CP</p>
-                                <p class="voucher-expiry">Expiry Date N/A</p>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                     <div class="tab-pane fade" id="rewards" role="tabpanel" aria-labelledby="rewards-tab">
                         <div class="voucher-item">

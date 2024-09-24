@@ -25,7 +25,7 @@ class VoucherCreateRequest extends FormRequest
             'name' => ['required', 'string', 'max:255'],
             'code' => ['required', 'string', 'max:50'],
             'discount_value' => ['required', 'numeric', 'min:0'],
-            'expiry_date' => ['required', 'date', 'after_or_equal:today'],
+            'expiry_date' => [ 'nullable','date', 'after_or_equal:today'],
             'status' => ['required', 'boolean'],
         ];
     }

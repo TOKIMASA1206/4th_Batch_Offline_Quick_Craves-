@@ -10,4 +10,8 @@ class Category extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'show_at_home', 'status'];
+
+    function menuItems() {
+        return $this->hasMany(MenuItem::class);
+    }
 }

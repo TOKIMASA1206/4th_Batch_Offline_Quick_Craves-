@@ -5,7 +5,8 @@
 @endsection
 
 @section('sub-title')
-    <span class="sub_title"><i class="fa-solid fa-house-chimney"></i> <span class="me-2">Home</span> - <span class="mx-2">Wallet</span></span>
+    <span class="sub_title"><i class="fa-solid fa-house-chimney"></i> <span class="me-2">Home</span> - <span
+            class="mx-2">Wallet</span></span>
 @endsection
 
 @section('content')
@@ -15,7 +16,15 @@
                 <h2 class="h1 mb-3 ar text-center text-md-start">Crave Point(CP)</h2>
                 <div class="text-center d-flex justify-content-center gap-3 align-items-center rounded-pill px-5 py-2"
                     style="border: 2px solid #FFB11B;">
-                    <h3 class="points" id="points">1,234.60 CP</h3>
+                    @if (Auth::user()->points)
+                        <h4 class="points" id="points">
+                            {{ Auth::user()->points->point_balance }} Cp
+                        </h4>
+                    @else
+                        <h4 class="points" id="points">
+                            0 Cp
+                        </h4>
+                    @endif
                     <button class="btn btn-outline-warning ml-3" id="add-points" data-bs-toggle="modal"
                         data-bs-target="#pointChargeModal"><i class="fas fa-plus"></i></button>
                 </div>

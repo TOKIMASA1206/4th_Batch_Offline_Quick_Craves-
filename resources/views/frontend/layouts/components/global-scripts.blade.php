@@ -9,6 +9,7 @@
                 $(".overlay").addClass('active');
             },
             success: function(resposnce) {
+                console.log(resposnce)
                 $(".load_menu_modal_body").html(resposnce);
                 // モーダルの表示（Bootstrap 5）
                 var myModal = new bootstrap.Modal(document.getElementById('productDetailModal'));
