@@ -22,22 +22,22 @@ class VouchersDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-        ->addColumn('action', function($query){
-            $edit = "<a href='" . route('admin.voucher.edit', $query->id) . "' class='btn-yellow me-2'><i class='fas fa-edit'></i></a>";
-            $delete = "<a href='" . route('admin.voucher.destroy', $query->id) . "' class='btn-red delete-item'><i class='fas fa-trash'></i></a>";
+            ->addColumn('action', function ($query) {
+                $edit = "<a href='" . route('admin.voucher.edit', $query->id) . "' class='btn-yellow me-2'><i class='fas fa-edit'></i></a>";
+                $delete = "<a href='" . route('admin.voucher.destroy', $query->id) . "' class='btn-red delete-item'><i class='fas fa-trash'></i></a>";
 
-            return $edit . $delete;
+                return $edit . $delete;
 
-        })
-        ->addColumn('status', function ($query) {
-            if ($query->status == 1) {
-                return '<span class="badge badge-primary fs-6">Active</span>';
-            } else {
-                return '<span class="badge badge-danger fs-6">Inactive</span>';
-            }
-        })
-        ->rawColumns(['show_at_home', 'status', 'action'])
-        ->setRowId('id');
+            })
+            ->addColumn('status', function ($query) {
+                if ($query->status == 1) {
+                    return '<span class="badge badge-primary fs-6">Active</span>';
+                } else {
+                    return '<span class="badge badge-danger fs-6">Inactive</span>';
+                }
+            })
+            ->rawColumns(['show_at_home', 'status', 'action'])
+            ->setRowId('id');
     }
 
     /**
@@ -54,17 +54,17 @@ class VouchersDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('vouchers-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
+            ->setTableId('vouchers-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
 
-                    ->orderBy(0)
-                    ->selectStyleSingle()
-                    ->buttons([
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
-                    ]);
+            ->orderBy(0)
+            ->selectStyleSingle()
+            ->buttons([
+                Button::make('print'),
+                Button::make('reset'),
+                Button::make('reload')
+            ]);
     }
 
     /**
@@ -77,15 +77,18 @@ class VouchersDataTable extends DataTable
             Column::make('name'),
             Column::make('code'),
             Column::make('discount_value'),
-            Column::make('expiry_date'),
+            Column::make('expiry_date')
+                ->format(function ($value) {
+                    return $value ? $value : 'N/A'; // expiry_dateがnullなら"N/A"を表示
+                }),
             Column::make('status'),
 
 
             Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(120)
-                  ->addClass('text-center'),
+                ->exportable(false)
+                ->printable(false)
+                ->width(120)
+                ->addClass('text-center'),
 
         ];
     }

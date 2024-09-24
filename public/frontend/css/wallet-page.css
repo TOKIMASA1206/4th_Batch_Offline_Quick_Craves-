@@ -1,7 +1,5 @@
 .points {
     margin: 0;
-    font-size: 1.75rem;
-    font-weight: bold;
 }
 
 @media (min-width: 1200px) {
@@ -12,7 +10,7 @@
 
 .voucher-btn {
     color: #ffb11b;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     padding: 8px 40px;
     border: 2px solid #ffb11b;
     border-radius: 24px;
@@ -163,13 +161,13 @@
 }
 
 .transaction-subtitle {
-    font-size: 20px;
+    font-size: 16px;
     color: #ffb11b;
     font-family: Snell Roundhand, cursive;
 }
 
 .transaction-title {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bolder;
     line-height: 32px;
 }
@@ -179,7 +177,7 @@
 }
 
 .transaction-status p {
-    font-size: 24px;
+    font-size: 20px;
     color: #ffb11b;
 }
 

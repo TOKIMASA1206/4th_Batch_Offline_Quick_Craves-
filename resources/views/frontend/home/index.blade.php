@@ -17,8 +17,10 @@
         <div class="text-center mb-4 fade-in">
             <button class="btn-yellow-index category-btn me-1" data-category="all">All Menu</button>
             @foreach ($categories as $category)
-                <button class="btn-yellow-outline category-btn me-1"
-                    data-category="{{ $category->slug }}">{{ $category->name }}</button>
+                @if ($category->MenuItems->isNotEmpty())
+                    <button class="btn-yellow-outline category-btn me-1"
+                        data-category="{{ $category->slug }}">{{ $category->name }}</button>
+                @endif
             @endforeach
 
             {{-- Menu List --}}
@@ -47,14 +49,16 @@
                                             <span class="price-tag">
                                                 @if ($item->offer_price > 0)
                                                     &#8369; {{ $item->offer_price }}
-                                                    <del style="font-size: 16px; color: black;">&#8369; {{ $item->price }}</del>
+                                                    <del style="font-size: 16px; color: black;">&#8369;
+                                                        {{ $item->price }}</del>
                                                 @else
                                                     &#8369; {{ $item->price }}
                                                 @endif
                                             </span>
                                         </div>
                                         <div class="card-icon-group text-center">
-                                            <button type="button" class="btn-yellow text-decoration-none" onclick="loadMenuModal('{{ $item->id }}')">
+                                            <button type="button" class="btn-yellow text-decoration-none"
+                                                onclick="loadMenuModal('{{ $item->id }}')">
                                                 <i class="fa-solid fa-basket-shopping"></i> Add Cart
                                             </button>
                                         </div>
