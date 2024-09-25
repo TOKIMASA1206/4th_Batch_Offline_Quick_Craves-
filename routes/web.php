@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Frontend\PaymentController;
 use App\Http\Controllers\ProceedController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PointController;
@@ -41,6 +42,17 @@ Route::group(["middleware" => "auth"], function () {
     Route::post('/cart-update-qty', [CartController::class, 'cartQtyUpdate'])->name('cart.quantity-update');
     Route::post('/apply-voucher', [CartController::class, 'applyVoucher'])->name('apply-voucher');
     Route::post('/remove-voucher', [CartController::class, 'removeVoucher'])->name('remove-voucher');
+
+    /** Payment Routes  */
+    Route::post('make-payment', [PaymentController::class, 'makePayment'])->name('make-payment');
+
+    Route::get('payment-success', [PaymentController::class, 'paymentSuccess'])->name('payment.success');
+    Route::get('payment-cancel', [PaymentController::class, 'paymentCancel'])->name('payment.cancel');
+
+    /** Paypal Routes */
+    Route::get('paypal/payment', [PaymentController::class, 'payWithPaypal'])->name('paypal.payment');
+    Route::get('paypal/success', [PaymentController::class, 'paypalSuccess'])->name('paypal.success');
+    Route::get('paypal/cancel', [PaymentController::class, 'paypalCancel'])->name('paypal.cancel');
 
     #PROCEED
     Route::get('/proceed', [ProceedController::class, 'index'])->name('proceed_index');

@@ -152,12 +152,14 @@
                                         0 Cp
                                     </span>
                                 @endif
-                                <a class="add-point ms-1" href="{{ route('wallet.index') }}"><i class="fa-solid fa-circle-plus"></i></a>
+                                <a class="add-point ms-1" href="{{ route('wallet.index') }}"><i
+                                        class="fa-solid fa-circle-plus"></i></a>
                             </div>
                         </div>
-                        <button class="checkout_btn btn-yellow-black fs-5 w-100 mb-2" id="pay-with-points" data-bs-toggle="modal"
-                        data-bs-target="#pointCheckoutModal"> Points</button>
-                        <button class="checkout_btn btn-yellow-black fs-5 w-100" href=" #">Paypal</button>
+                        <button class="checkout_btn btn-yellow-black fs-5 w-100 mb-2" id="pay-with-points"
+                            data-bs-toggle="modal" data-bs-target="#pointCheckoutModal"> Points</button>
+                        <a href="#" class="payment-method checkout_btn btn-yellow-black fs-5 w-100"
+                            data-name="paypal">Paypal</a>
                     </div>
                 </div>
             </div>
@@ -318,42 +320,71 @@
                 });
             }
 
+            $('.payment-method').on('click', function(e) {
+                e.preventDefault();
+                let paymentGateway = $(this).data('name');
+                console.log(paymentGateway)
+
+                $.ajax({
+                    method: 'POST',
+                    url: "{{ route('make-payment') }}",
+                    data: {
+                        payment_gateway: paymentGateway
+                    },
+                    beforeSend: function() {
+                        showLoader();
+                    },
+                    success: function(response) {
+                        window.location.href = response.redirect_url;
+                    },
+                    error: function(xhr, status, error) {
+                        let errors = xhr.responseJSON.errors;
+                        $.each(errors, function(index, value) {
+                            toastr.error(value);
+                        });
+                    },
+                    complete: function() {
+                        // hideLoader();
+                    }
+                })
+            });
+
 
         })
 
         // ポイント決済
 
-        document.getElementById('confirmPayWithPoints').addEventListener('click', function () {
-        var cartTotal = {{ cartTotal() }};
-        var pointBalance = {{ Auth::user()->points->point_balance ?? 0 }};
+        document.getElementById('confirmPayWithPoints').addEventListener('click', function() {
+            var cartTotal = {{ cartTotal() }};
+            var pointBalance = {{ Auth::user()->points->point_balance ?? 0 }};
 
-        if (pointBalance < cartTotal) {
-            // ポイントが足りない場合、エラーメッセージを表示
-            document.getElementById('pointErrorMessage').style.display = 'block';
-            return;
-        }
-
-        $.ajax({
-            method: 'POST',
-            url: "",
-            data: {
-                _token: "{{ csrf_token() }}",
-                total: cartTotal,
-                points: pointBalance
-            },
-            success: function(response) {
-                if (response.success) {
-                    alert('Payment successful!');
-                    location.reload();
-                } else {
-                    alert('Payment failed. Please try again.');
-                }
-            },
-            error: function(xhr, status, error) {
-                console.error(error);
-                alert('An error occurred. Please try again.');
+            if (pointBalance < cartTotal) {
+                // ポイントが足りない場合、エラーメッセージを表示
+                document.getElementById('pointErrorMessage').style.display = 'block';
+                return;
             }
+
+            $.ajax({
+                method: 'POST',
+                url: "",
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    total: cartTotal,
+                    points: pointBalance
+                },
+                success: function(response) {
+                    if (response.success) {
+                        alert('Payment successful!');
+                        location.reload();
+                    } else {
+                        alert('Payment failed. Please try again.');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                    alert('An error occurred. Please try again.');
+                }
+            });
         });
-    });
     </script>
 @endpush

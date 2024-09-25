@@ -27,13 +27,13 @@
 
     // Show Loader
     function showLoader() {
-        $(".overlay-container").removeClass('d-none');
-        $(".overlay").addClass('active');
+        $(".loading-overlay-container").removeClass('d-none');
+        $(".loading-overlay").addClass('active');
     }
 
     // Show Loader
     function hideLoader() {
-        $(".overlay").removeClass('active');
-        $(".overlay-container").addClass('d-none');
+        $(".loading-overlay").removeClass('active');
+        $(".loading-overlay-containerr").addClass('d-none');
     }
 </script>

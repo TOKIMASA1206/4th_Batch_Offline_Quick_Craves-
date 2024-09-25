@@ -16,7 +16,7 @@ class CartController extends Controller
      */
     public function index()
     {
-        $vouchers = Voucher::where('expiry_date', '>=', Carbon::today())->get();
+        $vouchers = Voucher::all();
         return view('frontend.cart.index', compact('vouchers'));
     }
 
