@@ -20,18 +20,18 @@
 
     <section class="cart_view ">
         <div class="container my-5">
-          <div class="row">
-            <h4 class="mt-5"> Payment Successful!</h4>
-            <div class="col-12 text-center">
-        
-              <p class="inform_icon fs-1">
-                <i class="fa-solid fa-thumbs-up"></i>
-              </p>
-              <p class="mb-3">Thank you for your purchase! Your order has been successfully processed.</p>
-        
-              <p>You can view your order history <a href="">here</a></p>
+            <div class="row">
+                <h4 class="mt-5"> Payment Successful!</h4>
+                <div class="col-12 text-center">
+
+                    <p class="inform_icon fs-1">
+                        <i class="fa-solid fa-thumbs-up"></i>
+                    </p>
+                    <p class="mb-3">Thank you for your purchase! Your order has been successfully processed.</p>
+
+                    <p>You can view your order history <a href="">here</a></p>
+                </div>
             </div>
-          </div>
         </div>
     </section>
 

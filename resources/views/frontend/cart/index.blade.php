@@ -86,7 +86,7 @@
                                     @if (Cart::content()->count() === 0)
                                         <tr>
                                             <td colspan="6" class="text-center fw-bold">
-                                                Cart is empty!
+                                                Cart is empty!  <a href="{{ url('/') }}" class="fs-5 text-success">-> Check our Foods!</a>
                                             </td>
                                         </tr>
                                     @endif
@@ -323,7 +323,6 @@
             $('.payment-method').on('click', function(e) {
                 e.preventDefault();
                 let paymentGateway = $(this).data('name');
-                console.log(paymentGateway)
 
                 $.ajax({
                     method: 'POST',

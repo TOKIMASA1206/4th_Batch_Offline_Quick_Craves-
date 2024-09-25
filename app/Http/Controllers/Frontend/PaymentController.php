@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Events\OrderPaymentUpdate;
 use App\Http\Controllers\Controller;
 use App\Services\OrderService;
 use Illuminate\Http\Request;
@@ -38,12 +39,12 @@ class PaymentController extends Controller
 
     function paymentSuccess(): View
     {
-        return view('frontend.pages.payment-success');
+        return view('frontend.payment.success');
     }
 
     function paymentCancel(): View
     {
-        return view('frontend.pages.payment-cancel');
+        return view('frontend.payment.cancel');
     }
 
     function setPaypalConfig(): array
@@ -116,6 +117,7 @@ class PaymentController extends Controller
         $provider->getAccessToken();
 
         $response = $provider->capturePaymentOrder($request->token);
+        // dd($response);
 
         if (isset($response['status']) && $response['status'] === 'COMPLETED') {
             $orderId = session()->get('order_id');
@@ -126,7 +128,7 @@ class PaymentController extends Controller
                 'status' => 'completed',
             ];
 
-            // OrderPaymentUpdateEvent::dispatch($orderId, $paymentInfo, 'PayPal');
+            OrderPaymentUpdate::dispatch($orderId, $paymentInfo, 'PayPal');
             // OrderPlacedNotificationEvent::dispatch($orderId);
 
             /** Clear session data  */
@@ -143,5 +145,17 @@ class PaymentController extends Controller
     {
         $this->transactionFailUpdateStatus('PayPal');
         return redirect()->route('payment.cancel');
+    }
+
+    function transactionFailUpdateStatus($gatewayName): void
+    {
+        $orderId = session()->get('order_id');
+        $paymentInfo = [
+            'transaction_id' => '',
+            'currency' => '',
+            'status' => 'Failed',
+        ];
+
+        OrderPaymentUpdate::dispatch($orderId, $paymentInfo, $gatewayName);
     }
 }
