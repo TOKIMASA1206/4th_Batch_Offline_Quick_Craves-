@@ -78,8 +78,8 @@ if (!function_exists('grandCartTotal')) {
         $total = 0;
         $cartTotal = cartTotal();
 
-        if (session()->has('coupon')) {
-            $discount = session()->get('coupon')['discount'];
+        if (session()->has('voucher')) {
+            $discount = session()->get('voucher')['discount'];
             $total = $cartTotal - $discount;
 
             return $total;
@@ -87,5 +87,19 @@ if (!function_exists('grandCartTotal')) {
             $total = $cartTotal;
             return $total;
         }
+    }
+}
+
+/** Generate Invoice Id  */
+if (!function_exists('generateInvoiceId')) {
+
+    function generateInvoiceId()
+    {
+        $randomNumber = rand(1, 9999);
+        $currentDateTime = now();
+
+        $invoiceId = $randomNumber . $currentDateTime->format('yd') . $currentDateTime->format('s');
+
+        return $invoiceId;
     }
 }
