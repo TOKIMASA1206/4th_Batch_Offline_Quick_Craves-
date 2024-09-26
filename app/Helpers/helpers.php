@@ -103,3 +103,16 @@ if (!function_exists('generateInvoiceId')) {
         return $invoiceId;
     }
 }
+
+/** Generate Invoice Id  */
+if (!function_exists('resetVoucher')) {
+
+    function resetVoucher()
+    {
+        session()->forget('voucher');
+
+        return response([
+            'message' => 'Voucher has been removed',
+        ]);
+    }
+}

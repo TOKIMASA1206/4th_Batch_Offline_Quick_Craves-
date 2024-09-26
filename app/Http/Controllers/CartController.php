@@ -89,6 +89,22 @@ class CartController extends Controller
         }
     }
 
+    function cartProductRemove($rowId)
+    {
+        try {
+            Cart::remove($rowId);
+
+            return response([
+                'status' => 'success',
+                'message' => 'Item has been removed!',
+                'cartTotal' => cartTotal(),
+                'grand_cart_total' => grandCartTotal(),
+            ], 200);
+        } catch (\Exception $e) {
+            return response(['status' => 'error', 'message' => 'Sorry something went wrong!'], 500);
+        }
+    }
+
     function applyVoucher(Request $request)
     {
         $request->validate([
