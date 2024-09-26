@@ -14,7 +14,6 @@
             <div class="card-body">
                 <div class="table-responsive">
                     {{ $dataTable->table() }}
-                    @include('admin.users.modal.status')
                 </div>
             </div>
         </div>
@@ -23,5 +22,4 @@
 
 @push('scripts')
     {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
-    <script src="{{ asset('admin/js/user_style.js') }}"></script>
 @endpush

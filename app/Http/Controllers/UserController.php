@@ -51,4 +51,15 @@ class UserController extends Controller
         }
     }
 
+    public function activate($id) {
+
+        try {
+            $this->user->onlyTrashed()->findOrFail($id)->restore();
+            return  response(['status' => 'success', 'message' => 'Activate Successfully!']);
+        } catch (\Exception $e) {
+            return response(['status' => 'error', 'message' => 'something went wrong']);
+        }
+
+    }
+
 }

@@ -24,7 +24,7 @@ class UsersDataTable extends DataTable
         return (new EloquentDataTable($query))
         ->addColumn('action', function($query){
 
-            $activate = "<a href='" . route('admin.user.edit', $query->id) . "' class='btn btn-sm btn-primary me-2'>Activate</a>";
+            $activate = "<a href='" . route('admin.user.activate', $query->id) . "' class='btn btn-sm btn-primary me-2 activate-item'>Activate</a>";
 
             $inactivate = "<a href='" . route('admin.user.destroy', $query->id) . "' class='btn btn-sm btn-danger delete-item'>Inactivate</a>";
 

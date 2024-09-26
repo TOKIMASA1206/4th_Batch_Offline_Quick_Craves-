@@ -170,7 +170,7 @@
                 });
             });
 
-            // {{-- 年齢別棒線グラフ --}}  　////Y軸に0を固定で表示させたい////
+            // {{-- 年齢別棒線グラフ --}}  　
             document.addEventListener('DOMContentLoaded', function() {
                 var ctx = document.getElementById('ageChart').getContext('2d');
 
@@ -179,12 +179,11 @@
                 var ageChart = new Chart(ctx, {
                     type: 'bar', // 棒グラフ
                     data: {
-                        labels: ['0-', '10-', '20-', '30-', '40-', '50-', '60-'], // ラベル
+                        labels: ['0-', '10-', '20-', '30-', '40-', '50-', '60-','more'], // ラベル
                         datasets: [{
                             label: 'customers/age',
                             data: [ageData.single, ageData.ten, ageData.twenty, ageData.thirty, ageData
-                                .forty, ageData
-                                .fifty, ageData.sixty
+                                .forty, ageData.fifty, ageData.sixty, ageData.more
                             ], // データ（例としての人数）
                             backgroundColor: [
                                 'rgba(75, 192, 192, 0.6)', // 各バーの色
