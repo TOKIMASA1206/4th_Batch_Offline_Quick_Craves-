@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Frontend\ProfileCreateRequest;
+use App\Models\Order;
 use Illuminate\Support\Facades\DB;
 use App\Models\Profile;
 use App\Traits\ImageUploadTrait;
@@ -13,14 +14,12 @@ use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     use ImageUploadTrait;
+
     public function index()
     {
-        //
-        return view('frontend.profile.index');
+        $orders = Order::where('user_id', Auth::user()->id)->latest()->get();
+        return view('frontend.profile.index', compact('orders'));
     }
     public function card()
     {

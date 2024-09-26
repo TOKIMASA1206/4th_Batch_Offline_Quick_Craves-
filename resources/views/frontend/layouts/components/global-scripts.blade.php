@@ -34,6 +34,6 @@
     // Show Loader
     function hideLoader() {
         $(".loading-overlay").removeClass('active');
-        $(".loading-overlay-containerr").addClass('d-none');
+        $(".loading-overlay-container").addClass('d-none');
     }
 </script>

@@ -76,7 +76,7 @@
                                             </td>
 
                                             <td class="pro_icon">
-                                                <a href="#" class="remove_cart_prodcut"
+                                                <a href="#" class="remove_cart_product"
                                                     data-id="{{ $item->rowId }}">
                                                     <i class="fa-regular fa-circle-xmark fs-4 fs-4"></i>
                                                 </a>
@@ -86,7 +86,8 @@
                                     @if (Cart::content()->count() === 0)
                                         <tr>
                                             <td colspan="6" class="text-center fw-bold">
-                                                Cart is empty!  <a href="{{ url('/') }}" class="fs-5 text-success">-> Check our Foods!</a>
+                                                Cart is empty! <a href="{{ url('/') }}" class="fs-5 text-success">->
+                                                    Check our Foods!</a>
                                             </td>
                                         </tr>
                                     @endif
@@ -156,10 +157,13 @@
                                         class="fa-solid fa-circle-plus"></i></a>
                             </div>
                         </div>
-                        <button class="checkout_btn btn-yellow-black fs-5 w-100 mb-2" id="pay-with-points"
-                            data-bs-toggle="modal" data-bs-target="#pointCheckoutModal"> Points</button>
-                        <a href="#" class="payment-method checkout_btn btn-yellow-black fs-5 w-100"
-                            data-name="paypal">Paypal</a>
+                        <button class="checkout_btn btn-yellow-black fs-5 w-100 mb-3" id="pay-with-points"
+                            data-bs-toggle="modal" data-bs-target="#pointCheckoutModal"> Points
+                        </button>
+
+                        <button class="payment-method paypal_btn  w-100" data-name="paypal"
+                            style="background-image: url('{{ asset('logos/paypal-logo.webp') }}')">
+                        </button>
                     </div>
                 </div>
             </div>
@@ -263,32 +267,30 @@
                 })
             }
 
+            //========== Voucher select ===========//
             $('#voucher_select').on('change', function() {
-                $('#voucher_select').change(function() {
-                    let selectedVoucher = $(this).val();
-                    let subTotal = parseFloat($('#subtotal').text().replace('₱', '').trim());
+                let selectedVoucher = $(this).val();
+                let subTotal = parseFloat($('#subtotal').text().replace('₱', '').trim());
 
-                    if (selectedVoucher) {
-                        voucherApply(selectedVoucher, subTotal);
-                    } else {
-                        // バウチャーを解除する場合
-                        $('#discount').text('₱ 0');
-                        $('#final_total').text('₱ ' + subTotal.toFixed(2));
+                if (selectedVoucher) {
+                    voucherApply(selectedVoucher, subTotal);
+                } else {
 
-                        // セッションからバウチャーを解除
-                        $.ajax({
-                            method: 'POST',
-                            url: "{{ route('remove-voucher') }}",
-                            data: {},
-                            success: function(response) {
-                                toastr.info(response.message);
-                            },
-                            error: function(xhr, status, error) {
-                                toastr.error('Failed to remove voucher.');
-                            }
-                        });
-                    }
-                });
+                    $('#discount').text('₱ 0');
+                    $('#final_total').text('₱ ' + subTotal.toFixed(2));
+
+                    $.ajax({
+                        method: 'POST',
+                        url: "{{ route('remove-voucher') }}",
+                        data: {},
+                        success: function(response) {
+                            toastr.info(response.message);
+                        },
+                        error: function(xhr, status, error) {
+                            toastr.error('Failed to remove voucher.');
+                        }
+                    });
+                }
             })
 
             function voucherApply(voucher, subTotal) {
@@ -320,8 +322,44 @@
                 });
             }
 
+            //========== Remove Products from cart =========== //
+            $('.remove_cart_product').on('click', function(e) {
+                e.preventDefault();
+                let rowId = $(this).data('id');
+                removeCartProduct(rowId)
+                $(this).closest('tr').remove();
+            })
+
+            function removeCartProduct(rowId) {
+                $.ajax({
+                    method: 'GET',
+                    url: "{{ route('cart-product-remove', ':rowId') }}".replace(":rowId", rowId),
+                    beforeSend: function() {
+                        showLoader();
+                    },
+                    success: function(response) {
+                        cartTotal = response.cartTotal;
+                        $('#subtotal').text("₱" + cartTotal);
+                        $('#final_total').text("₱" + response.grand_cart_total);
+                        toastr.success(response.message);
+                    },
+                    error: function(xhr, status, error) {
+                        let errorMessage = xhr.responseJSON.message;
+                        toastr.error(errorMessage)
+                    },
+                    complete: function() {
+                        hideLoader();
+                    }
+                })
+            }
+
+            //========== Payment with PayPal =========== //
             $('.payment-method').on('click', function(e) {
                 e.preventDefault();
+                if ('{{ Cart::content()->count() === 0 }}') {
+                    toastr.warning('Cart is empty!');
+                    return;
+                }
                 let paymentGateway = $(this).data('name');
 
                 $.ajax({
@@ -350,6 +388,7 @@
 
 
         })
+
 
         // ポイント決済
 
