@@ -26,6 +26,7 @@ class AdminController extends Controller
         $salesData['week'] = DB::table('orders')
             ->select(DB::raw('WEEK(created_at) as week_number, SUM(grand_total) as total_sales'))
             ->whereYear('created_at', $currentYear)
+            ->where('payment_status', "completed")
             ->groupBy('week_number')
             ->orderBy('week_number')
             ->pluck('total_sales')
@@ -35,6 +36,7 @@ class AdminController extends Controller
         $salesData['month'] = DB::table('orders')
             ->select(DB::raw('MONTH(created_at) as month_number, SUM(grand_total) as total_sales'))
             ->whereYear('created_at', $currentYear)
+            ->where('payment_status', "completed")
             ->groupBy('month_number')
             ->orderBy('month_number')
             ->pluck('total_sales')
@@ -43,6 +45,7 @@ class AdminController extends Controller
         // 年ごとの売上を計算
         $salesData['year'] = DB::table('orders')
             ->select(DB::raw('YEAR(created_at) as year_number, SUM(grand_total) as total_sales'))
+            ->where('payment_status', "completed")
             ->groupBy('year_number')
             ->orderBy('year_number')
             ->pluck('total_sales')
@@ -57,6 +60,7 @@ class AdminController extends Controller
         $weeks = DB::table('orders')
             ->select(DB::raw('WEEK(created_at) as week_number, DATE_FORMAT(MIN(created_at), "%Y-%m-%d") as week_date'))
             ->whereYear('created_at', $currentYear)
+            ->where('payment_status', "completed")
             ->groupBy('week_number')
             ->orderBy('week_number')
             ->pluck('week_date')
@@ -66,6 +70,7 @@ class AdminController extends Controller
         $months = DB::table('orders')
             ->select(DB::raw('MONTH(created_at) as month_number, MONTHNAME(MIN(created_at)) as month_name'))
             ->whereYear('created_at', $currentYear)
+            ->where('payment_status', "completed")
             ->groupBy('month_number')
             ->orderBy('month_number')
             ->pluck('month_name')
@@ -74,6 +79,7 @@ class AdminController extends Controller
         // 年ごとのオーダーからラベルを生成
         $years = DB::table('orders')
             ->select(DB::raw('YEAR(created_at) as year_number'))
+            ->where('payment_status', "completed")
             ->groupBy('year_number')
             ->orderBy('year_number')
             ->pluck('year_number')
@@ -88,9 +94,19 @@ class AdminController extends Controller
 
         //////男女比円グラフ////
 
-        $menCount = Profile::where('gender', 'male')->count();
-        $womenCount = Profile::where('gender', 'female')->count();
-        $othersCount = Profile::where('gender', 'other')->count();
+
+        $menCount = Profile::whereHas('user', function ($query) {
+            $query->whereNull('deleted_at');
+        })->where('gender', 'male')->count();
+
+
+        $womenCount = Profile::whereHas('user', function ($query) {
+            $query->whereNull('deleted_at');
+        })->where('gender', 'female')->count();
+
+        $othersCount = Profile::whereHas('user', function ($query) {
+            $query->whereNull('deleted_at');
+        })->where('gender', 'other')->count();
         $totalCount = $menCount + $womenCount + $othersCount;
 
         $data = [
@@ -101,13 +117,30 @@ class AdminController extends Controller
 
         //////年齢別棒グラフ////
 
-        $single = Profile::where('age', '<', 10)->count();
-        $ten = Profile::where('age', '>=', 10)->where('age', '<', 20)->count();
-        $twenty  = Profile::where('age', '>=', 20)->where('age', '<', 30)->count();
-        $thirty = Profile::where('age', '>=', 30)->where('age', '<', 40)->count();
-        $forty = Profile::where('age', '>=', 40)->where('age', '<', 50)->count();
-        $fifty = Profile::where('age', '>=', 50)->where('age', '<', 60)->count();
-        $sixty = Profile::where('age', '>=', 60)->where('age', '<', 70)->count();
+        $single = Profile::whereHas('user', function ($query) {
+            $query->whereNull('deleted_at');
+        })->where('age', '<', 10)->count();
+        $ten = Profile::whereHas('user', function ($query) {
+            $query->whereNull('deleted_at');
+        })->where('age', '>=', 10)->where('age', '<', 20)->count();
+        $twenty  = Profile::whereHas('user', function ($query) {
+            $query->whereNull('deleted_at');
+        })->where('age', '>=', 20)->where('age', '<', 30)->count();
+        $thirty = Profile::whereHas('user', function ($query) {
+            $query->whereNull('deleted_at');
+        })->where('age', '>=', 30)->where('age', '<', 40)->count();
+        $forty = Profile::whereHas('user', function ($query) {
+            $query->whereNull('deleted_at');
+        })->where('age', '>=', 40)->where('age', '<', 50)->count();
+        $fifty = Profile::whereHas('user', function ($query) {
+            $query->whereNull('deleted_at');
+        })->where('age', '>=', 50)->where('age', '<', 60)->count();
+        $sixty = Profile::whereHas('user', function ($query) {
+            $query->whereNull('deleted_at');
+        })->where('age', '>=', 60)->where('age', '<', 70)->count();
+        $more = Profile::whereHas('user', function ($query) {
+            $query->whereNull('deleted_at');
+        })->where('age', '<', 60);
 
 
         $ageGroups = [
@@ -117,7 +150,8 @@ class AdminController extends Controller
             'thirty' => $thirty,
             'forty' => $forty,
             'fifty' => $fifty,
-            'sixty' => $sixty
+            'sixty' => $sixty,
+            'more' => $more
         ];
 
 

@@ -160,6 +160,49 @@
                     }
                 });
             });
+
+            $('body').on('click', '.activate-item', function(e) {
+                e.preventDefault();
+                let url = $(this).attr('href');
+
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "This will activate the user!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, activate it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            method: 'PATCH', // PATCHメソッドを使用
+                            url: url,
+                            data: {
+                                _token: "{{ csrf_token() }}"
+                            },
+                            success: function(response) {
+                                if (response.status === 'success') {
+                                    toastr.success(response.message);
+                                    Swal.fire({
+                                        title: "Activated!",
+                                        text: "The user has been activated.",
+                                        icon: "success"
+                                    }).then(() => {
+                                        window.location.reload();
+                                    });
+                                } else if (response.status === 'error') {
+                                    toastr.error(response.message);
+                                }
+                            },
+                            error: function(error) {
+                                console.error(error);
+                            }
+                        });
+                    }
+                });
+            });
+
         })
     </script>
 
