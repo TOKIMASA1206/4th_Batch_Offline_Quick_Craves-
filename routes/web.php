@@ -78,6 +78,10 @@ Route::group(["middleware" => "auth"], function () {
     Route::get('/wallet', [WalletController::class, 'index'])->name('wallet.index');
     Route::post('/wallet/point/store', [WalletController::class, 'pointStore'])->name('wallet.point.store');
 
+    #SEARCH
+    Route::get('/menu-items/search', [HomeController::class, 'search'])->name('menu-items.search');
+
+
 
 
 /**================== Admin Side ============================== */

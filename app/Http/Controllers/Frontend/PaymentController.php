@@ -271,7 +271,8 @@ class PaymentController extends Controller
             if ($orderService->createOrder()) {
                 $user->points->point_balance -= $cartTotal;
                 $user->points->save();
-
+                $orderId = session()->get('order_id');
+                $order = Order::find($orderId);
 
                 // 支払い情報を作成
                 $orderId = session()->get('order_id');
@@ -282,6 +283,14 @@ class PaymentController extends Controller
                 ];
 
                 OrderPaymentUpdate::dispatch($orderId, $paymentInfo, 'Point');
+
+                $this->handleStampsAndVouchers($order);
+
+                // Remove the used voucher.
+                $this->removeUsedVoucher($order);
+
+                /** Clear session data  */
+                $orderService->clearSession();
 
 
                 // セッションのクリア
