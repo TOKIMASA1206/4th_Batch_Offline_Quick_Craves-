@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PointPurchaseController;
 use App\Http\Controllers\VoucherController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ProfileController;
@@ -46,7 +47,6 @@ Route::group(["middleware" => "auth"], function () {
 
     /** Payment Routes  */
     Route::post('make-payment', [PaymentController::class, 'makePayment'])->name('make-payment');
-
     Route::get('payment-success', [PaymentController::class, 'paymentSuccess'])->name('payment.success');
     Route::get('payment-cancel', [PaymentController::class, 'paymentCancel'])->name('payment.cancel');
 
@@ -54,6 +54,23 @@ Route::group(["middleware" => "auth"], function () {
     Route::get('paypal/payment', [PaymentController::class, 'payWithPaypal'])->name('paypal.payment');
     Route::get('paypal/success', [PaymentController::class, 'paypalSuccess'])->name('paypal.success');
     Route::get('paypal/cancel', [PaymentController::class, 'paypalCancel'])->name('paypal.cancel');
+
+
+
+    /** Point Routes */
+    Route::post('point/payment', [PaymentController::class, 'payWithPoints'])->name('point.payment');
+
+
+    /** Point Purchase Routes (ポイント購入用) */
+    Route::post('make-point-payment', [PointPurchaseController::class, 'makePayment'])->name('make-point-payment');
+    Route::get('point/payment-success', [PointPurchaseController::class, 'paymentSuccess'])->name('point.payment.success');
+    Route::get('point/payment-cancel', [PointPurchaseController::class, 'paymentCancel'])->name('point.payment.cancel');
+
+    /** PayPal Routes for Point Purchase (ポイント購入用のPayPalルート) */
+    Route::get('paypal/point/payment', [PointPurchaseController::class, 'payWithPaypalPoints'])->name('paypal.point.payment');
+    Route::get('paypal/point/success', [PointPurchaseController::class, 'paypalSuccess'])->name('paypal.point.success');
+    Route::get('paypal/point/cancel', [PointPurchaseController::class, 'paypalCancel'])->name('paypal.point.cancel');
+
 
     #PROCEED
     Route::get('/proceed', [ProceedController::class, 'index'])->name('proceed_index');

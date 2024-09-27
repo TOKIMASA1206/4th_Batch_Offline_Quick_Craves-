@@ -182,5 +182,59 @@
                 cardInfoTriangle.classList.add("rotated");
             }
         }
+
+        $(document).ready(function() {
+            $('.unique-charge-option-item button').click(function() {
+                $('.unique-charge-option-item button').removeClass('active');
+
+                $(this).addClass('active');
+            });
+
+            // チャージボタンがクリックされたときにAjaxで支払いを処理
+            $('#uniqueChargeButton').on('click', function(e) {
+                e.preventDefault();
+                let selectedPointId = $('#selected_point_id').val();
+                let paymentGateway = 'paypal'; // PayPal支払いを指定
+
+                if (!selectedPointId) {
+                    alert('Please select a charge amount.');
+                    return;
+                }
+
+                $.ajax({
+                    method: 'POST',
+                    url: "{{ route('make-point-payment') }}",
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        selected_point_id: selectedPointId,
+                        payment_gateway: paymentGateway
+                    },
+                    beforeSend: function() {
+                        showLoader();
+                    },
+                    success: function(response) {
+                        if (response.redirect_url) {
+
+                            window.location.href = response.redirect_url;
+                        } else {
+                            alert('Error in processing the payment.');
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        let errors = xhr.responseJSON.errors;
+                        $.each(errors, function(index, value) {
+                            alert(value);
+                        });
+                    },
+                    complete: function() {
+                        // hideLoader();
+                    }
+                });
+            });
+        });
+
+        function selectPoint(pointId) {
+            $('#selected_point_id').val(pointId);
+        }
     </script>
 @endpush

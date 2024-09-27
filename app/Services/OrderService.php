@@ -55,6 +55,7 @@ class OrderService
         }
     }
 
+
     /** Clear Session Items */
     function clearSession()
     {

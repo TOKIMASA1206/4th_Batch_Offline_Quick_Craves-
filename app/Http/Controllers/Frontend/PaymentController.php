@@ -8,6 +8,12 @@ use App\Services\OrderService;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use App\Events\OrderPaymentUpdated;
+
+
+
 
 class PaymentController extends Controller
 {
@@ -52,21 +58,21 @@ class PaymentController extends Controller
         $config = [
             'mode' => 'sandbox', // Can only be 'sandbox' Or 'live'. If empty or invalid, 'live' will be used.
             'sandbox' => [
-                'client_id'         => 'AUmUhWNWBnRoSkRgpAB3Ofu668uvSn8JHQVTW0VT3_4W3v0R5kYyMtSGeN2-Fa7hx4gFXGxFu-kAKjZv',
-                'client_secret'     => 'EITpBpjK9v1QRdRKpvnpDVF--oG2KLJqa1dGzyMsqe5mw5EdKvo8XpToIlZNnWjQro7VB3Tz7gqZpJlU',
-                'app_id'            => 'APP-80W284485P519543T',
+                'client_id' => 'AUmUhWNWBnRoSkRgpAB3Ofu668uvSn8JHQVTW0VT3_4W3v0R5kYyMtSGeN2-Fa7hx4gFXGxFu-kAKjZv',
+                'client_secret' => 'EITpBpjK9v1QRdRKpvnpDVF--oG2KLJqa1dGzyMsqe5mw5EdKvo8XpToIlZNnWjQro7VB3Tz7gqZpJlU',
+                'app_id' => 'APP-80W284485P519543T',
             ],
             'live' => [
-                'client_id'         => 'AUmUhWNWBnRoSkRgpAB3Ofu668uvSn8JHQVTW0VT3_4W3v0R5kYyMtSGeN2-Fa7hx4gFXGxFu-kAKjZv',
-                'client_secret'     => 'EITpBpjK9v1QRdRKpvnpDVF--oG2KLJqa1dGzyMsqe5mw5EdKvo8XpToIlZNnWjQro7VB3Tz7gqZpJlU',
-                'app_id'            => 'APP_ID'
+                'client_id' => 'AUmUhWNWBnRoSkRgpAB3Ofu668uvSn8JHQVTW0VT3_4W3v0R5kYyMtSGeN2-Fa7hx4gFXGxFu-kAKjZv',
+                'client_secret' => 'EITpBpjK9v1QRdRKpvnpDVF--oG2KLJqa1dGzyMsqe5mw5EdKvo8XpToIlZNnWjQro7VB3Tz7gqZpJlU',
+                'app_id' => 'APP_ID'
             ],
 
             'payment_action' => 'Sale', // Can only be 'Sale', 'Authorization' or 'Order'
-            'currency'       => 'PHP',
-            'notify_url'     => env('PAYPAL_NOTIFY_URL', ''), // Change this accordingly for your application.
-            'locale'         => 'en_US', // force gateway language  i.e. it_IT, es_ES, en_US ... (for express checkout only)
-            'validate_ssl'   => true, // Validate SSL when creating api client.
+            'currency' => 'PHP',
+            'notify_url' => env('PAYPAL_NOTIFY_URL', ''), // Change this accordingly for your application.
+            'locale' => 'en_US', // force gateway language  i.e. it_IT, es_ES, en_US ... (for express checkout only)
+            'validate_ssl' => true, // Validate SSL when creating api client.
         ];
 
         return $config;
@@ -158,4 +164,67 @@ class PaymentController extends Controller
 
         OrderPaymentUpdate::dispatch($orderId, $paymentInfo, $gatewayName);
     }
+
+
+    /**============= Point Payment ====================== */
+
+    public function payWithPoints(Request $request, OrderService $orderService)
+    {
+        DB::beginTransaction();
+
+        try {
+            $user = Auth::user();
+            $cartTotal = $request->input('total');
+            $userPoints = $user->points->point_balance ?? 0;
+
+            if ($cartTotal == 0) {
+                return response()->json(['success' => false, 'message' => 'Cart is empty!']);
+            }
+
+            if ($userPoints < $cartTotal) {
+                return response()->json(['success' => false, 'message' => 'Not enough points']);
+            }
+
+            // 注文を作成
+            if ($orderService->createOrder()) {
+                $user->points->point_balance -= $cartTotal;
+                $user->points->save();
+
+                
+                // 支払い情報を作成
+                $orderId = session()->get('order_id');
+                $paymentInfo = [
+                    'transaction_id' => uniqid(),
+                    'currency' => 'POINTS',
+                    'status' => 'completed',
+                ];
+                
+                OrderPaymentUpdate::dispatch($orderId, $paymentInfo, 'Point');
+
+
+                // セッションのクリア
+                $orderService->clearSession();
+
+                DB::commit();
+
+
+                return response()->json(['success' => true, 'message' => 'Payment successful']);
+            } else {
+                $this->transactionFailUpdateStatus('Point');
+                throw new \Exception('Order creation failed');
+            }
+        } catch (\Exception $e) {
+            DB::rollBack();
+            logger($e->getMessage());
+
+            // 支払い失敗時
+            $this->transactionFailUpdateStatus('Point');
+            return response()->json(['success' => false, 'message' => 'Payment failed']);
+        }
+    }
+
+
+    
+
+
 }
