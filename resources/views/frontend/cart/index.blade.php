@@ -449,7 +449,7 @@
                         });
                     },
                     complete: function() {
-                        hideLoader();
+                        // hideLoader();
                     }
                 })
             });

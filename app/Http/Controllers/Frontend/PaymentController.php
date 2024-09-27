@@ -185,23 +185,34 @@ class PaymentController extends Controller
                 $voucherCount = floor($stamp->stamp_count / 10);
 
                 for ($i = 0; $i < $voucherCount; $i++) {
-                    $this->assignVoucher($user);
-                }
+                    $voucher = $this->assignVoucher($user);
 
+                    if ($voucher) {
+                        session()->flash('vouchers', [
+                            'message' => 'Get new voucher!!',
+                            'details' => "Code: {$voucher->code}, Discount: {$voucher->discount_value} PHP"
+                        ]);
+                    }
+                }
                 // Update the remaining number of stamps.
                 $stamp->update(['stamp_count' => $stamp->stamp_count % 10]);
             }
+
+            session()->flash('stamps', [
+                'message' => "You got {$stampCount} stamp!",
+                'count' => $stamp->stamp_count
+            ]);
         }
     }
 
     // A method to distribute vouchers to the user.
     private function assignVoucher($user)
     {
-
         $voucher = Voucher::where('code', 'Free75')->first();
-
         // Distribute a voucher to the user.
         $user->vouchers()->attach($voucher->id);
+
+        return $voucher;
     }
 
     // A method to remove the used voucher

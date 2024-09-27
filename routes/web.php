@@ -16,8 +16,6 @@ use App\Http\Controllers\MenuItemController;
 use App\Http\Controllers\MenuOptionController;
 use App\Http\Controllers\MenuSizeController;
 use App\Http\Controllers\WalletController;
-use App\Models\Point_Purchases;
-use App\Models\MenuSize;
 use Illuminate\Support\Facades\Route;
 
 Auth::routes();
@@ -82,6 +80,7 @@ Route::group(["middleware" => "auth"], function () {
 
 
 
+/**================== Admin Side ============================== */
 
     Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin'], function () {
 
@@ -99,9 +98,6 @@ Route::group(["middleware" => "auth"], function () {
         Route::resource('menuSize', MenuSizeController::class);
         Route::resource('menuOption', MenuOptionController::class);
 
-        /** ====================================================== */
-
-
         /**  Voucher  */
         Route::resource('voucher', VoucherController::class);
 
@@ -112,8 +108,6 @@ Route::group(["middleware" => "auth"], function () {
         Route::patch('/user/{id}/activate', [UserController::class, 'activate'])->name('user.activate');
 
         Route::resource('user', UserController::class);
-
-
 
         /**  Point  */
         Route::resource('point', PointController::class);
