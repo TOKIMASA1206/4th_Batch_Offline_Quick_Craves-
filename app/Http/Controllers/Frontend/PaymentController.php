@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Events\OrderPaymentUpdate;
 use App\Http\Controllers\Controller;
+use App\Models\Order;
+use App\Models\Stamp;
+use App\Models\User;
+use App\Models\Voucher;
 use App\Services\OrderService;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -87,7 +91,8 @@ class PaymentController extends Controller
 
         /** Calculate payable amount  */
         $grandTotal = session()->get('grand_total');
-        // $payableAmount = round($grandTotal * config('gatewaySettings.paypal_rate'));
+
+        $formattedTotal = number_format($grandTotal, 2, '.', '');
 
         $response = $provider->createOrder([
             'intent' => 'CAPTURE',
@@ -99,7 +104,7 @@ class PaymentController extends Controller
                 [
                     'amount' => [
                         'currency_code' => 'PHP',
-                        'value' => $grandTotal,
+                        'value' => $formattedTotal,
                     ],
                 ],
             ],
@@ -118,32 +123,98 @@ class PaymentController extends Controller
 
     function paypalSuccess(Request $request, OrderService $orderService)
     {
-        $config = $this->setPaypalConfig();
-        $provider = new PayPalClient($config);
-        $provider->getAccessToken();
+        try {
+            $config = $this->setPaypalConfig();
+            $provider = new PayPalClient($config);
+            $provider->getAccessToken();
 
-        $response = $provider->capturePaymentOrder($request->token);
-        // dd($response);
+            $response = $provider->capturePaymentOrder($request->token);
 
-        if (isset($response['status']) && $response['status'] === 'COMPLETED') {
-            $orderId = session()->get('order_id');
-            $capture = $response['purchase_units'][0]['payments']['captures'][0];
-            $paymentInfo = [
-                'transaction_id' => $capture['id'],
-                'currency' => $capture['amount']['currency_code'],
-                'status' => 'completed',
-            ];
+            if (isset($response['status']) && $response['status'] === 'COMPLETED') {
+                $orderId = session()->get('order_id');
+                $order = Order::find($orderId);
 
-            OrderPaymentUpdate::dispatch($orderId, $paymentInfo, 'PayPal');
-            // OrderPlacedNotificationEvent::dispatch($orderId);
+                $capture = $response['purchase_units'][0]['payments']['captures'][0];
+                $paymentInfo = [
+                    'transaction_id' => $capture['id'],
+                    'currency' => $capture['amount']['currency_code'],
+                    'status' => 'completed',
+                ];
 
-            /** Clear session data  */
-            $orderService->clearSession();
+                OrderPaymentUpdate::dispatch($orderId, $paymentInfo, 'PayPal');
 
-            return redirect()->route('payment.success');
-        } else {
-            $this->transactionFailUpdateStatus('PayPal');
-            return redirect()->route('payment.cancel')->withErrors(['error' => $response['error']['message']]);
+                // Add stamp and voucher processing.
+                $this->handleStampsAndVouchers($order);
+
+                // Remove the used voucher.
+                $this->removeUsedVoucher($order);
+
+                /** Clear session data  */
+                $orderService->clearSession();
+
+                return redirect()->route('payment.success');
+            } else {
+                $this->transactionFailUpdateStatus('PayPal');
+                return redirect()->route('payment.cancel')->withErrors(['error' => $response['error']['message']]);
+            }
+        } catch (\Exception $e) {
+            logger()->error('PayPal Payment Error: ' . $e->getMessage());
+            return redirect()->route('payment.cancel')->withErrors(['error' => 'An error occurred while processing the payment. Please try again.']);
+        }
+    }
+
+    // A method to handle stamp and voucher processing.
+    private function handleStampsAndVouchers($order)
+    {
+        $user = User::find($order->user_id);
+        $subtotal = $order->grand_total;
+
+        // Calculate stamps for every 100 pesos
+        $stampCount = floor($subtotal / 100);
+
+        if ($stampCount > 0) {
+            $stamp = Stamp::firstOrCreate(
+                ['user_id' => $user->id],
+                ['stamp_count' => 0]
+            );
+
+            $stamp->increment('stamp_count', $stampCount);
+
+            // Distribute a voucher when the number of stamps is 10 or more.
+            if ($stamp->stamp_count >= 10) {
+                $voucherCount = floor($stamp->stamp_count / 10);
+
+                for ($i = 0; $i < $voucherCount; $i++) {
+                    $this->assignVoucher($user);
+                }
+
+                // Update the remaining number of stamps.
+                $stamp->update(['stamp_count' => $stamp->stamp_count % 10]);
+            }
+        }
+    }
+
+    // A method to distribute vouchers to the user.
+    private function assignVoucher($user)
+    {
+
+        $voucher = Voucher::where('code', 'Free75')->first();
+
+        // Distribute a voucher to the user.
+        $user->vouchers()->attach($voucher->id);
+    }
+
+    // A method to remove the used voucher
+    private function removeUsedVoucher($order)
+    {
+        $voucherInfo = json_decode($order->coupon_info, true);
+
+        if ($voucherInfo && isset($voucherInfo['id'])) {
+            $voucherId = $voucherInfo['id'];
+            $userId = $order->user_id;
+
+            // Remove the voucher from the user.
+            DB::statement('DELETE FROM voucher_user WHERE user_id = ? AND voucher_id = ? LIMIT 1', [$userId, $voucherId]);
         }
     }
 
@@ -190,7 +261,7 @@ class PaymentController extends Controller
                 $user->points->point_balance -= $cartTotal;
                 $user->points->save();
 
-                
+
                 // 支払い情報を作成
                 $orderId = session()->get('order_id');
                 $paymentInfo = [
@@ -198,7 +269,7 @@ class PaymentController extends Controller
                     'currency' => 'POINTS',
                     'status' => 'completed',
                 ];
-                
+
                 OrderPaymentUpdate::dispatch($orderId, $paymentInfo, 'Point');
 
 
@@ -224,7 +295,7 @@ class PaymentController extends Controller
     }
 
 
-    
+
 
 
 }

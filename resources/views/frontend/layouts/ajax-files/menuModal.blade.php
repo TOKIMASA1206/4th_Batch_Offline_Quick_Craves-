@@ -146,7 +146,7 @@
             })
 
             // Calculate Total Price
-            let totalPrice = (basePrice + selectedSizePrice + selectedOptionPrice) * quantity;
+            let totalPrice = ((basePrice + selectedSizePrice + selectedOptionPrice) * quantity).toFixed(2);
 
             $('#total-price').text(totalPrice);
         }
@@ -179,6 +179,7 @@
                 },
                 success: function(response) {
                     // updateSidebarCart();
+                    $('.cart_count').text(response.cartCount)
                     toastr.success(response.message);
                 },
                 error: function(xhr, status, error) {

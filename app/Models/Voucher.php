@@ -8,4 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Voucher extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'code',
+        'discount_value',
+        'expiry_date',
+        'status',
+    ];
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'voucher_user');
+    }
 }

@@ -37,7 +37,7 @@
                                 </thead>
                                 <tbody>
                                     @foreach (Cart::content() as $item)
-                                        <tr class="t_body">
+                                        <tr class="t_body cart-item-list">
                                             <td class="pro_img"><img src="{{ asset($item->options->menu_info['image']) }}"
                                                     class="cart-img" alt="{{ $item->name }}"></td>
                                             <td class="pro_name">
@@ -122,7 +122,7 @@
                         <select name="" id="voucher_select" class="form-select">
                             <option value="">Select Voucher</option>
                             @foreach ($vouchers as $voucher)
-                                <option @selected(optional(session()->get('voucher'))->id == $voucher->id) value="{{ $voucher->id }}">
+                                <option value="{{ $voucher->id }}" @if (session()->has('voucher') && session('voucher.id') == $voucher->id) selected @endif>
                                     {{ $voucher->name }}
                                 </option>
                             @endforeach
@@ -275,7 +275,6 @@
                 if (selectedVoucher) {
                     voucherApply(selectedVoucher, subTotal);
                 } else {
-
                     $('#discount').text('₱ 0');
                     $('#final_total').text('₱ ' + subTotal.toFixed(2));
 
@@ -310,11 +309,16 @@
                         toastr.success(response.message);
                     },
                     error: function(xhr, status, error) {
-                        let errorMessage = 'Unexpected Error happened';
-                        if (xhr.responseJSON && xhr.responseJSON.message) {
-                            errorMessage = xhr.responseJSON.message;
+                        if (xhr.responseJSON && xhr.responseJSON.errors) {
+                            $.each(xhr.responseJSON.errors, function(index, value) {
+                                toastr.error(value);
+                            });
+                        } else if (xhr.responseJSON && xhr.responseJSON.message) {
+                            toastr.error(xhr.responseJSON.message);
+                        } else {
+                            toastr.error('An unexpected error has occurred.');
                         }
-                        toastr.error(errorMessage);
+                        $('#voucher_select').val('');
                     },
                     complete: function() {
                         hideLoader();
@@ -326,8 +330,20 @@
             $('.remove_cart_product').on('click', function(e) {
                 e.preventDefault();
                 let rowId = $(this).data('id');
-                removeCartProduct(rowId)
-                $(this).closest('tr').remove();
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        removeCartProduct(rowId);
+                        $(this).closest('tr').remove();
+                    }
+                });
             })
 
             function removeCartProduct(rowId) {
@@ -342,6 +358,58 @@
                         $('#subtotal').text("₱" + cartTotal);
                         $('#final_total').text("₱" + response.grand_cart_total);
                         toastr.success(response.message);
+
+                        if (response.cartCount === 0) {
+                            $('#voucher_select').val('');
+                            $('#discount').text('₱ 0');
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        let errorMessage = xhr.responseJSON.message;
+                        toastr.error(errorMessage)
+                    },
+                    complete: function() {
+                        hideLoader();
+                    }
+                })
+            }
+
+            // ============== Remove All Product  ===============//
+            $('.clear_all').on('click', function(e) {
+                e.preventDefault();
+                Swal.fire({
+                    title: "Are you sure to Delete All Items?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        removeAllCartProduct();
+                        $('.cart-item-list').remove();
+                    }
+                });
+            })
+
+            function removeAllCartProduct() {
+                $.ajax({
+                    method: 'GET',
+                    url: "{{ route('cart.destroy') }}",
+                    beforeSend: function() {
+                        showLoader();
+                    },
+                    success: function(response) {
+                        cartTotal = response.cartTotal;
+                        $('#subtotal').text("₱" + cartTotal);
+                        $('#final_total').text("₱" + response.grand_cart_total);
+                        toastr.success(response.message);
+
+                        if (response.cartCount === 0) {
+                            $('#voucher_select').val('');
+                            $('#discount').text('₱ 0');
+                        }
                     },
                     error: function(xhr, status, error) {
                         let errorMessage = xhr.responseJSON.message;
@@ -381,14 +449,11 @@
                         });
                     },
                     complete: function() {
-                        // hideLoader();
+                        hideLoader();
                     }
                 })
             });
-
-
         })
-
 
         // ポイント決済
 

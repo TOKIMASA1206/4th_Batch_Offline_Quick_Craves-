@@ -18,7 +18,10 @@ class ProfileController extends Controller
 
     public function index()
     {
-        $orders = Order::where('user_id', Auth::user()->id)->latest()->get();
+        $orders = Order::where('user_id', Auth::user()->id)
+            ->where('payment_status', 'completed')
+            ->latest()
+            ->get();
         return view('frontend.profile.index', compact('orders'));
     }
     public function card()
@@ -134,7 +137,6 @@ class ProfileController extends Controller
             logger($e);
             return back()->with('error', 'There was an error updating the password.');
         }
-
     }
 
 

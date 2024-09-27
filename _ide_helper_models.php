@@ -159,6 +159,7 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\OrderItem> $orderItems
  * @property-read int|null $order_items_count
+ * @property-read \App\Models\User $user
  * @method static \Illuminate\Database\Eloquent\Builder|Order newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Order newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Order query()
@@ -280,6 +281,28 @@ namespace App\Models{
  * 
  *
  * @property int $id
+ * @property int $user_id
+ * @property int $stamp_count
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|Stamp newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Stamp newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Stamp query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Stamp whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Stamp whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Stamp whereStampCount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Stamp whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Stamp whereUserId($value)
+ */
+	class Stamp extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
  * @property string $name
  * @property string $email
  * @property string $role
@@ -293,6 +316,9 @@ namespace App\Models{
  * @property-read int|null $notifications_count
  * @property-read \App\Models\UserPoints|null $points
  * @property-read \App\Models\Profile|null $profile
+ * @property-read \App\Models\Stamp|null $stamp
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Voucher> $vouchers
+ * @property-read int|null $vouchers_count
  * @method static \Database\Factories\UserFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
@@ -347,6 +373,8 @@ namespace App\Models{
  * @property int $status
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\User> $users
+ * @property-read int|null $users_count
  * @method static \Illuminate\Database\Eloquent\Builder|Voucher newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Voucher newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Voucher query()

@@ -48,7 +48,7 @@ class User extends Authenticatable
     }
 
 
-     // モデルイベントを設定してプロフィールを作成
+    // モデルイベントを設定してプロフィールを作成
     protected static function booted()
     {
         static::created(function ($user) {
@@ -75,5 +75,15 @@ class User extends Authenticatable
     public function pointPurchases()
     {
         return $this->hasMany(UserPointPurchase::class);
+    }
+    
+    public function vouchers()
+    {
+        return $this->belongsToMany(Voucher::class, 'voucher_user');
+    }
+
+    public function stamp()
+    {
+        return $this->hasOne(Stamp::class);
     }
 }
