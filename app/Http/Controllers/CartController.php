@@ -8,6 +8,8 @@ use App\Models\Voucher;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
+use Session;
 
 class CartController extends Controller
 {
@@ -16,7 +18,12 @@ class CartController extends Controller
      */
     public function index()
     {
-        $vouchers = Voucher::all();
+        if (Auth::check()) {
+            $vouchers = Auth::user()->vouchers()->where('status', 1)->get();
+        } else {
+            $vouchers = collect();
+        }
+
         return view('frontend.cart.index', compact('vouchers'));
     }
 
@@ -62,7 +69,13 @@ class CartController extends Controller
                 'options' => $options,
             ]);
 
-            return response(['status' => 'success', 'message' => 'Product added into cart!'], 200);
+            $cartCount = Cart::content()->count();
+
+            return response([
+                'status' => 'success',
+                'message' => 'Product added into cart!',
+                'cartCount' => $cartCount,
+            ], 200);
         } catch (\Exception $e) {
             logger($e);
             return response(['status' => 'error', 'message' => 'Something went wrong!'], 500);
@@ -94,9 +107,14 @@ class CartController extends Controller
         try {
             Cart::remove($rowId);
 
+            if (Cart::count() === 0) {
+                Session::forget('voucher');
+            }
+
             return response([
                 'status' => 'success',
                 'message' => 'Item has been removed!',
+                'cartCount' => Cart::count(),
                 'cartTotal' => cartTotal(),
                 'grand_cart_total' => grandCartTotal(),
             ], 200);
@@ -115,6 +133,10 @@ class CartController extends Controller
         $subTotal = $request->input('subTotal');
         $voucherId = $request->input('voucher');
 
+        if ($subTotal == 0) {
+            return response(['message' => 'The voucher cannot be applied because the cart is empty.'], 422);
+        }
+
         $voucher = Voucher::find($voucherId);
 
         if (!$voucher) {
@@ -127,14 +149,12 @@ class CartController extends Controller
 
         $discount = (float) $voucher->discount_value;
 
-        // 割引がサブトータルを超えないようにする
         if ($discount > $subTotal) {
             $discount = $subTotal;
         }
 
         $finalTotal = $subTotal - $discount;
 
-        // セッションにバウチャー情報を保存（既存のバウチャーを上書き）
         session()->put('voucher', [
             'id' => $voucher->id,
             'discount' => $discount,
@@ -155,5 +175,24 @@ class CartController extends Controller
         return response([
             'message' => 'Voucher has been removed',
         ]);
+    }
+
+    // Delete All Items
+    function cartDestroy()
+    {
+        try {
+            Cart::destroy();
+            session()->forget('voucher');
+
+            return response([
+                'status' => 'success',
+                'message' => 'All Item has been removed!',
+                'cartCount' => Cart::count(),
+                'cartTotal' => cartTotal(),
+                'grand_cart_total' => grandCartTotal(),
+            ], 200);
+        } catch (\Exception $e) {
+            return response(['status' => 'error', 'message' => 'Sorry something went wrong!'], 500);
+        }
     }
 }

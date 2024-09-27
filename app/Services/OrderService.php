@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Stamp;
 use Cart;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,8 +18,10 @@ class OrderService
             $order->invoice_id = generateInvoiceId();
             $order->user_id = Auth::user()->id;
             $order->discount = session()->get('voucher')['discount'] ?? 0;
-            $order->subtotal = cartTotal();
-            $order->grand_total = grandCartTotal();
+
+            $order->subtotal = round(cartTotal(), 2);
+            $order->grand_total = round(grandCartTotal(), 2);
+
             $order->product_qty = Cart::content()->count();
             $order->payment_method = NULL;
             $order->payment_status = 'pending';
@@ -34,7 +37,7 @@ class OrderService
                 $orderItem->order_id = $order->id;
                 $orderItem->menu_item_name = $product->name;
                 $orderItem->menu_item_id = $product->id;
-                $orderItem->unit_price = $product->price;
+                $orderItem->unit_price = round($product->price, 2);
                 $orderItem->qty = $product->qty;
                 $orderItem->menu_item_size = json_encode($product->options->menu_size);
                 $orderItem->menu_item_option = json_encode($product->options->menu_options);
@@ -43,10 +46,7 @@ class OrderService
 
             /** Putting the Order Id in session */
             session()->put('order_id', $order->id);
-
-            /** Putting the grand total amount in session */
             session()->put('grand_total', $order->grand_total);
-
 
             return true;
         } catch (\Exception $e) {

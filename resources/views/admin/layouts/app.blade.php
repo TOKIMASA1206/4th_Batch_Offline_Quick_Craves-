@@ -107,11 +107,11 @@
         $(document).ready(function() {
 
             /** Success & Error message notification **/
-            $('.alert').hide().fadeIn(1000);
+            // $('.alert').hide().fadeIn(1000);
 
-            setTimeout(function() {
-                $('.alert').fadeOut(1000);
-            }, 3000);
+            // setTimeout(function() {
+            //     $('.alert').fadeOut(1000);
+            // }, 3000);
 
 
             /* Sweet Alert Config  */

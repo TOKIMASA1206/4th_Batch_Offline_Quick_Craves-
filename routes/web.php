@@ -44,6 +44,7 @@ Route::group(["middleware" => "auth"], function () {
     Route::post('/cart-update-qty', [CartController::class, 'cartQtyUpdate'])->name('cart.quantity-update');
     Route::post('/apply-voucher', [CartController::class, 'applyVoucher'])->name('apply-voucher');
     Route::post('/remove-voucher', [CartController::class, 'removeVoucher'])->name('remove-voucher');
+    Route::get('/cart-destroy', [CartController::class, 'cartDestroy'])->name('cart.destroy');
 
     /** Payment Routes  */
     Route::post('make-payment', [PaymentController::class, 'makePayment'])->name('make-payment');

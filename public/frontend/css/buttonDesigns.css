@@ -221,3 +221,27 @@
     transform: translateY(-3px);
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
+
+.cart_count {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #FFB11B;
+    color: white;
+    line-height: 20px;
+    font-size: 12px;
+    text-align: center;
+    font-weight: 600;
+    top: -12px;
+    right: -12px;
+}
+
+.header-cart {
+    color: black;
+    transition: color 0.3s ease;
+}
+
+.header-cart:hover {
+    color: #ff951b;
+}

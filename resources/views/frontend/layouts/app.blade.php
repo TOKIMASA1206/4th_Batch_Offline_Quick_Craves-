@@ -81,18 +81,24 @@
     <div id="app">
         <!--============ Header ===================-->
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container-fluid ">
+            <div class="container-fluid px-5">
                 <a class="navbar-brand fs-2 ar" href="{{ url('/') }}">
                     <img src="{{ asset('logos/Logo.png') }}" width="70rem" alt="logo"> Quick Craves
                 </a>
-                <div id="search_bar">
-                    <form class="form-inline my-2 my-lg-0 d-flex gap-2">
-                        <div>
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search Menu"
-                                aria-label="Search">
-                        </div>
-                        <button class="btn btn-outline-success my-2 my-sm-0 " type="submit">Search</button>
-                    </form>
+                <div class="d-flex">
+                    <a href="{{ route('cart_index') }}" class="me-5 mt-2" style="position: relative">
+                        <i class="fa fa-shopping-basket fs-4 header-cart" aria-hidden="true"></i>
+                        <span class="cart_count">{{ Cart::content()->count() }}</span>
+                    </a>
+                    <div id="search_bar">
+                        <form class="form-inline my-2 my-lg-0 d-flex gap-2">
+                            <div>
+                                <input class="form-control mr-sm-2" type="search" placeholder="Search Menu"
+                                    aria-label="Search">
+                            </div>
+                            <button class="btn btn-outline-success my-2 my-sm-0 " type="submit">Search</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -275,29 +281,20 @@
             </div>
         </footer>
 
-        @include('frontend.layouts.components.global-scripts')
-        @stack('scripts')
         {{-- Javascript --}}
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="{{ asset('frontend/js/toastr.min.js') }}"></script>
         <script src="{{ asset('frontend/js/sidebar.js') }}"></script>
         <script src="{{ asset('frontend/js/animate.js') }}"></script>
+
+        {{-- フロント全体で使用するJSはここに記載 --}}
+        @include('frontend.layouts.components.global-scripts')
+
+
+        @stack('scripts')
+
         <script>
-            toastr.options.progressBar = true;
 
-            @if ($errors->any())
-                @foreach ($errors->all() as $error)
-                    toastr.error("{{ $error }}")
-                @endforeach
-            @endif
-
-            $(document).ready(function() {
-                // Ser csrf ajax header
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-            })
         </script>
 
 </body>

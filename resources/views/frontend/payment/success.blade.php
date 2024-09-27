@@ -29,7 +29,7 @@
                     </p>
                     <p class="mb-3">Thank you for your purchase! Your order has been successfully processed.</p>
 
-                    <p>You can view your order history <a href="">here</a></p>
+                    <p>You can view your order history <a href="{{ route('profile_index') }}">here</a></p>
                 </div>
             </div>
         </div>
