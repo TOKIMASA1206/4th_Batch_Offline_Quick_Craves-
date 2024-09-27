@@ -143,7 +143,7 @@ class CartController extends Controller
             return response(['message' => 'Voucher not found'], 404);
         }
 
-        if ($voucher->expiry_date < now()) {
+        if ($voucher->expiry_date !== null && $voucher->expiry_date < now()) {
             return response(['message' => 'This voucher is already expired'], 422);
         }
 

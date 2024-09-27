@@ -21,7 +21,7 @@
                 <div class="tab-content mt-3" id="myTabContent">
                     <div class="tab-pane fade show active" id="vouchers" role="tabpanel"
                         aria-labelledby="vouchers-tab">
-                        @foreach ($vouchers as $voucher)
+                        @foreach (Auth::user()->vouchers as $voucher)
                         <div class="voucher-item">
                             <div class="voucher-icon">
                                 <img src="{{ asset('frontend/images/ticket.png') }}" alt="Ticket Icon">

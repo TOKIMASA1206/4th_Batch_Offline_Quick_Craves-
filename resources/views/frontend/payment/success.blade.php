@@ -16,8 +16,6 @@
 @endsection
 
 @section('content')
-
-
     <section class="cart_view ">
         <div class="container">
             <div class="row">
@@ -34,5 +32,23 @@
             </div>
         </div>
     </section>
-
 @endsection
+
+@push('scripts')
+    <!-- ToastrのCSSとJSが既に読み込まれていることを確認 -->
+    <script>
+        $(document).ready(function() {
+            @if(session('orderSuccess'))
+                toastr.success("{{ session('orderSuccess') }}");
+            @endif
+
+            @if(session('stamps'))
+                toastr.info("{{ session('stamps.message') }} Total: {{ session('stamps.count') }} Stamp");
+            @endif
+
+            @if(session('vouchers'))
+                toastr.success("{{ session('vouchers.message') }} Details: {{ session('vouchers.details') }}");
+            @endif
+        });
+    </script>
+@endpush

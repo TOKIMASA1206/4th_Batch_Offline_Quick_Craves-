@@ -241,6 +241,31 @@ namespace App\Models{
 /**
  * 
  *
+ * @property int $id
+ * @property int $points
+ * @property float $purchase_amount
+ * @property int $bonus_points
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\UserPointPurchase> $userPointPurchases
+ * @property-read int|null $user_point_purchases_count
+ * @method static \Illuminate\Database\Eloquent\Builder|PointPurchase newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|PointPurchase newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|PointPurchase query()
+ * @method static \Illuminate\Database\Eloquent\Builder|PointPurchase whereBonusPoints($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PointPurchase whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PointPurchase whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PointPurchase wherePoints($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PointPurchase wherePurchaseAmount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PointPurchase whereUpdatedAt($value)
+ */
+	class PointPurchase extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Proceed newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Proceed newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Proceed query()
@@ -314,6 +339,8 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\UserPointPurchase> $pointPurchases
+ * @property-read int|null $point_purchases_count
  * @property-read \App\Models\UserPoints|null $points
  * @property-read \App\Models\Profile|null $profile
  * @property-read \App\Models\Stamp|null $stamp
@@ -349,6 +376,65 @@ namespace App\Models{
  * @property float $point_balance
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|UserPoint newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|UserPoint newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|UserPoint query()
+ * @method static \Illuminate\Database\Eloquent\Builder|UserPoint whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserPoint whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserPoint wherePointBalance($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserPoint whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserPoint whereUserId($value)
+ */
+	class UserPoint extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property int $point_purchase_id
+ * @property float $amount_paid
+ * @property int $points_received
+ * @property string|null $payment_method
+ * @property string|null $payment_status
+ * @property string|null $payment_approve_date
+ * @property string|null $transaction_id
+ * @property string|null $currency_name
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\PointPurchase $pointPurchase
+ * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|UserPointPurchase newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|UserPointPurchase newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|UserPointPurchase query()
+ * @method static \Illuminate\Database\Eloquent\Builder|UserPointPurchase whereAmountPaid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserPointPurchase whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserPointPurchase whereCurrencyName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserPointPurchase whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserPointPurchase wherePaymentApproveDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserPointPurchase wherePaymentMethod($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserPointPurchase wherePaymentStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserPointPurchase wherePointPurchaseId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserPointPurchase wherePointsReceived($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserPointPurchase whereTransactionId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserPointPurchase whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserPointPurchase whereUserId($value)
+ */
+	class UserPointPurchase extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property float $point_balance
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|UserPoints newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|UserPoints newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|UserPoints query()
@@ -369,7 +455,7 @@ namespace App\Models{
  * @property string $name
  * @property string $code
  * @property float $discount_value
- * @property string $expiry_date
+ * @property string|null $expiry_date
  * @property int $status
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -388,5 +474,20 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereUpdatedAt($value)
  */
 	class Voucher extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $user_id
+ * @property int $voucher_id
+ * @method static \Illuminate\Database\Eloquent\Builder|VoucherUser newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|VoucherUser newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|VoucherUser query()
+ * @method static \Illuminate\Database\Eloquent\Builder|VoucherUser whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|VoucherUser whereVoucherId($value)
+ */
+	class VoucherUser extends \Eloquent {}
 }
 
