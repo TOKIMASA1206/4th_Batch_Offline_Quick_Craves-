@@ -19,17 +19,18 @@
 
 
     <section class="cart_view ">
-        <div class="container">
+        <div class="container my-5">
             <div class="row">
-                <h2 class="mt-5"> Payment Successful!</h2>
+                <h4 class="mt-5">Payment Cancelled</h4>
                 <div class="col-12 text-center">
 
                     <p class="inform_icon">
-                        <i class="fa-solid fa-thumbs-up"></i>
+                        <i class="fa-solid fa-cat"></i>
                     </p>
-                    <p class="mb-3">Thank you for your purchase! Your order has been successfully processed.</p>
+                    <p class="mb-3">We're sorry, but your payment process was not completed. If you encountered an issue,
+                        please try again or contact our support team for assistance.</p>
 
-                    <p>You can view your order history <a href="">here</a></p>
+                    <p>You can view your cart <a href="{{route('wallet.index')}}">here</a></p>
                 </div>
             </div>
         </div>

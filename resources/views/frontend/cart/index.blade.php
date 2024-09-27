@@ -392,36 +392,38 @@
 
         // ポイント決済
 
-        document.getElementById('confirmPayWithPoints').addEventListener('click', function() {
-            var cartTotal = {{ cartTotal() }};
-            var pointBalance = {{ Auth::user()->points->point_balance ?? 0 }};
+        $(document).ready(function() {
+            $('#confirmPayWithPoints').on('click', function() {
+                var cartTotal = {{ cartTotal() }};
+                var pointBalance = {{ Auth::user()->points->point_balance ?? 0 }};
 
-            if (pointBalance < cartTotal) {
-                // ポイントが足りない場合、エラーメッセージを表示
-                document.getElementById('pointErrorMessage').style.display = 'block';
-                return;
-            }
-
-            $.ajax({
-                method: 'POST',
-                url: "",
-                data: {
-                    _token: "{{ csrf_token() }}",
-                    total: cartTotal,
-                    points: pointBalance
-                },
-                success: function(response) {
-                    if (response.success) {
-                        alert('Payment successful!');
-                        location.reload();
-                    } else {
-                        alert('Payment failed. Please try again.');
-                    }
-                },
-                error: function(xhr, status, error) {
-                    console.error(error);
-                    alert('An error occurred. Please try again.');
+                if (pointBalance < cartTotal) {
+                    // ポイントが足りない場合、エラーメッセージを表示
+                    $('#pointErrorMessage').show();
+                    return;
                 }
+
+                $.ajax({
+                    method: 'POST',
+                    url: "{{ route('point.payment') }}", // ルート名を指定
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        total: cartTotal
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            // 成功した場合、successページにリダイレクト
+                            window.location.href = "{{ route('payment.success') }}";
+                        } else {
+                            alert(response.message); // エラーメッセージを表示
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
+                        window.location.href = "{{ route('payment.cancel') }}";
+                    }
+                });
+
             });
         });
     </script>

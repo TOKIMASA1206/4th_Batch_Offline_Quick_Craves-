@@ -71,4 +71,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(UserPoints::class, 'user_id');
     }
+
+    public function pointPurchases()
+    {
+        return $this->hasMany(UserPointPurchase::class);
+    }
 }

@@ -18,7 +18,7 @@
                 </div>
 
                 <p class="unique-current-point-text">SELECT CHRAGE AMOUNT</p>
-                <form action="{{ route('wallet.point.store') }}" method="post">
+                <form action="" method="post">
                     @csrf
                     <input type="hidden" name="selected_point_id" id="selected_point_id">
 
@@ -45,7 +45,7 @@
                     <div class="unique-modal-footer gap-3">
                         <button type="button" class="unique-modal-button unique-cancel-button w-100"
                             id="uniqueCancelButton" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="unique-modal-button unique-charge-button w-100"
+                        <button type="submit" class="unique-modal-button unique-charge-button payment-method w-100"
                             id="uniqueChargeButton">Charge</button>
                     </div>
                 </form>
@@ -56,22 +56,4 @@
     </div>
 </div>
 
-@push('scripts')
-    <script>
-        $(document).ready(function() {
-            $('.unique-charge-option-item button').click(function() {
-                // Remove the 'active' class from all buttons
-                $('.unique-charge-option-item button').removeClass('active');
 
-                // Add the 'active' class to the clicked button
-                $(this).addClass('active');
-            });
-        });
-
-
-        // 選択されたポイントのIDを hidden input にセットする関数
-        function selectPoint(pointId) {
-            document.getElementById('selected_point_id').value = pointId;
-        }
-    </script>
-@endpush
