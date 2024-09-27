@@ -6,7 +6,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body fs-5">
-            <p>Your total cart value : <strong class="text-danger">₱ {{ cartTotal() }}</strong></p>
+            <p>Your total cart value : <strong class="text-danger">₱                                 {{ isset(session()->get('voucher')['discount']) ? cartTotal() - session()->get('voucher')['discount'] : cartTotal() }}</strong></p>
             <p>You have <strong class="text-danger">₱{{ Auth::user()->points->point_balance ?? 0 }}</strong> points available.</p>
             <p>Would you like to use your points to pay for this order?</p>
         

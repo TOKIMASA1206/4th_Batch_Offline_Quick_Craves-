@@ -101,6 +101,27 @@
     animation-fill-mode: both !important;
 }
 
+/* ページネーションリンクの通常時の色を変更 */
+.pagination .page-link {
+    color: #FFB11B  ;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #FFB11B !important;
+    border-color: #FFB11B !important;
+    color: #fff;
+}
+
+.pagination .page-link:hover {
+    background-color: #FFB11B !important;
+    color: #fff;
+}
+
+.pagination .page-item.previous .page-link,
+.pagination .page-item.next .page-link {
+    color: #FFB11B !important;
+}
+
 /* Responsive Breakpoints */
 
 /* Mobile Devices (Up to 576px) */

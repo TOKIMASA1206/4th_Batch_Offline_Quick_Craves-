@@ -26,8 +26,12 @@ class HomeController extends Controller
     public function index()
     {
         $categories = Category::where(['show_at_home' => 1, 'status' => 1])->get();
-        return view('frontend.home.index', compact('categories'));
+        $menuItems = MenuItem::where(['show_at_home' => 1, 'status' => 1])
+            ->orderBy('id', 'DESC')
+            ->paginate(4);
+        return view('frontend.home.index', compact('categories','menuItems'));
     }
+    
 
     function loadMenuModal($menuId)
     {
@@ -35,4 +39,20 @@ class HomeController extends Controller
 
         return view('frontend.layouts.ajax-files.menuModal', compact('menuItem'))->render();
     }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        if (!$query) {
+            return redirect()->back()->with('error', 'Please enter a search term.');
+        }
+    
+        $menuItems = MenuItem::where('name', 'LIKE', '%' . $query . '%')
+            ->orWhere('description', 'LIKE', '%' . $query . '%')
+            ->paginate(4)
+            ->appends(['query' => $query]);
+    
+        return view('frontend.search.index', compact('menuItems', 'query'));
+    }
+    
 }

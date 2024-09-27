@@ -91,12 +91,12 @@
                         <span class="cart_count">{{ Cart::content()->count() }}</span>
                     </a>
                     <div id="search_bar">
-                        <form class="form-inline my-2 my-lg-0 d-flex gap-2">
+                        <form class="form-inline my-2 my-lg-0 d-flex gap-2" action="{{ route('menu-items.search') }}" method="GET">
+                            @csrf
                             <div>
-                                <input class="form-control mr-sm-2" type="search" placeholder="Search Menu"
-                                    aria-label="Search">
+                                <input class="form-control mr-sm-2" type="search" placeholder="Search Menu" aria-label="Search" name="query">
                             </div>
-                            <button class="btn btn-outline-success my-2 my-sm-0 " type="submit">Search</button>
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                         </form>
                     </div>
                 </div>
