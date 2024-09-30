@@ -11,6 +11,8 @@ class Order extends Model
     use HasFactory;
 
     protected $table = 'orders';
+    protected $fillable = ['order_status'];
+
 
     function orderItems() : HasMany {
         return $this->hasMany(OrderItem::class);
@@ -20,4 +22,5 @@ class Order extends Model
     {
         return $this->belongsTo(User::class);
     }
+
 }

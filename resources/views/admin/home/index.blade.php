@@ -15,7 +15,7 @@
                                     <h4>MENU</h4>
                                 </div>
                                 <div class="card-body">
-                                    10
+                                    {{ $menuCount }}
                                 </div>
                             </div>
                         </div>
@@ -30,7 +30,7 @@
                                     <h4>Category</h4>
                                 </div>
                                 <div class="card-body">
-                                    42
+                                    {{ $categoryCount }}
                                 </div>
                             </div>
                         </div>
@@ -45,7 +45,7 @@
                                     <h4>User</h4>
                                 </div>
                                 <div class="card-body">
-                                    1,201
+                                    {{ $userCount }}
                                 </div>
                             </div>
                         </div>
