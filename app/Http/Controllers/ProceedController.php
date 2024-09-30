@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\Proceed;
+use Auth;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ProceedController extends Controller
@@ -12,8 +15,14 @@ class ProceedController extends Controller
      */
     public function index()
     {
-        //
-        return view('frontend.proceed.index');
+        $today = Carbon::today();
+
+        $orders = Order::where('user_id', Auth::user()->id)
+            ->where('payment_status', 'completed')
+            ->whereDate('created_at', $today)
+            ->latest()
+            ->get();
+        return view('frontend.proceed.index', compact('orders'));
     }
     public function adminIndex()
     {
