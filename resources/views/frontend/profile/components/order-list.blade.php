@@ -66,7 +66,7 @@
                                     <th class="package">item description</th>
                                     <th class="price">Price</th>
                                     <th class="qnty">Quantity</th>
-                                    <th class="total">Total</th>
+                                    <th class="total" style="">Total</th>
                                 </tr>
                             </thead>
                             <tbody>

@@ -25,9 +25,9 @@
                     <p class="inform_icon">
                         <i class="fa-solid fa-thumbs-up"></i>
                     </p>
-                    <p class="mb-3">Thank you for your purchase! Your order has been successfully processed.</p>
+                    <p class="mb-3 fs-3">Thank you for your purchase! Your order has been successfully processed.</p>
 
-                    <p>You can view your order history <a href="{{ route('profile_index') }}">here</a></p>
+                    <p class="fs-5">You can view your order history  <a href="{{ route('proceed_index') }}" class="fs-2" style="text-decoration: none;">here</a></p>
                 </div>
             </div>
         </div>

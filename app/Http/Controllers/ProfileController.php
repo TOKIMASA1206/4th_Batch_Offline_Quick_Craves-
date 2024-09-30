@@ -18,12 +18,14 @@ class ProfileController extends Controller
 
     public function index()
     {
-        $orders = Order::where('user_id', Auth::user()->id)
+        $orders = Order::with('orderItems')
+            ->where('user_id', Auth::user()->id)
             ->where('payment_status', 'completed')
             ->latest()
             ->get();
         return view('frontend.profile.index', compact('orders'));
     }
+
     public function card()
     {
         //
