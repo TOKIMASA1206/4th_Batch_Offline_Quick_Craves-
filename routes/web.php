@@ -107,6 +107,9 @@ Route::group(["middleware" => "auth"], function () {
 
         /**  Proceed  */
         Route::get('/proceed', [ProceedController::class, 'adminIndex'])->name('proceed.index');
+        // Route::resource('proceed', ProceedController::class);
+        Route::patch('/proceed/{id}/update', [ProceedController::class, 'update'])->name('proceed.update');
+
 
         /**  User  */
         Route::patch('/user/{id}/activate', [UserController::class, 'activate'])->name('user.activate');

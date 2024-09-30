@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\MenuItem;
 use App\Models\Profile;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -11,6 +14,11 @@ class AdminController extends Controller
 
     public function index()
     {
+
+        $menuCount = MenuItem::count();
+        $categoryCount = Category::count();
+        $userCount = User::count();
+
         $currentYear = date('Y');
         $currentMonth = date('m');
 
@@ -99,7 +107,6 @@ class AdminController extends Controller
             $query->whereNull('deleted_at');
         })->where('gender', 'male')->count();
 
-
         $womenCount = Profile::whereHas('user', function ($query) {
             $query->whereNull('deleted_at');
         })->where('gender', 'female')->count();
@@ -155,7 +162,7 @@ class AdminController extends Controller
         ];
 
 
-        return view('admin.home.index', compact('salesData', 'data', 'ageGroups', 'salesData', 'labelsData'));
+        return view('admin.home.index', compact('salesData', 'data', 'ageGroups', 'salesData', 'labelsData', 'menuCount', 'categoryCount', 'userCount'));
     }
 
     private function fillMissingData($data, $totalCount)

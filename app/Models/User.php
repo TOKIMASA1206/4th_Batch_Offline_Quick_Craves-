@@ -76,7 +76,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(UserPointPurchase::class);
     }
-    
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'user_id');
+    }
+
     public function vouchers()
     {
         return $this->belongsToMany(Voucher::class, 'voucher_user');
