@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('menu_item_id');
             $table->double('unit_price');
             $table->integer('qty');
+            $table->string('status')->default('pending');
             $table->json('menu_item_size')->nullable();
             $table->json('menu_item_option')->nullable();
             $table->timestamps();

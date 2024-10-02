@@ -20,12 +20,13 @@
 
     <div class="container fade-in">
         @foreach ($orders as $order)
-        <div class="row mb-3">
-            <h3 style="margin-left: 60px">Transaction ID: {{ $order->transaction_id }}</h3>
-            <div class="col-lg-8">
+            <div class="row mb-3">
+                <h3 style="margin-left: 60px">Transaction ID: {{ $order->transaction_id }}</h3>
+                <div class="col-lg-8">
                     <div class="proceed">
                         @foreach ($order->orderItems as $orderItem)
-                            <div class="row proceed-item mx-auto mb-4">
+                            <div class="row proceed-item mx-auto mb-4" data-order-id="{{ $order->id }}"
+                                data-item-id="{{ $orderItem->id }}">
                                 <div class="col-md-3 left text-center">
                                     <div class="proceed-img-container mb-2">
                                         <img src="{{ asset($orderItem->menuItem->item_image) }}" class="proceed-img"
@@ -175,12 +176,125 @@
 
 
 @push('scripts')
-    <script src="{{ asset('frontend/js/proceed_js_action.js') }}"></script>
+    {{-- <script src="{{ asset('frontend/js/proceed_js_action.js') }}"></script> --}}
     <script>
         $(document).ready(function() {
-            window.Echo.channel("test-channel").listen("TestEvent", function(e) {
-                console.log('work')
+            // 全ての proceed-item を取得
+            const proceedItems = document.querySelectorAll('.proceed-item');
+
+            // proceedItems をマップに保存しておく
+            const proceedItemsMap = {};
+
+            // 各 proceed-item に対して処理を行う
+            proceedItems.forEach(function(item) {
+                const orderId = item.getAttribute('data-order-id');
+                const itemId = item.getAttribute('data-item-id');
+                const key = `${orderId}-${itemId}`;
+
+                // ステータスバーの要素を取得して保存
+                const proceedStatusColor1 = item.querySelector('.status-bar-color-1');
+                const proceedStatusColor2 = item.querySelector('.status-bar-color-2');
+                const makingMarkFirst = item.querySelector('.making-mark-first');
+                const makingMarkSecond = item.querySelector('.making-mark-second');
+                const completedMarkFirst = item.querySelector('.completed-mark-first');
+                const completedMarkSecond = item.querySelector('.completed-mark-second');
+
+                // 要素が存在するか確認
+                if (!proceedStatusColor1 || !proceedStatusColor2 || !makingMarkFirst || !makingMarkSecond ||
+                    !completedMarkFirst || !completedMarkSecond) {
+                    console.warn(`Elements not found for orderId: ${orderId}, itemId: ${itemId}`);
+                    return;
+                }
+
+                // 状態を保持するためのフラグ
+                let isMakingOnceClicked = false;
+                let isCompletedOnceClicked = false;
+
+                // 初期状態を設定
+                proceedStatusColor1.style.transform = 'translateX(-100%)';
+                proceedStatusColor2.style.transform = 'translateX(-100%)';
+                makingMarkFirst.style.display = 'inline';
+                makingMarkSecond.style.display = 'none';
+                completedMarkFirst.style.display = 'inline';
+                completedMarkSecond.style.display = 'none';
+
+                // マップに保存
+                proceedItemsMap[key] = {
+                    proceedStatusColor1,
+                    proceedStatusColor2,
+                    makingMarkFirst,
+                    makingMarkSecond,
+                    completedMarkFirst,
+                    completedMarkSecond,
+                    isMakingOnceClicked,
+                    isCompletedOnceClicked
+                };
             });
+
+            window.Echo.channel("test-channel")
+                .listen('TestEvent', (e) => {
+                    console.log(e.orderId);
+                    console.log(e.itemId);
+                    console.log(e.status);
+
+                    const key = `${e.orderId}-${e.itemId}`;
+                    console.log(`Looking for key: ${key}`);
+                    const item = proceedItemsMap[key];
+
+                    if (item) {
+                        console.log(`Found item for key: ${key}, updating status to ${e.status}`);
+                        updateStatusBar(item, e.status);
+                    } else {
+                        console.warn(`No proceed item found for key: ${key}`);
+                    }
+                });
+
+            // ステータスバーを更新する関数
+            function updateStatusBar(item, status) {
+                const {
+                    proceedStatusColor1,
+                    proceedStatusColor2,
+                    makingMarkFirst,
+                    makingMarkSecond,
+                    completedMarkFirst,
+                    completedMarkSecond
+                } = item;
+
+                if (status === 'Cooking started') {
+                    // Cooking started の場合
+                    if (!item.isMakingOnceClicked) {
+                        proceedStatusColor1.style.transform = 'translateX(0)';
+                        makingMarkFirst.style.display = 'none';
+                        makingMarkSecond.style.display = 'inline';
+                        item.isMakingOnceClicked = true;
+                    }
+                } else if (status === 'Cooking ended') {
+                    // Cooking ended の場合
+                    if (!item.isMakingOnceClicked) {
+                        // もし調理開始がまだなら、まず調理開始にする
+                        proceedStatusColor1.style.transform = 'translateX(0)';
+                        makingMarkFirst.style.display = 'none';
+                        makingMarkSecond.style.display = 'inline';
+                        item.isMakingOnceClicked = true;
+                    }
+                    proceedStatusColor2.style.transform = 'translateX(0)';
+                    completedMarkFirst.style.display = 'none';
+                    completedMarkSecond.style.display = 'inline';
+                    item.isCompletedOnceClicked = true;
+                } else if (status === 'Order placed') {
+                    // 初期状態にリセット
+                    proceedStatusColor1.style.transform = 'translateX(-100%)';
+                    proceedStatusColor2.style.transform = 'translateX(-100%)';
+                    makingMarkFirst.style.display = 'inline';
+                    makingMarkSecond.style.display = 'none';
+                    completedMarkFirst.style.display = 'inline';
+                    completedMarkSecond.style.display = 'none';
+                    item.isMakingOnceClicked = false;
+                    item.isCompletedOnceClicked = false;
+                }
+                // 他のステータスがある場合はここに追加
+            }
+
         })
     </script>
 @endpush

@@ -9,6 +9,7 @@ use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
@@ -16,14 +17,18 @@ class TestEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $user;
+    public $orderId;
+    public $itemId;
+    public $status;
 
     /**
      * Create a new event instance.
      */
-    public function __construct()
+    public function __construct($orderId, $itemId, $status)
     {
-        $this->user = Auth::user()->id;
+        $this->orderId = $orderId;
+        $this->itemId = $itemId;
+        $this->status = $status;
     }
 
     /**
@@ -38,9 +43,12 @@ class TestEvent implements ShouldBroadcast
         ];
     }
 
-
     public function broadcastWith(): array
     {
-        return ['id' => $this->user];
+        return [
+            'orderId' => $this->orderId,
+            'itemId' => $this->itemId,
+            'status' => $this->status,
+        ];
     }
 }
