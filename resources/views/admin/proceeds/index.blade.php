@@ -100,6 +100,8 @@
             // 実際のリクエストはここで行います (例: fetch API)
         }
 
+        // TestEvent::dispatch();
+
     });
 </script>
 @endpush

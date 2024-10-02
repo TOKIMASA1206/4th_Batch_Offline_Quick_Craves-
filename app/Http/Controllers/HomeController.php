@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\TestEvent;
 use App\Models\Category;
 use App\Models\MenuItem;
 use Illuminate\Http\Request;
@@ -31,7 +32,7 @@ class HomeController extends Controller
             ->paginate(4);
         return view('frontend.home.index', compact('categories','menuItems'));
     }
-    
+
 
     function loadMenuModal($menuId)
     {
@@ -46,13 +47,13 @@ class HomeController extends Controller
         if (!$query) {
             return redirect()->back()->with('error', 'Please enter a search term.');
         }
-    
+
         $menuItems = MenuItem::where('name', 'LIKE', '%' . $query . '%')
             ->orWhere('description', 'LIKE', '%' . $query . '%')
             ->paginate(4)
             ->appends(['query' => $query]);
-    
+
         return view('frontend.search.index', compact('menuItems', 'query'));
     }
-    
+
 }

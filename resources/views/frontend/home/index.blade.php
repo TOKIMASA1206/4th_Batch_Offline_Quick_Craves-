@@ -18,7 +18,8 @@
         <div class="text-center mb-4 fade-in">
             <button class="btn-yellow-index category-btn me-1" data-category="all">All Menu</button>
             @foreach ($categories as $category)
-                @if ($category->menuItems->isNotEmpty()) {{-- リレーション名を確認 --}}
+                @if ($category->menuItems->isNotEmpty())
+                    {{-- リレーション名を確認 --}}
                     <button class="btn-yellow-outline category-btn me-1" data-category="{{ $category->slug }}">
                         {{ $category->name }}
                     </button>

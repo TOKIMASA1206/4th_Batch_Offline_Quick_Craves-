@@ -176,4 +176,11 @@
 
 @push('scripts')
     <script src="{{ asset('frontend/js/proceed_js_action.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            window.Echo.channel("test-channel").listen("TestEvent", function(e) {
+                console.log('work')
+            });
+        })
+    </script>
 @endpush
