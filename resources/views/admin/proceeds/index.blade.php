@@ -39,8 +39,8 @@
                                         @if ($status == 'Order placed' || $status == 'pending')
                                             <button id="myButton{{ $order->id }}_{{ $item->id }}" type="submit"
                                                 class="btn start text-white">Start</button>
-                                            {{-- <button id="doneButton{{ $order->id }}_{{ $item->id }}"
-                                                class="btn done text-white">DONE</button> --}}
+                                            <button id="doneButton{{ $order->id }}_{{ $item->id }}"
+                                                class="btn done text-white">DONE</button>
                                         @elseif ($status == 'Cooking started')
                                             <button id="myButton{{ $order->id }}_{{ $item->id }}" type="submit"
                                                 class="btn end text-white">End</button>
@@ -48,9 +48,9 @@
                                                 class="btn done text-white">DONE</button>
                                         @elseif ($status == 'Cooking ended')
                                             <button id="myButton{{ $order->id }}_{{ $item->id }}" type="submit"
-                                                class="btn end text-white">End</button>
+                                                class="btn end d-none text-white">End</button>
                                             <button id="doneButton{{ $order->id }}_{{ $item->id }}"
-                                                class="btn done text-white">DONE</button>
+                                                class="btn done d-block text-white">DONE</button>
                                         @endif
                                     </td>
                                     <td>
@@ -161,9 +161,11 @@
                         myButton{{ $order->id }}_{{ $item->id }}.style.display =
                         'inline-block'; // Startボタンを表示
                         myButton{{ $order->id }}_{{ $item->id }}.classList.remove('end');
+                        myButton{{ $order->id }}_{{ $item->id }}.classList.remove('d-none');
                         myButton{{ $order->id }}_{{ $item->id }}.classList.add('start');
                         doneButton{{ $order->id }}_{{ $item->id }}.style.display =
                             'none'; // DONEボタンを隠す
+                        doneButton{{ $order->id }}_{{ $item->id }}.classList.remove('d-block')// DONEボタンを隠す
                         state{{ $order->id }}_{{ $item->id }} = 'Order placed';
                         sendStatusToServer('Order placed', {{ $order->id }}, {{ $item->id }});
                     });
