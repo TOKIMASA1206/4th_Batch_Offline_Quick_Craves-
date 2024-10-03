@@ -28,14 +28,30 @@
                         <table class="table table-hover text-center">
 
                             @foreach ($all_orderItems[$order->id] as $item)
+                                @php
+                                    $status = $item->status;
+                                @endphp
+
                                 <tr class="">
                                     <td class="align-middle"> {{ $item->menu_item_name }}</td>
-                                    <td class="align-middle">4</td>
+                                    <td class="align-middle">{{ $item->qty }}</td>
                                     <td class="align-middle">
-                                        <button id="myButton{{ $order->id }}_{{ $item->id }}" type="submit"
-                                            class="btn start text-white">Start</button>
-                                        <button id="doneButton{{ $order->id }}_{{ $item->id }}"
-                                            class="btn done text-white">DONE</button>
+                                        @if ($status == 'Order placed' || $status == 'pending')
+                                            <button id="myButton{{ $order->id }}_{{ $item->id }}" type="submit"
+                                                class="btn start text-white">Start</button>
+                                            {{-- <button id="doneButton{{ $order->id }}_{{ $item->id }}"
+                                                class="btn done text-white">DONE</button> --}}
+                                        @elseif ($status == 'Cooking started')
+                                            <button id="myButton{{ $order->id }}_{{ $item->id }}" type="submit"
+                                                class="btn end text-white">End</button>
+                                            <button id="doneButton{{ $order->id }}_{{ $item->id }}"
+                                                class="btn done text-white">DONE</button>
+                                        @elseif ($status == 'Cooking ended')
+                                            <button id="myButton{{ $order->id }}_{{ $item->id }}" type="submit"
+                                                class="btn end text-white">End</button>
+                                            <button id="doneButton{{ $order->id }}_{{ $item->id }}"
+                                                class="btn done text-white">DONE</button>
+                                        @endif
                                     </td>
                                     <td>
                                         <button id="resetButton{{ $order->id }}_{{ $item->id }}"
@@ -55,10 +71,57 @@
     </section>
 @endsection
 
+
 @push('scripts')
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
+            // オーダーごとにループを回してボタンの動作を設定
+            // @foreach ($all_orders as $order)
+            //     @foreach ($all_orderItems[$order->id] as $item)
+            //         const myButton{{ $order->id }}_{{ $item->id }} = document.getElementById(
+            //             'myButton{{ $order->id }}_{{ $item->id }}');
+            //         const doneButton{{ $order->id }}_{{ $item->id }} = document.getElementById(
+            //             'doneButton{{ $order->id }}_{{ $item->id }}');
+            //         const resetButton{{ $order->id }}_{{ $item->id }} = document.getElementById(
+            //             'resetButton{{ $order->id }}_{{ $item->id }}');
+            //         let state{{ $order->id }}_{{ $item->id }} = {{ $item->status }}; // 各オーダーごとに初期状態を保持
+
+            //         // スタートボタンのクリックイベント
+            //         myButton{{ $order->id }}_{{ $item->id }}.addEventListener('click', () => {
+            //             if (state{{ $order->id }}_{{ $item->id }} === 'pending' || state{{ $order->id }}_{{ $item->id }} === 'Order placed') {
+            //                 myButton{{ $order->id }}_{{ $item->id }}.textContent = 'End';
+            //                 myButton{{ $order->id }}_{{ $item->id }}.classList.remove('start');
+            //                 myButton{{ $order->id }}_{{ $item->id }}.classList.add('end');
+            //                 doneButton{{ $order->id }}_{{ $item->id }}.style.display =
+            //                     'none'; // DONEボタンを隠す
+            //                 state{{ $order->id }}_{{ $item->id }} = 'end';
+            //                 sendStatusToServer('Cooking started', {{ $order->id }},
+            //                     {{ $item->id }});
+            //             } else if (state{{ $order->id }}_{{ $item->id }} === 'end') {
+            //                 myButton{{ $order->id }}_{{ $item->id }}.style.display =
+            //                     'none'; // Start/Endボタンを隠す
+            //                 doneButton{{ $order->id }}_{{ $item->id }}.style.display =
+            //                     'inline-block'; // DONEボタンを表示
+            //                 state{{ $order->id }}_{{ $item->id }} = 'done';
+            //                 sendStatusToServer('Cooking ended', {{ $order->id }}, {{ $item->id }});
+            //             }
+            //         });
+
+            //         // リセットボタンのクリックイベント
+            //         resetButton{{ $order->id }}_{{ $item->id }}.addEventListener('click', () => {
+            //             myButton{{ $order->id }}_{{ $item->id }}.textContent = 'Start';
+            //             myButton{{ $order->id }}_{{ $item->id }}.style.display =
+            //                 'inline-block'; // Startボタンを表示
+            //             myButton{{ $order->id }}_{{ $item->id }}.classList.remove('end');
+            //             myButton{{ $order->id }}_{{ $item->id }}.classList.add('start');
+            //             doneButton{{ $order->id }}_{{ $item->id }}.style.display =
+            //                 'none'; // DONEボタンを隠す
+            //             state{{ $order->id }}_{{ $item->id }} = 'start';
+            //             sendStatusToServer('Order placed', {{ $order->id }}, {{ $item->id }});
+            //         });
+            //     @endforeach
+            // @endforeach
             // オーダーごとにループを回してボタンの動作を設定
             @foreach ($all_orders as $order)
                 @foreach ($all_orderItems[$order->id] as $item)
@@ -68,26 +131,27 @@
                         'doneButton{{ $order->id }}_{{ $item->id }}');
                     const resetButton{{ $order->id }}_{{ $item->id }} = document.getElementById(
                         'resetButton{{ $order->id }}_{{ $item->id }}');
-                    let state{{ $order->id }}_{{ $item->id }} = 'start'; // 各オーダーごとに初期状態を保持
+                    let state{{ $order->id }}_{{ $item->id }} = '{{ $item->status }}'; // 現在のステータスを保持
 
-                    // スタートボタンのクリックイベント
+                    // スタート/エンドボタンのクリックイベント
                     myButton{{ $order->id }}_{{ $item->id }}.addEventListener('click', () => {
-                        if (state{{ $order->id }}_{{ $item->id }} === 'start') {
+                        if (state{{ $order->id }}_{{ $item->id }} === 'Order placed' || state{{ $order->id }}_{{ $item->id }} === 'pending') {
                             myButton{{ $order->id }}_{{ $item->id }}.textContent = 'End';
                             myButton{{ $order->id }}_{{ $item->id }}.classList.remove('start');
                             myButton{{ $order->id }}_{{ $item->id }}.classList.add('end');
                             doneButton{{ $order->id }}_{{ $item->id }}.style.display =
                             'none'; // DONEボタンを隠す
-                            state{{ $order->id }}_{{ $item->id }} = 'end';
+                            state{{ $order->id }}_{{ $item->id }} = 'Cooking started';
                             sendStatusToServer('Cooking started', {{ $order->id }},
                                 {{ $item->id }});
-                        } else if (state{{ $order->id }}_{{ $item->id }} === 'end') {
+                        } else if (state{{ $order->id }}_{{ $item->id }} === 'Cooking started') {
                             myButton{{ $order->id }}_{{ $item->id }}.style.display =
                             'none'; // Start/Endボタンを隠す
                             doneButton{{ $order->id }}_{{ $item->id }}.style.display =
                                 'inline-block'; // DONEボタンを表示
-                            state{{ $order->id }}_{{ $item->id }} = 'done';
-                            sendStatusToServer('Cooking ended', {{ $order->id }}, {{ $item->id }});
+                            state{{ $order->id }}_{{ $item->id }} = 'Cooking ended';
+                            sendStatusToServer('Cooking ended', {{ $order->id }},
+                                {{ $item->id }});
                         }
                     });
 
@@ -99,9 +163,9 @@
                         myButton{{ $order->id }}_{{ $item->id }}.classList.remove('end');
                         myButton{{ $order->id }}_{{ $item->id }}.classList.add('start');
                         doneButton{{ $order->id }}_{{ $item->id }}.style.display =
-                        'none'; // DONEボタンを隠す
-                        state{{ $order->id }}_{{ $item->id }} = 'start';
-                        // sendStatusToServer('Cooking reset', {{ $order->id }}, {{ $item->id }});
+                            'none'; // DONEボタンを隠す
+                        state{{ $order->id }}_{{ $item->id }} = 'Order placed';
+                        sendStatusToServer('Order placed', {{ $order->id }}, {{ $item->id }});
                     });
                 @endforeach
             @endforeach
