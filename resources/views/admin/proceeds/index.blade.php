@@ -75,53 +75,6 @@
 @push('scripts')
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-
-            // オーダーごとにループを回してボタンの動作を設定
-            // @foreach ($all_orders as $order)
-            //     @foreach ($all_orderItems[$order->id] as $item)
-            //         const myButton{{ $order->id }}_{{ $item->id }} = document.getElementById(
-            //             'myButton{{ $order->id }}_{{ $item->id }}');
-            //         const doneButton{{ $order->id }}_{{ $item->id }} = document.getElementById(
-            //             'doneButton{{ $order->id }}_{{ $item->id }}');
-            //         const resetButton{{ $order->id }}_{{ $item->id }} = document.getElementById(
-            //             'resetButton{{ $order->id }}_{{ $item->id }}');
-            //         let state{{ $order->id }}_{{ $item->id }} = {{ $item->status }}; // 各オーダーごとに初期状態を保持
-
-            //         // スタートボタンのクリックイベント
-            //         myButton{{ $order->id }}_{{ $item->id }}.addEventListener('click', () => {
-            //             if (state{{ $order->id }}_{{ $item->id }} === 'pending' || state{{ $order->id }}_{{ $item->id }} === 'Order placed') {
-            //                 myButton{{ $order->id }}_{{ $item->id }}.textContent = 'End';
-            //                 myButton{{ $order->id }}_{{ $item->id }}.classList.remove('start');
-            //                 myButton{{ $order->id }}_{{ $item->id }}.classList.add('end');
-            //                 doneButton{{ $order->id }}_{{ $item->id }}.style.display =
-            //                     'none'; // DONEボタンを隠す
-            //                 state{{ $order->id }}_{{ $item->id }} = 'end';
-            //                 sendStatusToServer('Cooking started', {{ $order->id }},
-            //                     {{ $item->id }});
-            //             } else if (state{{ $order->id }}_{{ $item->id }} === 'end') {
-            //                 myButton{{ $order->id }}_{{ $item->id }}.style.display =
-            //                     'none'; // Start/Endボタンを隠す
-            //                 doneButton{{ $order->id }}_{{ $item->id }}.style.display =
-            //                     'inline-block'; // DONEボタンを表示
-            //                 state{{ $order->id }}_{{ $item->id }} = 'done';
-            //                 sendStatusToServer('Cooking ended', {{ $order->id }}, {{ $item->id }});
-            //             }
-            //         });
-
-            //         // リセットボタンのクリックイベント
-            //         resetButton{{ $order->id }}_{{ $item->id }}.addEventListener('click', () => {
-            //             myButton{{ $order->id }}_{{ $item->id }}.textContent = 'Start';
-            //             myButton{{ $order->id }}_{{ $item->id }}.style.display =
-            //                 'inline-block'; // Startボタンを表示
-            //             myButton{{ $order->id }}_{{ $item->id }}.classList.remove('end');
-            //             myButton{{ $order->id }}_{{ $item->id }}.classList.add('start');
-            //             doneButton{{ $order->id }}_{{ $item->id }}.style.display =
-            //                 'none'; // DONEボタンを隠す
-            //             state{{ $order->id }}_{{ $item->id }} = 'start';
-            //             sendStatusToServer('Order placed', {{ $order->id }}, {{ $item->id }});
-            //         });
-            //     @endforeach
-            // @endforeach
             // オーダーごとにループを回してボタンの動作を設定
             @foreach ($all_orders as $order)
                 @foreach ($all_orderItems[$order->id] as $item)
@@ -135,18 +88,19 @@
 
                     // スタート/エンドボタンのクリックイベント
                     myButton{{ $order->id }}_{{ $item->id }}.addEventListener('click', () => {
-                        if (state{{ $order->id }}_{{ $item->id }} === 'Order placed' || state{{ $order->id }}_{{ $item->id }} === 'pending') {
+                        if (state{{ $order->id }}_{{ $item->id }} === 'Order placed' ||
+                            state{{ $order->id }}_{{ $item->id }} === 'pending') {
                             myButton{{ $order->id }}_{{ $item->id }}.textContent = 'End';
                             myButton{{ $order->id }}_{{ $item->id }}.classList.remove('start');
                             myButton{{ $order->id }}_{{ $item->id }}.classList.add('end');
                             doneButton{{ $order->id }}_{{ $item->id }}.style.display =
-                            'none'; // DONEボタンを隠す
+                                'none'; // DONEボタンを隠す
                             state{{ $order->id }}_{{ $item->id }} = 'Cooking started';
                             sendStatusToServer('Cooking started', {{ $order->id }},
                                 {{ $item->id }});
                         } else if (state{{ $order->id }}_{{ $item->id }} === 'Cooking started') {
                             myButton{{ $order->id }}_{{ $item->id }}.style.display =
-                            'none'; // Start/Endボタンを隠す
+                                'none'; // Start/Endボタンを隠す
                             doneButton{{ $order->id }}_{{ $item->id }}.style.display =
                                 'inline-block'; // DONEボタンを表示
                             state{{ $order->id }}_{{ $item->id }} = 'Cooking ended';
@@ -159,13 +113,14 @@
                     resetButton{{ $order->id }}_{{ $item->id }}.addEventListener('click', () => {
                         myButton{{ $order->id }}_{{ $item->id }}.textContent = 'Start';
                         myButton{{ $order->id }}_{{ $item->id }}.style.display =
-                        'inline-block'; // Startボタンを表示
+                            'inline-block'; // Startボタンを表示
                         myButton{{ $order->id }}_{{ $item->id }}.classList.remove('end');
                         myButton{{ $order->id }}_{{ $item->id }}.classList.remove('d-none');
                         myButton{{ $order->id }}_{{ $item->id }}.classList.add('start');
                         doneButton{{ $order->id }}_{{ $item->id }}.style.display =
                             'none'; // DONEボタンを隠す
-                        doneButton{{ $order->id }}_{{ $item->id }}.classList.remove('d-block')// DONEボタンを隠す
+                        doneButton{{ $order->id }}_{{ $item->id }}.classList.remove(
+                            'd-block') // DONEボタンを隠す
                         state{{ $order->id }}_{{ $item->id }} = 'Order placed';
                         sendStatusToServer('Order placed', {{ $order->id }}, {{ $item->id }});
                     });
@@ -177,10 +132,10 @@
                 console.log(`Order: ${orderId}, Item: ${itemId}, Status: ${status}`);
 
                 $.ajax({
-                    url: '/admin/orders/update-status', // リクエスト先のURL
-                    type: 'POST', // HTTPメソッド
+                    url: '/admin/orders/update-status',
+                    type: 'POST',
                     headers: {
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}' // CSRFトークンを含める
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
                     },
                     timeout: 3000,
                     data: ({
@@ -189,14 +144,31 @@
                         status: status
                     }),
                     success: function(data) {
-                        console.log(data.message); // 成功時の処理
+                        console.log(data.message);
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
-                        console.error('Error:', errorThrown); // エラー時の処理
+                        console.error('Error:', errorThrown);
                     }
                 });
             }
-
         });
+
+        $(document).ready(function() {
+            window.Echo.channel("displayOrder")
+                .listen('DisplayOrderEvent', (e) => {
+                    console.log('New Order Placed!!');
+
+                    toastr.success('New Order Placed!! ', {
+                        "closeButton": true,
+                        "progressBar": true,
+                        "timeOut": "3000",
+                        "extendedTimeOut": "1000"
+                    });
+
+                    setTimeout(() => {
+                        location.reload();
+                    }, 3500);
+                });
+        })
     </script>
 @endpush
