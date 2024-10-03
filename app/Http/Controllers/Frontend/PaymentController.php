@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Events\DisplayOrderEvent;
 use App\Events\OrderPaymentUpdate;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
@@ -49,6 +50,7 @@ class PaymentController extends Controller
 
     function paymentSuccess(): View
     {
+        DisplayOrderEvent::dispatch();
         return view('frontend.payment.success');
     }
 
