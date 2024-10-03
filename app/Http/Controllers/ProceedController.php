@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\TestEvent;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Proceed;
@@ -17,7 +18,8 @@ class ProceedController extends Controller
     private $order;
     private $orderItem;
 
-    public function __construct(Order $order, OrderItem $orderItem) {
+    public function __construct(Order $order, OrderItem $orderItem)
+    {
 
         $this->order = $order;
         $this->orderItem = $orderItem;
@@ -35,23 +37,27 @@ class ProceedController extends Controller
             ->whereDate('created_at', $today)
             ->latest()
             ->get();
+
         return view('frontend.proceed.index', compact('orders'));
     }
 
-    public function adminIndex() {
+    public function adminIndex()
+    {
 
-        $all_orders = $this->order->where('order_status',"pending")->orderBy('created_at', 'desc')->get();
+        $all_orders = $this->order->where('order_status', "pending")->orderBy('created_at', 'desc')->get();
 
         $all_orderItems = [];
         foreach ($all_orders as $order) {
             $all_orderItems[$order->id] = $this->orderItem->where('order_id', $order->id)->get();
         }
-       return view('admin.proceeds.index')
-                ->with('all_orders',$all_orders)
-                ->with('all_orderItems',$all_orderItems);
+
+        return view('admin.proceeds.index')
+            ->with('all_orders', $all_orders)
+            ->with('all_orderItems', $all_orderItems);
     }
 
-    public function update($id) {
+    public function update($id)
+    {
 
         $order = $this->order->findOrFail($id);
 

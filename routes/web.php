@@ -15,6 +15,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\MenuItemController;
 use App\Http\Controllers\MenuOptionController;
 use App\Http\Controllers\MenuSizeController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\WalletController;
 use Illuminate\Support\Facades\Route;
 
@@ -118,5 +119,7 @@ Route::group(["middleware" => "auth"], function () {
 
         /**  Point  */
         Route::resource('point', PointController::class);
+
+        Route::post('/orders/update-status', [OrderController::class, 'updateStatus'])->name('orders.updateStatus');
     });
 });
