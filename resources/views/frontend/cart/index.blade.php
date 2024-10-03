@@ -277,6 +277,7 @@
                 } else {
                     $('#discount').text('₱ 0');
                     $('#final_total').text('₱ ' + subTotal.toFixed(2));
+                    $('#m_final_total').text('₱ ' + subTotal.toFixed(2));
 
                     $.ajax({
                         method: 'POST',
@@ -306,6 +307,7 @@
                     success: function(response) {
                         $('#discount').text('- ₱' + response.discount.toFixed(2));
                         $('#final_total').text('₱ ' + response.finalTotal.toFixed(2));
+                        $('#m_final_total').text('₱ ' + response.finalTotal.toFixed(2));
                         toastr.success(response.message);
                     },
                     error: function(xhr, status, error) {
