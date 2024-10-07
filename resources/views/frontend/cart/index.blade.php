@@ -477,6 +477,9 @@
                         _token: "{{ csrf_token() }}",
                         total: cartTotal
                     },
+                    beforeSend: function() {
+                        showLoader();
+                    },
                     success: function(response) {
                         if (response.success) {
                             // 成功した場合、successページにリダイレクト

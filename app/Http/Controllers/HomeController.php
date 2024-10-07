@@ -28,9 +28,12 @@ class HomeController extends Controller
     {
         $categories = Category::where(['show_at_home' => 1, 'status' => 1])->get();
         $menuItems = MenuItem::where(['show_at_home' => 1, 'status' => 1])
-            ->orderBy('id', 'DESC')
-            ->paginate(4);
-        return view('frontend.home.index', compact('categories','menuItems'));
+            ->orderBy('id', 'DESC')->paginate(4);
+
+        $allItems =  MenuItem::where(['show_at_home' => 1, 'status' => 1])
+        ->orderBy('id', 'DESC')->get();   
+
+        return view('frontend.home.index', compact('categories','menuItems', 'allItems'));
     }
 
 
