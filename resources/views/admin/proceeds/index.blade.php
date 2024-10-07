@@ -2,7 +2,7 @@
 
 @section('content')
     <section class="section">
-        <div class="section-header mt-3">
+        <div class="section-header mb-4">
             <h1>Proceed</h1>
         </div>
         <div class="row">
@@ -10,10 +10,13 @@
             @foreach ($all_orders as $order)
                 <div class="col-md-6 col-lg-4 col-sm-12 mb-3">
                     <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title palanquin-dark-regular">Number: {{ $order->id }}</h5>
-                            <h5 class="card-title palanquin-dark-regular">User: {{ $order->user->name }}</h5>
-                            <h5 class="card-title palanquin-dark-regular">{{ $order->created_at }}
+                        <div class="card-header py-3 text-center">
+                            <h5 class="card-title palanquin-dark-regular d-inline fw-bold">Number: {{ $order->id }}</h5>
+                            <h5 class="card-title palanquin-dark-regular d-inline ms-3 fw-bold">User: {{ $order->user->name }}</h5>
+                        </div>
+                        <div class="card-body text-center">
+
+                            <h5 class="card-title palanquin-dark-regular mt-3">{{ $order->created_at }}
                                 <span>
 
                                     <button type="submit" class="btn-red-black ms-2" data-bs-toggle="modal"
@@ -38,19 +41,19 @@
                                     <td class="align-middle">
                                         @if ($status == 'Order placed' || $status == 'pending')
                                             <button id="myButton{{ $order->id }}_{{ $item->id }}" type="submit"
-                                                class="btn start text-white">Start</button>
+                                                class="btn start text-white px-2 py-1">Start</button>
                                             <button id="doneButton{{ $order->id }}_{{ $item->id }}"
-                                                class="btn done text-white">DONE</button>
+                                                class="btn done text-white px-2 py-1">DONE</button>
                                         @elseif ($status == 'Cooking started')
                                             <button id="myButton{{ $order->id }}_{{ $item->id }}" type="submit"
-                                                class="btn end text-white">End</button>
+                                                class="btn end text-white px-2 py-1">End</button>
                                             <button id="doneButton{{ $order->id }}_{{ $item->id }}"
-                                                class="btn done text-white">DONE</button>
+                                                class="btn done text-white px-2 py-1">DONE</button>
                                         @elseif ($status == 'Cooking ended')
                                             <button id="myButton{{ $order->id }}_{{ $item->id }}" type="submit"
-                                                class="btn end d-none text-white">End</button>
+                                                class="btn end d-none text-white px-2 py-1">End</button>
                                             <button id="doneButton{{ $order->id }}_{{ $item->id }}"
-                                                class="btn done d-block text-white">DONE</button>
+                                                class="btn done mx-auto d-block text-white px-2 py-1">DONE</button>
                                         @endif
                                     </td>
                                     <td>

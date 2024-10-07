@@ -9,6 +9,7 @@
             class="mx-2">Wallet</span></span>
 @endsection
 
+
 @section('content')
     <div class="container col-lg-6 col-md-8 col-12">
         <div class="d-flex flex-column flex-md-row gap-3 gap-md-5 mb-4 fade-in">
@@ -33,41 +34,6 @@
             <div class="text-center d-flex justify-content-center">
                 <button class="voucher-btn" data-bs-toggle="modal" data-bs-target="#vouchersRewardsModal">Vouchers &
                     Rewards</button>
-            </div>
-        </div>
-
-        {{-- Card information --}}
-        <div class="mb-5 wlt-card-info fade-in">
-            <div class="my-2" id="w_card_info_title" onclick="toggleCardInfo()">
-                <span id="card_info_triangle" class="card_info_triangle">►</span>
-                Card Information
-            </div>
-            <div class="w-card-info-content" id="w_card_info_content">
-                <div class="w-card-detail mb-3">
-                    <div class="row align-items-center">
-                        <div class="d-flex col-12 col-md-9">
-                            <div class="me-4">
-                                <img src="{{ asset('logos/visa-card-icon.jpg') }}" alt="Visa" class="w-card-img">
-                            </div>
-                            <div class="pt-4 text-secondary">
-                                <h4>**** **** **** 5678</h4>
-                                <h4>Due Date: 12/24</h4>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-3 text-md-end text-center mt-3 mt-md-0">
-                            <button type="button" class="btn btn-outline-secondary me-2" data-bs-toggle="modal"
-                                data-bs-target="#cardEditModal">Edit</button>
-                            <button type="button" class="btn btn-outline-danger"><i class="fa-regular fa-trash-can"
-                                    data-bs-toggle="modal" data-bs-target="#cardDeleteModal"></i></button>
-                        </div>
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <button type="button" class="add-cardInfo-btn ps-5 text-decoration-none fs-5" data-bs-toggle="modal"
-                        data-bs-target="#cardAddModal">
-                        <i class="fas fa-plus"></i> Add Card Info
-                    </button>
-                </div>
             </div>
         </div>
 

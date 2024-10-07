@@ -86,17 +86,17 @@
                     <img src="{{ asset('logos/Logo.png') }}" width="70rem" alt="logo"> Quick Craves
                 </a>
                 <div class="d-flex">
-                    <a href="{{ route('cart_index') }}" class="me-5 mt-2" style="position: relative">
+                    <a href="{{ route('cart_index') }}" class="me-4 mt-2" style="position: relative">
                         <i class="fa fa-shopping-basket fs-4 header-cart" aria-hidden="true"></i>
                         <span class="cart_count">{{ Cart::content()->count() }}</span>
                     </a>
                     <div id="search_bar">
-                        <form class="form-inline my-2 my-lg-0 d-flex gap-2" action="{{ route('menu-items.search') }}" method="GET">
+                        <form class="form-inline my-lg-0 d-flex gap-2" action="{{ route('menu-items.search') }}" method="GET">
                             @csrf
                             <div>
                                 <input class="form-control mr-sm-2" type="search" placeholder="Search Menu" aria-label="Search" name="query">
                             </div>
-                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                            <button class="btn btn-outline-success my-sm-0" type="submit">Search</button>
                         </form>
                     </div>
                 </div>
