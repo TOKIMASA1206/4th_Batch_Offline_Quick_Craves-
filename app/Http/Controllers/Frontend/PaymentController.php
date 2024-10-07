@@ -169,10 +169,14 @@ class PaymentController extends Controller
     private function handleStampsAndVouchers($order)
     {
         $user = User::find($order->user_id);
+        $order = Order::find($order->id);
         $subtotal = $order->grand_total;
 
         // Calculate stamps for every 100 pesos
         $stampCount = floor($subtotal / 100);
+
+        $earnedStamps = 0;
+        $assignedVoucherId = null;
 
         if ($stampCount > 0) {
             $stamp = Stamp::firstOrCreate(
@@ -181,6 +185,7 @@ class PaymentController extends Controller
             );
 
             $stamp->increment('stamp_count', $stampCount);
+            $earnedStamps = $stampCount;
 
             // Distribute a voucher when the number of stamps is 10 or more.
             if ($stamp->stamp_count >= 10) {
@@ -190,6 +195,8 @@ class PaymentController extends Controller
                     $voucher = $this->assignVoucher($user);
 
                     if ($voucher) {
+                        $assignedVoucherId = $voucher->id;
+
                         session()->flash('vouchers', [
                             'message' => 'Get new voucher!!',
                             'details' => "Code: {$voucher->code}, Discount: {$voucher->discount_value} PHP"
@@ -204,6 +211,13 @@ class PaymentController extends Controller
                 'message' => "You got {$stampCount} stamp!",
                 'count' => $stamp->stamp_count
             ]);
+
+            // Update the orders table with earned_stamps and voucher_id
+            $order->earned_stamps = $earnedStamps;
+            if ($assignedVoucherId) {
+                $order->voucher_id = $assignedVoucherId;
+            }
+            $order->save();
         }
     }
 
@@ -315,9 +329,4 @@ class PaymentController extends Controller
             return response()->json(['success' => false, 'message' => 'Payment failed']);
         }
     }
-
-
-
-
-
 }

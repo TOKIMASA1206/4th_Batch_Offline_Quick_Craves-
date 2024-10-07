@@ -11,10 +11,28 @@ class Order extends Model
     use HasFactory;
 
     protected $table = 'orders';
-    protected $fillable = ['order_status'];
+
+    protected $fillable = [
+        'user_id',
+        'invoice_id',
+        'discount',
+        'subtotal',
+        'grand_total',
+        'product_qty',
+        'payment_method',
+        'payment_status',
+        'payment_approve_date',
+        'transaction_id',
+        'coupon_info',
+        'currency_name',
+        'order_status',
+        'earned_stamps', // 追加
+        'voucher_id',    // 追加
+    ];
 
 
-    function orderItems() : HasMany {
+    function orderItems(): HasMany
+    {
         return $this->hasMany(OrderItem::class);
     }
 
@@ -23,4 +41,8 @@ class Order extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function voucher()
+    {
+        return $this->belongsTo(Voucher::class);
+    }
 }

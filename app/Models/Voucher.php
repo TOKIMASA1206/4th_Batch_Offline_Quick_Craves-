@@ -21,4 +21,9 @@ class Voucher extends Model
     {
         return $this->belongsToMany(User::class, 'voucher_user');
     }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }
