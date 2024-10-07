@@ -71,29 +71,6 @@
             </div>
         </div>
 
-        {{-- Stamp section --}}
-        {{-- <div class="stamps row m-0 fade-in">
-            <div class="col-12 col-xl-4 text-center text-md-start mb-3 mb-md-0">
-                <p>6 Stamps Earned</p>
-                <button class="view-rewards-btn" data-bs-toggle="modal" data-bs-target="#vouchersRewardsModal">View
-                    Rewards</button>
-            </div>
-            <div class="col-12 col-xl-8 stamp-bar-section">
-                <h4 class="text-end text-white mb-3">6/10</h4>
-                <div class="stamp-bar d-flex justify-content-between">
-                    <div class="stamp-box completed"></div>
-                    <div class="stamp-box completed"></div>
-                    <div class="stamp-box completed"></div>
-                    <div class="stamp-box completed"></div>
-                    <div class="stamp-box completed"></div>
-                    <div class="stamp-box completed"></div>
-                    <div class="stamp-box"></div>
-                    <div class="stamp-box"></div>
-                    <div class="stamp-box"></div>
-                    <div class="stamp-box"></div>
-                </div>
-            </div>
-        </div> --}}
         <div class="stamps row m-0 fade-in">
             <div class="col-12 col-xl-4 text-center text-md-start mb-3 mb-md-0">
                 <p>{{ $stampCount }} Stamps Earned</p>
@@ -111,68 +88,62 @@
             </div>
         </div>
 
+        @php
+            use Carbon\Carbon;
+        @endphp
         <h4 class="mt-5 ar h1 fade-in">Transactions</h4>
         <div class="transactions mt-3">
-            <div class="transaction-item fade-in d-flex justify-content-between align-items-center px-4 py-3">
-                <div>
-                    <p class="m-0 transaction-subtitle">completed</p>
-                    <p class="mb-0 transaction-title">STAMP</p>
-                    <small>August 10, 2024, 2:11 PM</small>
-                </div>
-                <div class="me-5 transaction-status">
-                    <P class="m-0">1 STAMP</P>
-                </div>
-            </div>
-            <div class="transaction-item fade-in d-flex justify-content-between align-items-center px-4 py-3">
-                <div>
-                    <p class="m-0 transaction-subtitle">completed</p>
-                    <p class="mb-0 transaction-title">PAY WITH CRAVE POINTS</p>
-                    <small>August 10, 2024, 2:11 PM</small>
-                </div>
-                <div class="me-5 transaction-status">
-                    <P class="m-0">99.00 CP</P>
-                </div>
-            </div>
-            <div class="transaction-item fade-in d-flex justify-content-between align-items-center px-4 py-3">
-                <div>
-                    <p class="m-0 transaction-subtitle">completed</p>
-                    <p class="mb-0 transaction-title">STAMP</p>
-                    <small>August 10, 2024, 2:11 PM</small>
-                </div>
-                <div class="me-5 transaction-status">
-                    <P class="m-0">1 STAMP</P>
-                </div>
-            </div>
-            <div class="transaction-item fade-in d-flex justify-content-between align-items-center px-4 py-3">
-                <div>
-                    <p class="m-0 transaction-subtitle">completed</p>
-                    <p class="mb-0 transaction-title">PAY WITH CRAVE POINTS</p>
-                    <small>August 10, 2024, 2:11 PM</small>
-                </div>
-                <div class="me-5 transaction-status">
-                    <P class="m-0">99.00 CP</P>
-                </div>
-            </div>
-            <div class="transaction-item fade-in d-flex justify-content-between align-items-center px-4 py-3">
-                <div>
-                    <p class="m-0 transaction-subtitle">completed</p>
-                    <p class="mb-0 transaction-title">STAMP</p>
-                    <small>August 10, 2024, 2:11 PM</small>
-                </div>
-                <div class="me-5 transaction-status">
-                    <P class="m-0">1 STAMP</P>
-                </div>
-            </div>
-            <div class="transaction-item fade-in d-flex justify-content-between align-items-center px-4 py-3">
-                <div>
-                    <p class="m-0 transaction-subtitle">completed</p>
-                    <p class="mb-0 transaction-title">PAY WITH CRAVE POINTS</p>
-                    <small>August 10, 2024, 2:11 PM</small>
-                </div>
-                <div class="me-5 transaction-status">
-                    <P class="m-0">99.00 CP</P>
-                </div>
-            </div>
+            @foreach ($transactions as $tr)
+                @if ($tr['type'] === 'stamp')
+                    {{-- STAMP トランザクション --}}
+                    <div class="transaction-item fade-in d-flex justify-content-between align-items-center px-4 py-3">
+                        <div>
+                            <p class="m-0 transaction-subtitle">{{ $tr['payment_status'] }}</p>
+                            <p class="mb-0 transaction-title">STAMP</p>
+                            <small>{{ Carbon::parse($tr['payment_approve_date'])->format('F d, Y, g:i A') }}</small>
+                        </div>
+                        <div class="me-5 transaction-status">
+                            <p class="m-0">{{ $tr['stamps'] }} STAMP{{ $tr['stamps'] > 1 ? 'S' : '' }}</p>
+                        </div>
+                    </div>
+                @elseif ($tr['type'] === 'payment')
+                    {{-- PAY WITH [PAYMENT_METHOD] トランザクション --}}
+                    <div class="transaction-item fade-in d-flex justify-content-between align-items-center px-4 py-3">
+                        <div>
+                            <p class="m-0 transaction-subtitle">{{ $tr['payment_status'] }}</p>
+                            <p class="mb-0 transaction-title">PAY WITH {{ strtoupper($tr['payment_method']) }}</p>
+                            <small>{{ Carbon::parse($tr['payment_approve_date'])->format('F d, Y, g:i A') }}</small>
+                        </div>
+                        <div class="me-5 transaction-status">
+                            <p class="m-0">{{ number_format($tr['grand_total'], 2) }} {{ $tr['currency_name'] }}</p>
+                        </div>
+                    </div>
+                @elseif ($tr['type'] === 'voucher')
+                    {{-- VOUCHER トランザクション --}}
+                    <div class="transaction-item fade-in d-flex justify-content-between align-items-center px-4 py-3">
+                        <div>
+                            <p class="m-0 transaction-subtitle">{{ $tr['payment_status'] }}</p>
+                            <p class="mb-0 transaction-title">VOUCHER</p>
+                            <small>{{ Carbon::parse($tr['created_at'])->format('F d, Y, g:i A') }}</small>
+                        </div>
+                        <div class="me-5 transaction-status">
+                            <p class="m-0">{{ $tr['voucher_name'] }}</p>
+                        </div>
+                    </div>
+                @elseif ($tr['type'] === 'point_purchase')
+                    {{-- POINT PURCHASE トランザクション --}}
+                    <div class="transaction-item fade-in d-flex justify-content-between align-items-center px-4 py-3">
+                        <div>
+                            <p class="m-0 transaction-subtitle">{{ $tr['payment_status'] }}</p>
+                            <p class="mb-0 transaction-title">POINT PURCHASE</p>
+                            <small>{{ Carbon::parse($tr['payment_approve_date'])->format('F d, Y, g:i A') }}</small>
+                        </div>
+                        <div class="me-5 transaction-status">
+                            <p class="m-0"> {{ number_format($tr['points_received']) }} CP</p>
+                        </div>
+                    </div>
+                @endif
+            @endforeach
         </div>
     </div>
 
