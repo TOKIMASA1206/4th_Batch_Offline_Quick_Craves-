@@ -29,6 +29,13 @@ class VouchersDataTable extends DataTable
                 return $edit . $delete;
 
             })
+            ->addColumn('selected', function ($query) {
+                if ($query->is_selected == 1) {
+                    return '<span class="badge badge-success fs-6">Yes</span>';
+                } else {
+                    return '<span class="badge badge-secondary fs-6">No</span>';
+                }
+            })
             ->addColumn('status', function ($query) {
                 if ($query->status == 1) {
                     return '<span class="badge badge-primary fs-6">Active</span>';
@@ -36,7 +43,7 @@ class VouchersDataTable extends DataTable
                     return '<span class="badge badge-danger fs-6">Inactive</span>';
                 }
             })
-            ->rawColumns(['show_at_home', 'status', 'action'])
+            ->rawColumns(['show_at_home', 'status', 'action', 'selected'])
             ->setRowId('id');
     }
 
@@ -81,6 +88,7 @@ class VouchersDataTable extends DataTable
                 ->format(function ($value) {
                     return $value ? $value : 'N/A'; // expiry_dateがnullなら"N/A"を表示
                 }),
+            Column::make('selected'),
             Column::make('status'),
 
 

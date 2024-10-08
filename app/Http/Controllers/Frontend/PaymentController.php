@@ -191,18 +191,27 @@ class PaymentController extends Controller
             if ($stamp->stamp_count >= 10) {
                 $voucherCount = floor($stamp->stamp_count / 10);
 
-                for ($i = 0; $i < $voucherCount; $i++) {
-                    $voucher = $this->assignVoucher($user);
+                $availableVouchers = Voucher::where('is_selected', true)->get();
 
-                    if ($voucher) {
-                        $assignedVoucherId = $voucher->id;
+                if ($availableVouchers->isEmpty()) {
+                    session()->flash('vouchers', [
+                        'message' => "Sorry, we don't have any vouchers available",
+                    ]);
+                } else {
+                    for ($i = 0; $i < $voucherCount; $i++) {
+                        $voucher = $this->assignVoucher($user);
 
-                        session()->flash('vouchers', [
-                            'message' => 'Get new voucher!!',
-                            'details' => "Code: {$voucher->code}, Discount: {$voucher->discount_value} PHP"
-                        ]);
+                        if ($voucher) {
+                            $assignedVoucherId = $voucher->id;
+
+                            session()->flash('vouchers', [
+                                'message' => 'Get new voucher!!',
+                                'details' => "Code: {$voucher->code}, Discount: {$voucher->discount_value} PHP"
+                            ]);
+                        }
                     }
                 }
+
                 // Update the remaining number of stamps.
                 $stamp->update(['stamp_count' => $stamp->stamp_count % 10]);
             }
@@ -224,7 +233,7 @@ class PaymentController extends Controller
     // A method to distribute vouchers to the user.
     private function assignVoucher($user)
     {
-        $voucher = Voucher::where('code', 'Free75')->first();
+        $voucher = Voucher::where('is_selected', 1)->first();
         // Distribute a voucher to the user.
         $user->vouchers()->attach($voucher->id);
 

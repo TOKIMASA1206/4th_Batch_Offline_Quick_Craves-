@@ -9,8 +9,7 @@
                     <h1 class="col">Edit Voucher</h1>
                     <div class="card-header-action col text-end">
                         <a href="{{ route('admin.voucher.index') }}" class="btn btn-dark">
-                            < Back
-                        </a>
+                            < Back </a>
                     </div>
                 </div>
             </div>
@@ -31,7 +30,7 @@
                     <div class="form-group mb-3">
                         <label for="code" class="form-label">Voucher Code</label>
                         <input type="text" class="form-control" name="code" id="code"
-                            value="{{ old('code',$voucher->code) }}">
+                            value="{{ old('code', $voucher->code) }}">
                         @error('code')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -42,29 +41,40 @@
                         <div class="input-group">
                             <span class="input-group-text bg-dark text-white" id="discount_unit">¥</span>
                             <input type="number" class="form-control" name="discount_value" id="discount_value"
-                                value="{{ old('discount_value' ,$voucher->discount_value) }}" aria-describedby="discount_unit">
+                                value="{{ old('discount_value', $voucher->discount_value) }}"
+                                aria-describedby="discount_unit">
                         </div>
                         @error('discount_value')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
-                    
+
 
                     <div class="form-group mb-3">
-                      <label for="expiry_date" class="form-label">Expiry Date</label>
-                      <input type="date" class="form-control" name="expiry_date" id="expiry_date"
-                          value="{{ old('expiry_date' , $voucher->expiry_date) }}">
-                      @error('expiry_date')
-                          <span class="text-danger">{{ $message }}</span>
-                      @enderror
-                  </div>
+                        <label for="expiry_date" class="form-label">Expiry Date</label>
+                        <input type="date" class="form-control" name="expiry_date" id="expiry_date"
+                            value="{{ old('expiry_date', $voucher->expiry_date) }}">
+                        @error('expiry_date')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
 
+                    <div class="form-group mb-4">
+                        <label for="is_selected">Default Voucher</label>
+                        <select class="form-control" name="is_selected" id="is_selected">
+                            <option @selected($voucher->is_selected == 1) value="1">Yes</option>
+                            <option @selected($voucher->is_selected == 0) value="0">No</option>
+                        </select>
+                        @error('is_selected')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
 
                     <div class="form-group mb-4">
                         <label for="status">Status</label>
                         <select class="form-control" name="status" id="status">
-                            <option value="1" selected>Active</option>
-                            <option value="0">Inactive</option>
+                            <option @selected($voucher->status == 1) value="1">Active</option>
+                            <option @selected($voucher->status == 0) value="0">Inactive</option>
                         </select>
                         @error('status')
                             <span class="text-danger">{{ $message }}</span>

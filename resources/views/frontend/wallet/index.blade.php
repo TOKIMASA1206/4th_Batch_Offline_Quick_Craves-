@@ -59,7 +59,7 @@
         @endphp
         <h4 class="mt-5 ar h1 fade-in">Transactions</h4>
         <div class="transactions mt-3">
-            @foreach ($transactions as $tr)
+            @foreach ($paginatedTransactions as $tr)
                 @if ($tr['type'] === 'stamp')
                     {{-- STAMP トランザクション --}}
                     <div class="transaction-item fade-in d-flex justify-content-between align-items-center px-4 py-3">
@@ -110,6 +110,9 @@
                     </div>
                 @endif
             @endforeach
+            <div class="fade-in tr-paginate">
+                {{ $paginatedTransactions->links() }}
+            </div>
         </div>
     </div>
 

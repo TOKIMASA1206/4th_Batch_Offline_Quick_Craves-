@@ -39,13 +39,13 @@ class VoucherController extends Controller
             $voucher->code = $request->code;
             $voucher->discount_value = $request->discount_value;
             $voucher->expiry_date = $request->expiry_date;
+            $voucher->is_selected = $request->is_selected;
             $voucher->status = $request->status;
             $voucher->save();
 
             return to_route('admin.voucher.index')->with('success', 'voucher created successfully.');
         } catch (\Exception $e) {
             logger($e);
-            // エラーメッセージをセッションにフラッシュ
             return back()->with('error', 'There was an error creating the voucher.');
         }
     }
@@ -74,22 +74,19 @@ class VoucherController extends Controller
     public function update(VoucherCreateRequest $request, $id)
     {
         try {
-            // ID で対象の Voucher モデルを取得
             $voucher = Voucher::findOrFail($id);
 
-            // モデルのプロパティをリクエストからのデータで更新
             $voucher->name = $request->name;
             $voucher->code = $request->code;
             $voucher->discount_value = $request->discount_value;
             $voucher->expiry_date = $request->expiry_date;
+            $voucher->is_selected = $request->is_selected;
             $voucher->status = $request->status;
             $voucher->save();
 
-            // 成功メッセージと共にリダイレクト
             return to_route('admin.voucher.index')->with('success', 'Voucher updated successfully.');
 
         } catch (\Exception $e) {
-            // エラー発生時にログを記録し、エラーメッセージをセッションにフラッシュ
             logger($e);
             return back()->with('error', 'There was an error updating the voucher.');
         }

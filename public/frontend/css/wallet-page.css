@@ -199,6 +199,10 @@
     color: #ffb11b;
 }
 
+.tr-paginate .pagination {
+    justify-content: center;
+}
+
 /* ====== Responsive Adjustments ====== */
 
 /* Web (large screens) */

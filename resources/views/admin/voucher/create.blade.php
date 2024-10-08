@@ -9,8 +9,7 @@
                     <h1 class="col">Create Voucher</h1>
                     <div class="card-header-action col text-end">
                         <a href="{{ route('admin.voucher.index') }}" class="btn btn-dark">
-                            < Back
-                        </a>
+                            < Back </a>
                     </div>
                 </div>
             </div>
@@ -47,17 +46,28 @@
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
-                    
+
 
                     <div class="form-group mb-3">
-                      <label for="expiry_date" class="form-label">Expiry Date</label>
-                      <input type="date" class="form-control" name="expiry_date" id="expiry_date"
-                          value="{{ old('name') }}">
-                      @error('expiry_date')
-                          <span class="text-danger">{{ $message }}</span>
-                      @enderror
-                  </div>
+                        <label for="expiry_date" class="form-label">Expiry Date</label>
+                        <input type="date" class="form-control" name="expiry_date" id="expiry_date"
+                            value="{{ old('name') }}">
+                        @error('expiry_date')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
 
+
+                    <div class="form-group mb-4">
+                        <label for="is_selected">Default Voucher</label>
+                        <select class="form-control" name="is_selected" id="is_selected">
+                            <option value="1">Yes</option>
+                            <option value="0" selected>No</option>
+                        </select>
+                        @error('is_selected')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
 
                     <div class="form-group mb-4">
                         <label for="status">Status</label>
