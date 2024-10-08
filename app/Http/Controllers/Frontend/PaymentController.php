@@ -61,27 +61,7 @@ class PaymentController extends Controller
 
     function setPaypalConfig(): array
     {
-        $config = [
-            'mode' => 'sandbox', // Can only be 'sandbox' Or 'live'. If empty or invalid, 'live' will be used.
-            'sandbox' => [
-                'client_id' => 'AUmUhWNWBnRoSkRgpAB3Ofu668uvSn8JHQVTW0VT3_4W3v0R5kYyMtSGeN2-Fa7hx4gFXGxFu-kAKjZv',
-                'client_secret' => 'EITpBpjK9v1QRdRKpvnpDVF--oG2KLJqa1dGzyMsqe5mw5EdKvo8XpToIlZNnWjQro7VB3Tz7gqZpJlU',
-                'app_id' => 'APP-80W284485P519543T',
-            ],
-            'live' => [
-                'client_id' => 'AUmUhWNWBnRoSkRgpAB3Ofu668uvSn8JHQVTW0VT3_4W3v0R5kYyMtSGeN2-Fa7hx4gFXGxFu-kAKjZv',
-                'client_secret' => 'EITpBpjK9v1QRdRKpvnpDVF--oG2KLJqa1dGzyMsqe5mw5EdKvo8XpToIlZNnWjQro7VB3Tz7gqZpJlU',
-                'app_id' => 'APP_ID'
-            ],
-
-            'payment_action' => 'Sale', // Can only be 'Sale', 'Authorization' or 'Order'
-            'currency' => 'PHP',
-            'notify_url' => env('PAYPAL_NOTIFY_URL', ''), // Change this accordingly for your application.
-            'locale' => 'en_US', // force gateway language  i.e. it_IT, es_ES, en_US ... (for express checkout only)
-            'validate_ssl' => true, // Validate SSL when creating api client.
-        ];
-
-        return $config;
+        return config('paypal');
     }
 
 

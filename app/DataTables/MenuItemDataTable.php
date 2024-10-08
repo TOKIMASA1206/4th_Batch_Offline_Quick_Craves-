@@ -58,7 +58,7 @@ class MenuItemDataTable extends DataTable
                 }
             })
             ->addColumn('image', function ($query) {
-                return '<img width="60px" src="' . asset($query->item_image) . '">';
+                return '<img width="60px" src="' . $query->item_image . '">';
             })
             ->rawColumns(['offer_price', 'price', 'status', 'show_at_home', 'action', 'image'])
             ->setRowId('id');

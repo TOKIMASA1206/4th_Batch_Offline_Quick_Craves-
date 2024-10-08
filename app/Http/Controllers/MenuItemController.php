@@ -78,7 +78,7 @@ class MenuItemController extends Controller
         try {
             $validatedData = $request->validated();
 
-            $imagePath = $this->uploadImage($request, 'image', $menu_item->item_image);
+            $imagePath = $this->uploadImage($request, 'image');
 
             $menu_item->item_image = !empty($imagePath) ? $imagePath : $menu_item->item_image;
             $menu_item->name = $validatedData['name'];
@@ -104,7 +104,6 @@ class MenuItemController extends Controller
     public function destroy(MenuItem $menu_item)
     {
         try {
-            $this->removeImage($menu_item->item_image);
             $menu_item->delete();
             return  response(['status' => 'success', 'message' => 'Deleted Successfully!']);
         } catch (\Exception $e) {
