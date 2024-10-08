@@ -8,7 +8,6 @@ use App\Http\Requests\MenuItemUpdateRequest;
 use App\Models\Category;
 use App\Models\MenuItem;
 use App\Traits\FileUploadTrait;
-use Illuminate\Http\Request;
 
 class MenuItemController extends Controller
 {

@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Events\PointPurchaseUpdate;
-use App\Models\PointPurchase;
 use App\Models\UserPointPurchase;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 use App\Services\PointPurchaseService;

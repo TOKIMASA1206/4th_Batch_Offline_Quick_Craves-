@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\TestEvent;
 use App\Models\Order;
 use App\Models\OrderItem;
-use App\Models\Proceed;
 use Auth;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 
 use function PHPUnit\Framework\returnSelf;
 

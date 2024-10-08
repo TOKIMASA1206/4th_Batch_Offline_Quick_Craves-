@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\DataTables\VouchersDataTable;
 use App\Http\Requests\Admin\VoucherCreateRequest;
 use App\Models\Voucher;
-use Illuminate\Http\Request;
 
 class VoucherController extends Controller
 {
@@ -50,13 +49,6 @@ class VoucherController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.

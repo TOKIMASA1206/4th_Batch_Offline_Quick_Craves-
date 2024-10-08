@@ -35,7 +35,6 @@
 @endsection
 
 @push('scripts')
-    <!-- ToastrのCSSとJSが既に読み込まれていることを確認 -->
     <script>
         $(document).ready(function() {
             @if(session('orderSuccess'))

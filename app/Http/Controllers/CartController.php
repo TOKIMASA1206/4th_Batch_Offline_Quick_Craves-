@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Cart;
 use App\Models\MenuItem;
 use App\Models\Voucher;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
