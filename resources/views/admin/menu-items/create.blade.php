@@ -5,7 +5,8 @@
         <div class="section-header d-flex justify-content-between">
             <h1>Create Menu Item</h1>
             <div>
-                <a href="{{ route('admin.menu-item.index') }}" class="btn btn-dark me-3">< Back</a>
+                <a href="{{ route('admin.menu-item.index') }}" class="btn btn-dark me-3">
+                    < Back</a>
             </div>
         </div>
 
@@ -36,11 +37,18 @@
                     <div class="form-group mb-3">
                         <label class="form-label">Category</label>
                         <select name="category" class="form-control select2" id="">
-                            <option value="">select</option>
-                            @foreach ($categories as $category)
-                                <option @selected(old('category') == $category->id) value="{{ $category->id }}">{{ $category->name }}
-                                </option>
-                            @endforeach
+                            @if ($categories->isEmpty())
+                                <option value="">No categories yet</option>
+                                </select>
+                                <a href="{{ route('admin.category.create') }}" class="fs-5 ms-3" style="text-decoration: none">→ Create category </a>
+                            @else
+                                <option value="">select</option>
+                                @foreach ($categories as $category)
+                                    <option @selected(old('category') == $category->id) value="{{ $category->id }}">
+                                        {{ $category->name }}
+                                    </option>
+                                @endforeach
+                            @endif
                         </select>
                     </div>
                     @error('category')

@@ -81,7 +81,7 @@ class WalletController extends Controller
         $transactions = $transactions->sortByDesc('created_at');
 
         // ページネーションの処理
-        $perPage = 1;
+        $perPage = 10;
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
         $currentPageItems = $transactions->slice(($currentPage - 1) * $perPage, $perPage)->all();
 
