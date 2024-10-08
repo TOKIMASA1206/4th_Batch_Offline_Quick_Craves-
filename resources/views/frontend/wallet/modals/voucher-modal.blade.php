@@ -13,10 +13,6 @@
                             data-bs-target="#vouchers" type="button" role="tab" aria-controls="vouchers"
                             aria-selected="true">Vouchers</button>
                     </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="rewards-tab" data-bs-toggle="tab" data-bs-target="#rewards"
-                            type="button" role="tab" aria-controls="rewards" aria-selected="false">Rewards</button>
-                    </li>
                 </ul>
                 <div class="tab-content mt-3" id="myTabContent">
                     <div class="tab-pane fade show active" id="vouchers" role="tabpanel"
@@ -34,35 +30,6 @@
                             </div>
                         </div>
                         @endforeach
-                    </div>
-                    <div class="tab-pane fade" id="rewards" role="tabpanel" aria-labelledby="rewards-tab">
-                        <div class="voucher-item">
-                            <div class="voucher-icon">
-                                <img src="{{ asset('frontend/images/ticket.png') }}" alt="Ticket Icon">
-                            </div>
-                            <div class="voucher-details">
-                                <p class="voucher-title">FREE 75 CP</p>
-                                <p class="voucher-expiry">Expiry Date N/A</p>
-                            </div>
-                        </div>
-                        <div class="voucher-item">
-                            <div class="voucher-icon">
-                                <img src="{{ asset('frontend/images/ticket.png') }}" alt="Ticket Icon">
-                            </div>
-                            <div class="voucher-details">
-                                <p class="voucher-title">FREE 75 CP</p>
-                                <p class="voucher-expiry">Expiry Date N/A</p>
-                            </div>
-                        </div>
-                        <div class="voucher-item">
-                            <div class="voucher-icon">
-                                <img src="{{ asset('frontend/images/ticket.png') }}" alt="Ticket Icon">
-                            </div>
-                            <div class="voucher-details">
-                                <p class="voucher-title">FREE 75 CP</p>
-                                <p class="voucher-expiry">Expiry Date N/A</p>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
