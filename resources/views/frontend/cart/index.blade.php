@@ -38,7 +38,7 @@
                                 <tbody>
                                     @foreach (Cart::content() as $item)
                                         <tr class="t_body cart-item-list">
-                                            <td class="pro_img"><img src="{{ asset($item->options->menu_info['image']) }}"
+                                            <td class="pro_img"><img src="{{ $item->options->menu_info['image'] }}"
                                                     class="cart-img" alt="{{ $item->name }}"></td>
                                             <td class="pro_name">
                                                 <a href="javascript:;">{{ $item->name }}</a>

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Models\Profile; // Profile モデルをインポート
+use DB;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -15,7 +16,7 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         // ユーザーを作成
-        $users = [
+        DB::table('users')->insert([
             [
                 'name' => 'Admin',
                 'email' => 'admin@email.com',
@@ -28,16 +29,15 @@ class UserSeeder extends Seeder
                 'role' => 'user',
                 'password' => Hash::make('password'),
             ]
-        ];
+        ]);
 
-        foreach ($users as $userData) {
-            $user = User::create($userData);
-            
-            // プロファイルを作成
+        $users = User::all();
+
+        foreach ($users as $user) {
             Profile::create([
                 'user_id' => $user->id,
                 'phone' => null,
-                'avatar' => '/uploads/avatar.jpg', // デフォルト値を設定
+                'avatar' => null,
                 'gender' => null,
                 'age' => null,
             ]);

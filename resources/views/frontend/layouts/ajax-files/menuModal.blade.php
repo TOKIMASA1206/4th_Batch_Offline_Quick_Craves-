@@ -8,7 +8,7 @@
 
     <div class="row">
         <div class="col-12 col-md-6 mb-4 mb-md-0">
-            <img src="{{ asset(@$menuItem->item_image) }}" alt="food1" class="img-fluid">
+            <img src="{{ @$menuItem->item_image }}" alt="food1" class="img-fluid">
         </div>
 
         <div class="col-12 col-md-6">

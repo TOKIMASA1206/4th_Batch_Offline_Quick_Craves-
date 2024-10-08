@@ -39,7 +39,7 @@
                     <div class="col category-menu-item" data-category="{{ $item->category->slug }}">
                         <div class="card">
                             <div class="badge-category">{{ $item->category->name }}</div>
-                            <img src="{{ asset($item->item_image) }}" class="card-img-top" alt="{{ $item->slug }}">
+                            <img src="{{ $item->item_image }}" class="card-img-top" alt="{{ $item->slug }}">
                             <div class="card-body">
                                 <h4 class="card-title menu-title text-center m-0">{{ $item->name }}</h4>
                                 <div class="d-flex justify-content-center align-items-center">
@@ -75,7 +75,7 @@
                     <div class="col menu-item" data-category="{{ $item->category->slug }}">
                         <div class="card">
                             <div class="badge-category">{{ $item->category->name }}</div>
-                            <img src="{{ asset($item->item_image) }}" class="card-img-top" alt="{{ $item->slug }}">
+                            <img src="{{ $item->item_image }}" class="card-img-top" alt="{{ $item->slug }}">
                             <div class="card-body">
                                 <h4 class="card-title menu-title text-center m-0">{{ $item->name }}</h4>
                                 <div class="d-flex justify-content-center align-items-center">

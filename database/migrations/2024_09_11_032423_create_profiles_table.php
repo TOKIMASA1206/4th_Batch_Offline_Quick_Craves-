@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('phone')->nullable();
-            $table->string('avatar')->default('/uploads/avatar.jpg');
+            $table->longText('avatar')->nullable();
             $table->enum('gender', ['male', 'female', 'other'])->nullable();
             $table->integer('age')->nullable();
-            
+
             $table->timestamps();
         });
     }

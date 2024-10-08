@@ -29,7 +29,7 @@
                                 data-item-id="{{ $orderItem->id }}" data-status="{{ $orderItem->status }}">
                                 <div class="col-md-3 left text-center">
                                     <div class="proceed-img-container mb-2">
-                                        <img src="{{ asset($orderItem->menuItem->item_image) }}" class="proceed-img"
+                                        <img src="{{ $orderItem->menuItem->item_image }}" class="proceed-img"
                                             alt="Burger">
                                     </div>
                                     <h5 class="m-0 text-uppercase proceed-item-title">{{ $orderItem->menuItem->name }}</h5>

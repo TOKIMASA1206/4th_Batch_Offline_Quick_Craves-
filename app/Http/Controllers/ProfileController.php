@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Frontend\ProfileCreateRequest;
 use App\Models\Order;
 use Illuminate\Support\Facades\DB;
-use App\Models\Profile;
-use App\Traits\ImageUploadTrait;
+use App\Traits\FileUploadTrait;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -14,7 +13,7 @@ use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
-    use ImageUploadTrait;
+    use FileUploadTrait;
 
     public function index()
     {
@@ -28,41 +27,7 @@ class ProfileController extends Controller
 
     public function card()
     {
-        //
         return view('frontend.card.index');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Profile $profile)
-    {
-        //
-
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Profile $profile)
-    {
-        //
     }
 
     /**
@@ -90,13 +55,7 @@ class ProfileController extends Controller
 
 
             if ($request->hasFile('avatar')) {
-                $oldAvatar = $profile->avatar;
-                $profile->avatar = $this->uploadImage($request, 'avatar', $oldAvatar);
-
-
-                if ($oldAvatar && file_exists(public_path($oldAvatar))) {
-                    unlink(public_path($oldAvatar));
-                }
+                $profile->avatar = $this->uploadImage($request, 'avatar');
             }
 
             $user->save();
@@ -139,14 +98,5 @@ class ProfileController extends Controller
             logger($e);
             return back()->with('error', 'There was an error updating the password.');
         }
-    }
-
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Profile $profile)
-    {
-        //
     }
 }

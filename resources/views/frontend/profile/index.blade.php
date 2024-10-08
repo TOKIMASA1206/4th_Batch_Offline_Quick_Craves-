@@ -29,7 +29,7 @@
                                     <div class="profile-menu-top p-4 mb-3">
                                         <div class="user-icon">
                                             @if (@Auth::user()->profile->avatar)
-                                                <img src="{{ asset(@Auth::user()->profile->avatar) }}" alt="">
+                                                <img src="{{ @Auth::user()->profile->avatar }} alt="">
                                             @else
                                                 <i class="fa-solid fa-user text-center mx-0"></i>
                                             @endif

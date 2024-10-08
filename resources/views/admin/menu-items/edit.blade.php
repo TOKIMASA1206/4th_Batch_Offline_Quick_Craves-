@@ -107,7 +107,7 @@
         $(document).ready(function() {
 
             $('.image-preview').css({
-                'background-image': 'url({{ asset($menu_item->item_image) }})',
+                'background-image': 'url({{ $menu_item->item_image }})',
                 'background-size': 'cover',
                 'background-position': 'center center'
             })
