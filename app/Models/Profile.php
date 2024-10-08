@@ -10,7 +10,7 @@ class Profile extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id', // これを追加
+        'user_id',
         'phone',
         'avatar',
         'gender',
