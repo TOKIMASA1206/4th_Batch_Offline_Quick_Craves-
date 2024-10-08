@@ -4,11 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DataTables\UsersDataTable;
 use App\Models\User;
-use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\View as FacadesView;
 
-use function PHPUnit\Framework\returnSelf;
 
 class UserController extends Controller
 {
@@ -23,11 +19,6 @@ class UserController extends Controller
         return $dataTable->render('admin.users.index');
     }
 
-    // public function edit(string $id) : View
-    // {
-    //     $user = User::findOrFail($id);
-    //     return view('admin.users.edit', compact('user'));
-    // }
 
     public function edit(User $user)
     {

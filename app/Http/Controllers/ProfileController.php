@@ -99,4 +99,5 @@ class ProfileController extends Controller
             return back()->with('error', 'There was an error updating the password.');
         }
     }
+
 }

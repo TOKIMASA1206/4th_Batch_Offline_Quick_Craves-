@@ -6,7 +6,6 @@ use App\DataTables\PointDataTable;
 use App\Http\Requests\PointCreateRequest;
 use App\Models\Point;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
 
 class PointController extends Controller
 {

@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use App\DataTables\CategoryDataTable;
 use App\Http\Requests\Admin\CategoryCreateRequest;
 use App\Models\Category;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
-use Illuminate\Support\Str;
 
 
 
