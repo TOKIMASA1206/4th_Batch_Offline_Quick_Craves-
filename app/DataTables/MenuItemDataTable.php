@@ -8,8 +8,6 @@ use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
 class MenuItemDataTable extends DataTable
@@ -85,11 +83,6 @@ class MenuItemDataTable extends DataTable
             ->orderBy(0)
             ->selectStyleSingle()
             ->buttons([
-                // Button::make('excel'),
-                // Button::make('csv'),
-                // Button::make('pdf'),
-                // Button::make('print'),
-                // Button::make('reset'),
                 Button::make('reload')
             ]);
     }

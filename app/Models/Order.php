@@ -26,8 +26,8 @@ class Order extends Model
         'coupon_info',
         'currency_name',
         'order_status',
-        'earned_stamps', // 追加
-        'voucher_id',    // 追加
+        'earned_stamps',
+        'voucher_id', 
     ];
 
 

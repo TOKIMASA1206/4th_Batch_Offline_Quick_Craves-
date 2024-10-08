@@ -8,8 +8,6 @@ use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
 class UsersDataTable extends DataTable
@@ -22,31 +20,27 @@ class UsersDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-        ->addColumn('action', function($query){
+            ->addColumn('action', function ($query) {
 
-            $activate = "<a href='" . route('admin.user.activate', $query->id) . "' class='btn btn-sm btn-primary me-2 activate-item'>Activate</a>";
+                $activate = "<a href='" . route('admin.user.activate', $query->id) . "' class='btn btn-sm btn-primary me-2 activate-item'>Activate</a>";
 
-            $inactivate = "<a href='" . route('admin.user.destroy', $query->id) . "' class='btn btn-sm btn-danger delete-item'>Inactivate</a>";
+                $inactivate = "<a href='" . route('admin.user.destroy', $query->id) . "' class='btn btn-sm btn-danger delete-item'>Inactivate</a>";
 
-            if ($query->deleted_at) {
+                if ($query->deleted_at) {
 
-                return $activate;
+                    return $activate;
+                } else {
 
-            } else {
-
-                return $inactivate;
-
-            }
-
-
-        })
-        ->editColumn('deleted_at', function ($data) {
-            return $data->deleted_at ? '<span class="label label-danger">Deactivated</span>' : '';
-        })
-        ->setRowClass(function ($data) {
-            return $data->deleted_at ? 'table-danger' : '';
-        })
-        ->rawColumns(['deleted_at','action'])
+                    return $inactivate;
+                }
+            })
+            ->editColumn('deleted_at', function ($data) {
+                return $data->deleted_at ? '<span class="label label-danger">Deactivated</span>' : '';
+            })
+            ->setRowClass(function ($data) {
+                return $data->deleted_at ? 'table-danger' : '';
+            })
+            ->rawColumns(['deleted_at', 'action'])
             ->setRowId('id');
     }
 
@@ -64,15 +58,15 @@ class UsersDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('users-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    //->dom('Bfrtip')
-                    ->orderBy(0, 'asc')
-                    ->selectStyleSingle()
-                    ->buttons([
-                        Button::make('reload')
-                    ]);
+            ->setTableId('users-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            //->dom('Bfrtip')
+            ->orderBy(0, 'asc')
+            ->selectStyleSingle()
+            ->buttons([
+                Button::make('reload')
+            ]);
     }
 
     /**
@@ -88,10 +82,10 @@ class UsersDataTable extends DataTable
             Column::make('deleted_at'),
 
             Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(140)
-                  ->addClass('text-center'),
+                ->exportable(false)
+                ->printable(false)
+                ->width(140)
+                ->addClass('text-center'),
         ];
     }
 

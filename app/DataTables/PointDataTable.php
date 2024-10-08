@@ -8,8 +8,6 @@ use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
 class PointDataTable extends DataTable
@@ -22,12 +20,12 @@ class PointDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-        ->addColumn('action', function($query){
-            $edit = "<a href='" . route('admin.point.edit', $query->id) . "' class='btn-yellow me-2'><i class='fas fa-edit'></i></a>";
-            $delete = "<a href='" . route('admin.point.destroy', $query->id) . "' class='btn-red delete-item'><i class='fas fa-trash'></i></a>";
+            ->addColumn('action', function ($query) {
+                $edit = "<a href='" . route('admin.point.edit', $query->id) . "' class='btn-yellow me-2'><i class='fas fa-edit'></i></a>";
+                $delete = "<a href='" . route('admin.point.destroy', $query->id) . "' class='btn-red delete-item'><i class='fas fa-trash'></i></a>";
 
-            return $edit . $delete;
-        })
+                return $edit . $delete;
+            })
             ->setRowId('id');
     }
 
@@ -45,15 +43,15 @@ class PointDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('point-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    //->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->selectStyleSingle()
-                    ->buttons([
-                        Button::make('reload')
-                    ]);
+            ->setTableId('point-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            //->dom('Bfrtip')
+            ->orderBy(1)
+            ->selectStyleSingle()
+            ->buttons([
+                Button::make('reload')
+            ]);
     }
 
     /**
@@ -68,10 +66,10 @@ class PointDataTable extends DataTable
             Column::make('bonus_points'),
 
             Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(140)
-                  ->addClass('text-center'),
+                ->exportable(false)
+                ->printable(false)
+                ->width(140)
+                ->addClass('text-center'),
         ];
     }
 

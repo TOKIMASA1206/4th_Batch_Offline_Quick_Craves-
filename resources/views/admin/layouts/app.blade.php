@@ -44,17 +44,6 @@
 </head>
 
 <body>
-    {{-- @if (session('success'))
-        <div class="alert alert-success fixed-alert">
-            {{ session('success') }}
-        </div>
-    @endif
-
-    @if (session('error'))
-        <div class="alert alert-danger fixed-alert">
-            {{ session('error') }}
-        </div>
-    @endif --}}
     <div class="alert fixed-alert"></div>
     <div id="app">
 
@@ -105,14 +94,6 @@
         });
 
         $(document).ready(function() {
-
-            /** Success & Error message notification **/
-            // $('.alert').hide().fadeIn(1000);
-
-            // setTimeout(function() {
-            //     $('.alert').fadeOut(1000);
-            // }, 3000);
-
 
             /* Sweet Alert Config  */
             $('body').on('click', '.delete-item', function(e) {
@@ -202,10 +183,8 @@
                     }
                 });
             });
-
         })
     </script>
-
 
     @stack('scripts')
 </body>

@@ -289,7 +289,7 @@ namespace App\Models{
  * @property int $id
  * @property int $user_id
  * @property string|null $phone
- * @property string $avatar
+ * @property string|null $avatar
  * @property string|null $gender
  * @property int|null $age
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -467,6 +467,7 @@ namespace App\Models{
  * @property string $code
  * @property float $discount_value
  * @property string|null $expiry_date
+ * @property int $is_selected
  * @property int $status
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -482,6 +483,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereDiscountValue($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereExpiryDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereIsSelected($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereUpdatedAt($value)
