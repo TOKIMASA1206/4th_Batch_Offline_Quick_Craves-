@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: 4th_Batch_Offline_Quick_Craves-   # Render上で表示される名前。すでに存在するものに合わせてもOK
+    name: 4th_Batch_Offline_Quick_Craves   # Render上で表示される名前。すでに存在するものに合わせてもOK
     env: php                   # PHP ランタイムを強制
     plan: free                 # 無料枠の場合（Starter, Standard など有料プランを使う場合は適宜変更）
 
