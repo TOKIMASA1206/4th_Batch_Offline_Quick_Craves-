@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: my-laravel-service   # Render上で表示される名前。すでに存在するものに合わせてもOK
+    env: php                   # PHP ランタイムを強制
+    plan: free                 # 無料枠の場合（Starter, Standard など有料プランを使う場合は適宜変更）
+
+    buildCommand: |
+      composer install --no-dev --optimize-autoloader
+      npm install
+      npm run build
+      php artisan migrate --force
+
+    startCommand: |
+      php -S 0.0.0.0:${PORT} -t public
+
