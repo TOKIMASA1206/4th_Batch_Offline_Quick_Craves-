@@ -16,8 +16,8 @@ RUN apt-get update && apt-get install -y \
     npm \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# PHP 拡張をインストール
-RUN docker-php-ext-install pdo_mysql zip gd sodium
+# PHP 拡張をインストール（PostgreSQL 用に pdo_pgsql をインストール）
+RUN docker-php-ext-install pdo_pgsql zip gd sodium
 
 # Composer を公式の Composer イメージからコピー
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
