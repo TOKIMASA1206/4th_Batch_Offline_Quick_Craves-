@@ -40,5 +40,6 @@ RUN npm run build
 EXPOSE 80
 
 # コンテナ起動時に、まずマイグレーションを実行し、その後 PHP 組み込みサーバーを起動
-CMD ["bash", "-c", "php artisan migrate --force && php artisan db:seed --class=UserSeeder && php -S 0.0.0.0:80 -t public"]
+CMD ["bash", "-c", "php artisan migrate --force || true; php artisan db:seed --class=UserSeeder || true; php -S 0.0.0.0:80 -t public"]
+
 
