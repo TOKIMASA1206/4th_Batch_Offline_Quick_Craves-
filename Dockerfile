@@ -1,8 +1,7 @@
 # ベースイメージ。php:8.2-cli を使用（必要に応じて fpm や apache も可）
 FROM php:8.2-cli
 
-# システム依存パッケージのインストール
-# libzip-dev は ext-zip 用、libgd-dev は ext-gd 用ライブラリ
+# システム依存パッケージをインストール
 RUN apt-get update && apt-get install -y \
     git \
     curl \
@@ -12,11 +11,12 @@ RUN apt-get update && apt-get install -y \
     zip unzip \
     libzip-dev \
     libgd-dev \
+    libsodium-dev \
     nodejs \
     npm \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# PHP 拡張のインストール
+# PHP 拡張をインストール
 RUN docker-php-ext-install pdo_mysql zip gd sodium
 
 # Composer を公式の Composer イメージからコピー
