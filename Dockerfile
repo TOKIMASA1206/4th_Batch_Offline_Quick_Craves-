@@ -29,11 +29,12 @@ WORKDIR /var/www/html
 # アプリケーションのソースコードを全てコピー
 COPY . .
 
-# 一時的にルート一覧を表示してログに出力（デバッグ用）
-RUN php artisan route:list
-
 # PHP の依存パッケージを本番向けにインストール
 RUN composer install --no-dev --optimize-autoloader
+
+
+# 一時的にルート一覧を表示してログに出力（デバッグ用）
+RUN php artisan route:list
 
 # Node.js の依存パッケージをインストール＆フロントエンドビルド（Vite 等）
 RUN npm install
