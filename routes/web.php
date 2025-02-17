@@ -87,7 +87,8 @@ Route::group(["middleware" => "auth"], function () {
 
 /**================== Admin Side ============================== */
 
-    Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin'], function () {
+    // Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin'], function () {
+    Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
         Route::get('/dashboard', [AdminController::class, 'index'])->name('index');
 
