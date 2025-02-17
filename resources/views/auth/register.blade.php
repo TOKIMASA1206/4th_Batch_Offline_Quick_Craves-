@@ -74,6 +74,24 @@
                                 </div>
                             </div>
 
+                            {{-- Role選択 --}}
+                            <div class="row mb-3 justify-content-center">
+                                <div class="col-md-8">
+                                    <select id="role" name="role" class="form-control @error('role') is-invalid @enderror bg-secondary-subtle" required>
+                                        <option value="">Select Role</option>
+                                        <option value="user" {{ old('role') == 'user' ? 'selected' : '' }}>User</option>
+                                        <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Admin</option>
+                                    </select>
+
+                                    @error('role')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+
                             <div class="row mb-4 justify-content-center">
                                 <div class="col-md-6 text-center">
                                     <button type="submit" class="btn btn-secondary"
